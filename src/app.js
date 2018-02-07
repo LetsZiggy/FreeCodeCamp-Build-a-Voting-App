@@ -6,24 +6,24 @@ export class App {
       {
         route: ['', 'home'],
         name: 'home',
-        moduleId: './modules/home',
+        moduleId: './home',
         title: 'Home',
         nav: true,
       },
-      {
-        route: 'user',
-        name: 'user',
-        moduleId: './modules/user',
-        title: 'User',
-        nav: true,
-      },
-      {
-        route: 'voting',
-        name: 'voting',
-        moduleId: './modules/voting',
-        title: 'Voting',
-        nav: true,
-      },
+      // {
+      //   route: 'user',
+      //   name: 'user',
+      //   moduleId: './user',
+      //   title: 'User',
+      //   nav: true,
+      // },
+      // {
+      //   route: 'voting',
+      //   name: 'voting',
+      //   moduleId: './voting',
+      //   title: 'Voting',
+      //   nav: true,
+      // },
     ]);
   }
 }

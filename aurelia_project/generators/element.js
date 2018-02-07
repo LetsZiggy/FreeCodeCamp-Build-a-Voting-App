@@ -18,7 +18,8 @@ export default class ElementGenerator {
 
         this.project.elements.add(
           ProjectItem.text(`${fileName}.js`, this.generateJSSource(className)),
-          ProjectItem.text(`${fileName}.html`, this.generateHTMLSource(className))
+          ProjectItem.text(`${fileName}.pug`, this.generatePUGSource(className))
+          // ProjectItem.text(`${fileName}.html`, this.generateHTMLSource(className))
         );
 
         return this.project.commitChanges()
@@ -40,9 +41,15 @@ export class ${className} {
 `;
   }
 
-  generateHTMLSource(className) {
-    return `<template>
-  <h1>\${value}</h1>
-</template>`;
+//   generateHTMLSource(className) {
+//     return `<template>
+//   <h1>\${value}</h1>
+// </template>`;
+//   }
+// }
+
+  generatePUGSource(className) {
+    return `template
+  h1 \${value}`;
   }
 }
