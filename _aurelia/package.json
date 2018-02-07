@@ -1,10 +1,10 @@
 {
   "name": "freecodecamp-build-a-voting-app",
-  "description": "FreeCodeCamp - Build a Voting App.",
-  "version": "0.1.0",
+  "description": "FreeCodeCamp - Dynamic Web Application Projects - Build a Voting App.",
+  "version": "1.0.0",
   "repository": {
-    "type": "???",
-    "url": "???"
+    "type": "git",
+    "url": "https://github.com/LetsZiggy/FreeCodeCamp-Build-a-Voting-App"
   },
   "license": "MIT",
   "dependencies": {

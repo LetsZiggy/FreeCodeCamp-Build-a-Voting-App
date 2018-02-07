@@ -1,10 +1,10 @@
-import {bindable} from 'aurelia-framework';
+import {bindable, bindingMode} from 'aurelia-framework';
+import {state} from './resources/state';
 
 export class Home {
-  @bindable value;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
-  valueChanged(newValue, oldValue) {
-
+  constructor() {
+    this.message = 'Home';
   }
 }
-

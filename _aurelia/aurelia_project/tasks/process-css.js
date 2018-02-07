@@ -15,5 +15,6 @@ export default function processCSS() {
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors)) // Added
-    .pipe(build.bundle());
+    // .pipe(build.bundle()) // Default replaced
+    .pipe(gulp.dest(project.platform.output)); // Added
 }

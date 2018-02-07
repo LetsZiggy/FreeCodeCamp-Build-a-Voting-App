@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta+Mahee')
+
+body
+  margin           : 0rem
+  padding          : 0rem
+  background-color : #fafafa
+  font-family      : 'Mukta Mahee', sans-serif
+
+ul.routes
+  display          : flex
+  flex-direction   : row
+  justify-content  : center
+  align-items      : center
+  align-content    : center
+  margin           : 0rem 0rem 0.5rem 0rem
+  padding          : 0rem
+  width            : 100%
+  height           : 2rem
+  border-bottom    : 1px solid gainsboro
+  background-color : whitesmoke
+
+  li
+    list-style-type : none
+    margin          : 0rem
+    padding         : 0rem 0.5rem
+    width           : auto
+    height          : 100%
+
+    a
+      display         : flex
+      flex-direction  : row
+      justify-content : center
+      align-items     : center
+      align-content   : center
+      width           : auto
+      height          : 100%
+
+  li:first-child
+    margin-left   : 1rem
+    padding-right : 1rem
+    width         : auto
+    height        : 100%
+
+    a
+      img
+        width         : 1.5rem
+        height        : 1.5rem
+        border-radius : 50px
+
+  li:last-child
+    margin-left  : auto
+    margin-right : 1rem
+
+  li:not(:first-child)
+    a
+      text-decoration: none
+
+  li:not(:first-child):hover, li:not(:first-child).active
+    background-color : gainsboro

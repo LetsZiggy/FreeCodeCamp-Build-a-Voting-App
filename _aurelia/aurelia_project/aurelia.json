@@ -24,7 +24,7 @@
         "name": "app-bundle.js",
         "source": [
           "[**/*.js]",
-          "**/*.{css,html}"
+          "**/*.html"
         ]
       },
       {
@@ -139,7 +139,7 @@
     "id": "sass",
     "displayName": "Sass",
     "fileExtension": ".sass",
-    "source": ["assets/**/*.sass", "src/**/*.sass"]
+    "source": "src/**/*.sass"
   },
   "editor": {
     "id": "sublime",
