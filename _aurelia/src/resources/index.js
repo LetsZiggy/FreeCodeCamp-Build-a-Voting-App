@@ -1,5 +1,7 @@
 export function configure(config) {
   config.globalResources([
-    './elements/routes.html'
+    './value-converters/lowercase',
+    './elements/routes.html',
+    './elements/footer.html'
   ]);
 }

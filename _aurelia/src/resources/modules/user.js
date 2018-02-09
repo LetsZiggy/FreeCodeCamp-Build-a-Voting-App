@@ -1,11 +1,10 @@
 import {bindable, bindingMode} from 'aurelia-framework';
-import {state} from './resources/state';
+import {state} from '../state';
 
-export class Login {
+export class User {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
   constructor() {
-    this.message = 'Login';
+    this.message = 'user';
   }
 }
-

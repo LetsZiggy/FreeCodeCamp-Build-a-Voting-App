@@ -9,32 +9,36 @@ export class App {
     config.title = 'FreeCodeCamp - Build a Voting App';
     config.map([
       {
-        route: ['', 'home'],
+        route: '',
+        redirect: 'home'
+      },
+      {
+        route: 'home',
         name: 'home',
-        moduleId: './home',
+        moduleId: './resources/modules/home',
         title: 'Home',
         nav: true,
       },
       {
         route: 'polls',
         name: 'polls',
-        moduleId: './polls',
+        moduleId: './resources/modules/polls',
         title: 'Polls',
         nav: true,
       },
       {
         route: 'user',
         name: 'user',
-        moduleId: './user',
+        moduleId: './resources/modules/user',
         title: 'User',
         nav: true,
       },
       {
         route: 'login',
         name: 'login',
-        moduleId: './login',
+        moduleId: './resources/modules/login',
         title: 'Login',
-        nav: false,
+        nav: true,
       },
     ]);
   }
