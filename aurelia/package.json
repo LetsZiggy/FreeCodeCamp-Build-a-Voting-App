@@ -14,7 +14,6 @@
     "aurelia-repeat-strategies": "github:martingust/aurelia-repeat-strategies",
     "aurelia-validation": "^1.0.0",
     "bluebird": "^3.4.1",
-    "chart.js": "^2.7.1",
     "requirejs": "^2.3.2",
     "text": "github:requirejs/text#latest",
     "whatwg-fetch": "^2.0.3"

@@ -5,6 +5,5 @@ export class Home {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
   attached() {
-    console.log(this.state);
   }
 }

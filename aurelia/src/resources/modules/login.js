@@ -13,11 +13,17 @@ export class Login {
 
   canActivate() {
     if(this.state.login) {
-      // handle logout process
-      this.state.login = null;
-      document.getElementById('login').classList.remove('active');
-      document.getElementById('home').classList.add('active');
-      this.router.navigate('home');
+      try {
+        if(document.getElementById('login')) {
+          document.getElementById('login').classList.remove('active');
+          document.getElementById('home').classList.add('active');
+        }
+      }
+      finally {
+        // handle logout process
+        this.state.login = null;
+        this.router.navigate('home');
+      }
     }
   }
 
