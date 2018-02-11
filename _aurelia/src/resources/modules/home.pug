@@ -1,27 +1,3 @@
 template
-  #content.home-content
-    #user-row
-      #created(if.bind="state.login")
-        .title User Created Polls
-        ul
-          li(repeat.for="poll of state.user.created | repeatlimit:0:5")
-            a(href.bind="poll.link") ${poll.name}
-
-      #participated(if.bind="state.login")
-        .title User Participated Polls
-        ul
-          li(repeat.for="poll of state.user.participated | repeatlimit:0:5")
-            a(href.bind="poll.link") ${poll.name}
-
-    #general-row
-      #latest
-        .title Latest Polls Created
-        ul
-          li(repeat.for="poll of state.polls | sortpolls:'date':'ascending' | repeatlimit:0:5")
-            a(href.bind="poll.link") ${poll.name}
-
-      #top
-        .title Most Participated Polls
-        ul
-          li(repeat.for="poll of state.polls | sortpolls:'participated':'ascending' | repeatlimit:0:5")
-            a(href.bind="poll.link") ${poll.name}
+  #content
+    h1 ${message}

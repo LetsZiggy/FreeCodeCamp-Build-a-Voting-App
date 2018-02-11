@@ -41,11 +41,6 @@ template
           hr
           label Re-enter Password
 
-        //- fieldset.login-fieldset
-        //-   input#signup-secret(type="text" placeholder="This is my secret" pattern=".{6,}" onkeyup="this.setAttribute('data-length', this.value.length);" data-length="0" required)
-        //-   hr
-        //-   label Secret for password reset (Minimum length of 6)
-
         fieldset.login-fieldset
           button(type="submit") Submit
 
@@ -64,11 +59,6 @@ template
           input#signreset-repassword(type="password" placeholder="" pattern=".{8,}" onkeyup="this.setAttribute('data-length', this.value.length);" data-length="0" required)
           hr
           label Re-enter Password
-
-        //- fieldset.login-fieldset
-        //-   input#signreset-secret(type="text" placeholder="This is my secret" pattern=".{6,}" onkeyup="this.setAttribute('data-length', this.value.length);" data-length="0" required)
-        //-   hr
-        //-   label Secret for password reset
 
         fieldset.login-fieldset
           button(type="submit") Submit

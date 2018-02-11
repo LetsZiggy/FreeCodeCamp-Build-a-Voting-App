@@ -1,4 +1,4 @@
-ul.nav
+ul.routes
   display          : flex
   flex-direction   : row
   justify-content  : center
@@ -15,7 +15,7 @@ ul.nav
   li
     list-style-type : none
     margin          : 0rem
-    padding         : 0rem
+    padding         : 0rem 0.5rem
     width           : auto
     height          : 100%
 
@@ -25,14 +25,15 @@ ul.nav
       justify-content : center
       align-items     : center
       align-content   : center
-      width           : 4.5rem
+      width           : auto
       height          : 100%
       color           : dimgrey
 
   li:first-child
-    margin-left : 1rem
-    padding     : 0rem
-    height      : 100%
+    margin-left   : 1rem
+    padding-right : 1rem
+    width         : auto
+    height        : 100%
 
     a
       img
@@ -53,11 +54,3 @@ ul.nav
 
     a
       color : darkviolet
-
-span
-  position : absolute
-  display : inline-block
-  left : 50%
-  top : 0rem
-  transform: translate(-50%, 0.25rem)
-  font-weight : bold

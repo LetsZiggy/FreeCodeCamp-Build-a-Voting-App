@@ -35,11 +35,10 @@ export class Login {
     return(true);
   }
 
-  // handleForm(form) {
-  //   // If user submit wrong signin, delay next available signin at Fibonacci number seconds
-  //   // If user signup with used username, inform user
-  //   // If user Reset Password, pass form as long as user meets form requirements even if user not valid. This allow user to not farm for accounts
+  // testPassword(form) {
+  //   form = document.getElementById(form);
+  //   if(form.children[1].children[0].value === form.children[2].children[0].value) {
 
-  //   (form.children[1].children[0].value === form.children[2].children[0].value) // checking repeat password
+  //   }
   // }
 }
