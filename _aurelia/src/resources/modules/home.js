@@ -4,7 +4,7 @@ import {state} from '../state';
 export class Home {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
-  constructor() {
-    this.message = 'Home';
+  attached() {
+    console.log(this.state);
   }
 }
