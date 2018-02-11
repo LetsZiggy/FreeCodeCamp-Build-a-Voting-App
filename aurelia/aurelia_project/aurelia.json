@@ -91,7 +91,12 @@
             "main": "index"
           },
           "whatwg-fetch",
-          "aurelia-fetch-client"
+          "aurelia-fetch-client",
+          {
+            "name": "chartjs",
+            "path": "../node_modules/chart.js/dist",
+            "main": "Chart.bundle.min"
+          }
         ]
       }
     ],
