@@ -1,0 +1,812 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"flex",
+				"flex-start"
+			],
+			[
+				"c",
+				"children"
+			],
+			[
+				"sing",
+				"signup"
+			],
+			[
+				"sign",
+				"signup"
+			],
+			[
+				"si",
+				"signin"
+			],
+			[
+				"s",
+				"signin"
+			],
+			[
+				"radi",
+				"radio-signin"
+			],
+			[
+				"radio",
+				"radio-reset"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"bore",
+				"border-box"
+			],
+			[
+				"box-s",
+				"box-sizing"
+			],
+			[
+				"border",
+				"border-box"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
+			"settings":
+			{
+				"buffer_size": 1306,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/elements/footer.pug",
+			"settings":
+			{
+				"buffer_size": 1675,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/resources/state.js",
+			"settings":
+			{
+				"buffer_size": 1236,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/index.js",
+			"settings":
+			{
+				"buffer_size": 236,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/resources/styles/nav.sass",
+			"settings":
+			{
+				"buffer_size": 1319,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/styles/home.sass",
+			"settings":
+			{
+				"buffer_size": 1412,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/modules/home.pug",
+			"settings":
+			{
+				"buffer_size": 913,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "aurelia_project/aurelia.json",
+			"settings":
+			{
+				"buffer_size": 4418,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/resources/modules/home.js",
+			"settings":
+			{
+				"buffer_size": 231,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "alig",
+		"selected_items":
+		[
+			[
+				"alig",
+				"AlignTab"
+			],
+			[
+				"incre",
+				"Increment Selection"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"al",
+				"AlignTab"
+			],
+			[
+				"j",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"",
+				"AlignTab"
+			],
+			[
+				":",
+				"Git: Blame"
+			]
+		],
+		"width": 420.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia"
+	],
+	"file_history":
+	[
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/aurelia_project/aurelia.json",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/package.json",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/index.html",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/app.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/nav.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/nav.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/routes.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/app.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/style.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/routes.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/sortpolls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/repeatlimit.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/lowercase.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/index.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/login.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/login.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/scripts/style.css",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/sublime-project.sublime-project",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/home.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/home.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/.gitignore",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/.gitignore",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/login.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/footer.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/footer.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/aurelia_project/tasks/process-css.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/style.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/style-login.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/polls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/modules/user.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/style-login.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/login.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/login.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/home.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/home.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/polls.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/polls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/user.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/user.js",
+		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.sass",
+		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/app.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/titlecase.js",
+		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/routes.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/state.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/test.js",
+		"/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/.gitattributes"
+	],
+	"find":
+	{
+		"height": 41.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"3.5rem",
+			"#",
+			"background : red",
+			"-row",
+			"\n            a(href.bind=\"poll.link\") ${poll.name}",
+			"\n          li(repeat.for=\"poll of state.user.participated\")",
+			"\n      let result = arr.map(x => x);",
+			"temp",
+			"let temp = ",
+			"arr =",
+			"data",
+			"participation",
+			"\n      link: null,",
+			"\n        link: null,",
+			"data",
+			"| repeatlimit:0:5\"",
+			"participation",
+			"date",
+			",\n      participation: 1",
+			"date:",
+			"return();",
+			"\n          li(repeat.for=\"poll of state.polls | repeatlimit:0:5\")",
+			"{\n        link: null,",
+			"sortpolls",
+			"a(href.bind=\"poll.link\") ${poll.name}",
+			" | sortpolls:'date':'descending'",
+			"name: '",
+			"name: '1'",
+			"name: ''",
+			"name: '1'",
+			"name: ''",
+			"name: null",
+			"null",
+			"amount",
+			"value",
+			"repeatlimit",
+			"null",
+			"state.",
+			" |",
+			"of ",
+			"{}",
+			"Polls |",
+			"sort",
+			"flex-start",
+			"flex-basis",
+			":",
+			"#",
+			"=== false",
+			" === false",
+			"this.gamestatus.run === false",
+			"!==",
+			"&&",
+			"// boss",
+			"50% - 3rem)",
+			"container",
+			"\n    height : calc(50% - 3rem)",
+			"height : calc(65% - 3rem)",
+			"-secret(type=\"text",
+			"onkeyup",
+			"length=\"0\"",
+			"length",
+			"length=\"\"",
+			"('value', this.value)",
+			"value=\"\"",
+			"input",
+			"(type=\"text\"",
+			"pointer-event",
+			"'])\"",
+			"clearForm",
+			"form",
+			"clearForm",
+			"]",
+			"[",
+			"clearForm",
+			"##",
+			"signreset-cancel",
+			"id=\"",
+			"username(type=\"text\" placeholder=\"\" required)",
+			"type=\"password\" placeholder=\"\" required)",
+			"input#signreset-password(type=\"password\" placeholder=\"\" required)",
+			"signup",
+			".active",
+			"red",
+			"moduleId: './",
+			"1px solid grey",
+			"border",
+			"border     : 1px solid grey",
+			"0px 3px 3px -3px #CCCCCC",
+			"#ccc",
+			"#CCC",
+			"#",
+			"px",
+			"v",
+			"login"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"#"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1306,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/resources/elements/footer.pug",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1675,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1633,
+								1633
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Pug/Syntaxes/Pug.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/resources/state.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1233,
+								1233
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1215.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/resources/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								36
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/resources/styles/nav.sass",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/resources/styles/home.sass",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								969,
+								969
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/resources/modules/home.pug",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 913,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								129,
+								129
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Pug/Syntaxes/Pug.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "aurelia_project/aurelia.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4418,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2926,
+								2926
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1275.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/resources/modules/home.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 231,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								180,
+								180
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sublime-project.sublime-project",
+	"replace":
+	{
+		"height": 73.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"app.pug",
+				"src\\app.pug"
+			],
+			[
+				"nav.sass",
+				"src\\resources\\styles\\nav.sass"
+			],
+			[
+				"nav.pug",
+				"src\\resources\\elements\\nav.pug"
+			],
+			[
+				"routes.pug",
+				"src\\resources\\elements\\routes.pug"
+			],
+			[
+				"routes.sass",
+				"src\\resources\\styles\\routes.sass"
+			],
+			[
+				"routes",
+				"src\\resources\\elements\\routes.pug"
+			],
+			[
+				"value-converters/",
+				"src\\resources\\value-converters\\lowercase.js"
+			],
+			[
+				"resources/index",
+				"src\\resources\\index.js"
+			],
+			[
+				"value-converter/re",
+				"src\\resources\\value-converters\\repeatlimit.js"
+			],
+			[
+				"value-converter/",
+				"src\\resources\\value-converters\\repeatlimit.js"
+			],
+			[
+				"resources/in",
+				"src\\resources\\index.js"
+			],
+			[
+				"sortpoll",
+				"src\\resources\\value-converters\\sortpolls.js"
+			],
+			[
+				"repea",
+				"src\\resources\\value-converters\\repeatlimit.js"
+			],
+			[
+				"home",
+				"src\\resources\\modules\\home.pug"
+			],
+			[
+				"login",
+				"src\\resources\\modules\\login.pug"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
