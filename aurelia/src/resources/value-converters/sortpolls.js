@@ -10,12 +10,12 @@ export class SortpollsValueConverter {
       result = result.sort((a, b) => a.date - b.date);
       return(result);
     }
-    else if(type === 'participated' && direction === 'descending') {
-      result = result.sort((a, b) => b.participated - a.participated);
+    else if(type === 'votes' && direction === 'descending') {
+      result = result.sort((a, b) => b.totalvotes - a.totalvotes);
       return(result);
     }
-    else if(type === 'participated' && direction === 'ascending') {
-      result = result.sort((a, b) => a.participated - b.participated);
+    else if(type === 'votes' && direction === 'ascending') {
+      result = result.sort((a, b) => a.totalvotes - b.totalvotes);
       return(result);
     }
   }

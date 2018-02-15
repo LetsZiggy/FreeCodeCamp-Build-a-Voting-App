@@ -1,12 +1,12 @@
 import 'whatwg-fetch';
+import 'chartjs';
 
 import environment from './environment';
 
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources')
-    .plugin('aurelia-repeat-strategies');
+    .feature('resources');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();

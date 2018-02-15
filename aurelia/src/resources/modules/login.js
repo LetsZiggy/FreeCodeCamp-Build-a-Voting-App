@@ -8,7 +8,6 @@ export class Login {
 
   constructor(Router) {
     this.router = Router;
-    this.message = 'Login';
   }
 
   canActivate() {

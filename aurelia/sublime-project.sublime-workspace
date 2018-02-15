@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"margin",
+				"margin-top"
+			],
+			[
 				"flex",
 				"flex-start"
 			],
@@ -56,27 +60,10 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
-			"settings":
-			{
-				"buffer_size": 1306,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/resources/elements/footer.pug",
 			"settings":
 			{
-				"buffer_size": 1675,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/resources/state.js",
-			"settings":
-			{
-				"buffer_size": 1236,
+				"buffer_size": 1816,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -91,18 +78,10 @@
 			}
 		},
 		{
-			"file": "src/resources/styles/nav.sass",
-			"settings":
-			{
-				"buffer_size": 1344,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/resources/styles/home.sass",
 			"settings":
 			{
-				"buffer_size": 1412,
+				"buffer_size": 2704,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -111,7 +90,7 @@
 			"file": "src/resources/modules/home.pug",
 			"settings":
 			{
-				"buffer_size": 961,
+				"buffer_size": 1669,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -120,26 +99,24 @@
 			"file": "src/resources/modules/home.js",
 			"settings":
 			{
-				"buffer_size": 231,
+				"buffer_size": 1477,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/state.js",
+			"settings":
+			{
+				"buffer_size": 2845,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "aurelia_project/aurelia.json",
+			"file": "src/resources/value-converters/sortpolls.js",
 			"settings":
 			{
-				"buffer_size": 4278,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "package.json",
-			"settings":
-			{
-				"buffer_size": 2168,
-				"encoding": "UTF-8",
+				"buffer_size": 731,
 				"line_ending": "Windows"
 			}
 		}
@@ -152,9 +129,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "alig",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"AlignTab"
+			],
 			[
 				"alig",
 				"AlignTab"
@@ -184,10 +165,6 @@
 				"Set Syntax: JavaScript (Babel)"
 			],
 			[
-				"",
-				"AlignTab"
-			],
-			[
 				":",
 				"Git: Blame"
 			]
@@ -212,10 +189,19 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia"
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia"
 	],
 	"file_history":
 	[
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/home.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/login.js",
+		"/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/nav.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/package.json",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/sortpolls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/main.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/aurelia_project/aurelia.json",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/elements/nav.pug",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/package.json",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/nav.sass",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/lowercase.js",
@@ -264,7 +250,6 @@
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/routes.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/state.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/test.js",
-		"/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/.gitattributes"
 	],
 	"find":
@@ -283,6 +268,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"${poll.id}",
+			"id=\"test\"",
+			"a(href=\"#\")\n              ",
+			"\n              ",
+			"a(href=\"#\")\n              ",
+			"a(href=\"#\")",
+			"span",
+			"a(href=\"#\") ",
+			"          title: 'participatedchoice",
+			"            title: 'participatedchoice",
+			"link: ",
+			"id: '",
+			"name: ",
+			"        name: ",
+			"name: ",
+			"      id: 'poll",
+			"date: ",
+			"date:",
+			"totalvotes:",
+			".bind=\"#",
+			"a(href.bind=\"poll.link\") ${poll.name}",
+			"false",
+			"data:",
+			"//   },\n//   {",
+			"//       ",
+			"},{",
+			"#fff",
 			"ul",
 			"3.5rem",
 			"#",
@@ -397,55 +409,24 @@
 	"groups":
 	[
 		{
-			"selected": 9,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": false,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "src/resources/elements/footer.pug",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1675,
+						"buffer_size": 1816,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1633,
-								1633
+								505,
+								505
 							]
 						],
 						"settings":
@@ -459,40 +440,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "src/resources/state.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1236,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								421,
-								421
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 180.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
+					"buffer": 1,
 					"file": "src/resources/index.js",
 					"semi_transient": false,
 					"settings":
@@ -517,32 +469,30 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/resources/styles/nav.sass",
+					"buffer": 2,
+					"file": "src/resources/styles/home.sass",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1344,
+						"buffer_size": 2704,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1344,
-								1344
+								2143,
+								2143
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 525.0,
@@ -552,61 +502,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/resources/styles/home.sass",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								798,
-								798
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 375.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "src/resources/modules/home.pug",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 961,
+						"buffer_size": 1669,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								133,
-								218
-							],
-							[
-								359,
-								457
-							],
-							[
-								577,
-								694
-							],
-							[
-								797,
-								922
+								441,
+								441
 							]
 						],
 						"settings":
@@ -618,24 +527,55 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "src/resources/modules/home.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 231,
+						"buffer_size": 1477,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								231,
-								231
+								454,
+								454
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/resources/state.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2845,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2810,
+								2810
 							]
 						],
 						"settings":
@@ -647,69 +587,38 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "aurelia_project/aurelia.json",
+					"buffer": 6,
+					"file": "src/resources/value-converters/sortpolls.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4278,
+						"buffer_size": 731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2726,
-								2726
+								305,
+								305
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 900.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2168,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1513,
-								1513
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -768,20 +677,40 @@
 		"selected_items":
 		[
 			[
-				"index",
-				"index.html"
-			],
-			[
-				"app.pug",
-				"src\\app.pug"
+				"login",
+				"src\\resources\\modules\\login.js"
 			],
 			[
 				"nav.sass",
 				"src\\resources\\styles\\nav.sass"
 			],
 			[
+				"sortp",
+				"src\\resources\\value-converters\\sortpolls.js"
+			],
+			[
+				"value-conver/sort",
+				"src\\resources\\value-converters\\sortpolls.js"
+			],
+			[
+				"aurelia",
+				"aurelia_project\\aurelia.json"
+			],
+			[
+				"main",
+				"src\\main.js"
+			],
+			[
 				"nav.pug",
 				"src\\resources\\elements\\nav.pug"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"app.pug",
+				"src\\app.pug"
 			],
 			[
 				"routes.pug",
@@ -826,10 +755,6 @@
 			[
 				"home",
 				"src\\resources\\modules\\home.pug"
-			],
-			[
-				"login",
-				"src\\resources\\modules\\login.pug"
 			]
 		],
 		"width": 0.0

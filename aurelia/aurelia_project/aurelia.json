@@ -85,13 +85,13 @@
             "path": "../node_modules/aurelia-validation/dist/amd",
             "main": "aurelia-validation"
           },
-          {
-            "name": "aurelia-repeat-strategies",
-            "path": "../node_modules/aurelia-repeat-strategies/dist/amd",
-            "main": "index"
-          },
           "whatwg-fetch",
           "aurelia-fetch-client",
+          {
+            "name": "google-palette",
+            "path": "../node_modules/google-palette",
+            "main": "palette"
+          },
           {
             "name": "chartjs",
             "path": "../node_modules/chart.js/dist",
