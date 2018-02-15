@@ -17,6 +17,11 @@ export const state = {
             votes: 6,
             voters: []
           },
+          {
+            title: 'createdchoice03',
+            votes: 10,
+            voters: []
+          },
         ],
       }
     ],
@@ -87,6 +92,16 @@ export const state = {
         },
         {
           title: '02',
+          votes: 13,
+          voters: []
+        },
+        {
+          title: '03',
+          votes: 7,
+          voters: []
+        },
+        {
+          title: '04',
           votes: 13,
           voters: []
         },

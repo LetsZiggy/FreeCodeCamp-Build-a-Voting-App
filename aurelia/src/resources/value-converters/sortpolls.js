@@ -11,10 +11,12 @@ export class SortpollsValueConverter {
       return(result);
     }
     else if(type === 'votes' && direction === 'descending') {
+      result = getTotalVotes(result);
       result = result.sort((a, b) => b.totalvotes - a.totalvotes);
       return(result);
     }
     else if(type === 'votes' && direction === 'ascending') {
+      result = getTotalVotes(result);
       result = result.sort((a, b) => a.totalvotes - b.totalvotes);
       return(result);
     }
@@ -23,4 +25,16 @@ export class SortpollsValueConverter {
   fromView(arr) {
 
   }
+}
+
+function getTotalVotes(list) {
+  list.forEach((v, i, a) => {
+    let totalvotes = 0;
+    v.choices.forEach((cv, ci, ca) => {
+      totalvotes += cv.votes;
+    })
+    v.totalvotes = totalvotes;
+  });
+
+  return(list);
 }
