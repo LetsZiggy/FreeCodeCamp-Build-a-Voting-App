@@ -27,6 +27,11 @@ export class App {
         nav: true,
       },
       {
+        route: 'polls/:id',
+        name: 'poll',
+        moduleId: './resources/modules/poll'
+      },
+      {
         route: 'user',
         name: 'user',
         moduleId: './resources/modules/user',

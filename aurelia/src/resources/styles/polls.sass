@@ -1,4 +1,4 @@
-.home-content
+.polls-content
   flex-direction  : row
   flex-wrap       : wrap
   justify-content : center
@@ -7,10 +7,40 @@
   padding         : 1rem
   overflow        : hidden
 
-  #user-row
-    margin-bottom : 1.5rem
+  #pagination-row
+    width            : 100%
+    height           : auto
+    display          : flex
+    flex-direction   : row
+    justify-content  : flex-start
+    align-items      : center
+    align-content    : center
+    margin           : 0rem 2.5vw 1rem 2.5vw
+    padding          : 0rem 1rem
+    background-color : #EEEEEE
 
-  #user-row, #general-row
+    input
+      display : none
+
+    #row-10:not(:checked) ~ .row-10, #row-25:not(:checked) ~ .row-25, #row-50:not(:checked) ~ .row-50
+      background-color : #EEEEEE
+
+    #row-10:checked ~ .row-10, #row-25:checked ~ .row-25, #row-50:checked ~ .row-50
+      color            : darkmagenta
+      background-color : #DDDDDD
+
+    span
+      padding : 0rem 0.5rem 0rem 0rem
+
+    label
+      padding : 0rem 0.5rem
+      cursor  : pointer
+      color   : steelblue
+
+    label:hover
+      background-color : #DDDDDD
+
+  #polls-row
     width           : 100%
     height          : auto
     display         : flex
@@ -19,24 +49,25 @@
     align-items     : center
     align-content   : center
 
-    #created, #participated, #latest, #most
-      width           : 45%
-      height          : auto
-      max-height      : 40vh
-      display         : flex
-      flex-direction  : column
-      justify-content : center
-      align-items     : center
-      align-content   : center
-      padding         : 0rem
-      overflow        : auto
+    #latest, #most
+      position   : relative
+      width      : 45%
+      height     : auto
+      max-height : 75vh
+      display    : block
+      margin     : 0rem
+      padding    : 0rem
+      overflow   : auto
 
       .title
+        position         : sticky
+        left             : 0rem
+        top              : 0rem
         width            : 100%
         height           : 2rem
         display          : flex
-        flex-direction   : column
-        justify-content  : center
+        flex-direction   : row
+        justify-content  : space-between
         align-items      : center
         align-content    : center
         background-color : #EEEEEE
@@ -44,8 +75,18 @@
         padding          : 0rem
         color            : black
         font-weight      : bold
+        z-index          : 10
+
+        .prev, .next
+          padding : 0rem 1rem
+          cursor  : pointer
+          color   : steelblue
+
+        .prev:hover, .next:hover
+          background-color : #DDDDDD
 
       ul
+        position   : relative
         width      : 100%
         height     : auto
         margin     : 0rem

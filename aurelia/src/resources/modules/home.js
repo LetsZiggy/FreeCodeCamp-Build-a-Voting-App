@@ -4,6 +4,7 @@ import {state} from '../state';
 
 export class Home {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
+
   constructor() {
     this.charts = [];
   }

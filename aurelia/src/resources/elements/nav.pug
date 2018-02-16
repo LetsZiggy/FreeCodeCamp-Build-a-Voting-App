@@ -6,4 +6,4 @@ template(bindable="router, state")
     li(repeat.for="nav of router.navigation" id="${nav.title | lowercase}" class="${nav.isActive ? 'active' : ''}" if.bind="nav.title !== 'User' ? true : state.login ? true : false")
       a(href.bind="nav.href") ${nav.title === 'Login' ? state.login ? 'Logout' : nav.title : nav.title}
 
-  span FreeCodeCamp - Build a Voting App
+  span.nav-title FreeCodeCamp - Build a Voting App
