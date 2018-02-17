@@ -32,7 +32,7 @@ template
       #most
         .title Most Participated Polls
         ul
-          li(repeat.for="poll of state.polls | sortpolls:'votes':'ascending' | repeatlimit:0:5")
+          li(repeat.for="poll of state.polls | sortpolls:'votes':'descending' | repeatlimit:0:5")
             a(route-href="route: poll; params.bind: { id: poll.id }")
               .canvas-wrapper
                 canvas(id="most-canvas-${poll.id}" style="width: 100%; height: 100%")

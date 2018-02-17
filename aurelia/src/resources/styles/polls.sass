@@ -25,6 +25,9 @@
     #row-10:not(:checked) ~ .row-10, #row-25:not(:checked) ~ .row-25, #row-50:not(:checked) ~ .row-50
       background-color : #EEEEEE
 
+    #row-10:not(:checked) ~ .row-10:hover, #row-25:not(:checked) ~ .row-25:hover, #row-50:not(:checked) ~ .row-50:hover
+      background-color : #DDDDDD
+
     #row-10:checked ~ .row-10, #row-25:checked ~ .row-25, #row-50:checked ~ .row-50
       color            : darkmagenta
       background-color : #DDDDDD
@@ -32,13 +35,10 @@
     span
       padding : 0rem 0.5rem 0rem 0rem
 
-    label
+    .row-10, .row-25, .row-50
       padding : 0rem 0.5rem
       cursor  : pointer
       color   : steelblue
-
-    label:hover
-      background-color : #DDDDDD
 
   #polls-row
     width           : 100%
@@ -77,13 +77,18 @@
         font-weight      : bold
         z-index          : 10
 
-        .prev, .next
-          padding : 0rem 1rem
-          cursor  : pointer
-          color   : steelblue
+        button
+          padding          : 0rem 1rem
+          width            : auto
+          height           : 100%
+          border           : none
+          background-color : #EEEEEE
+          color            : steelblue
+          cursor           : pointer
 
-        .prev:hover, .next:hover
+        button:hover
           background-color : #DDDDDD
+          color            : darkmagenta
 
       ul
         position   : relative
