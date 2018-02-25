@@ -17,7 +17,7 @@ template
           button.next(click.delegate="changePage('next', 'latest')" css="visibility: ${(pagination.latest + pagination.perPage) >= state.polls.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
         ul
           li(repeat.for="poll of state.polls | sortpolls:'date':'descending' | repeatlimit:pagination.latest:pagination.perPage")
-            a(route-href="route: poll; params.bind: { id: poll.id }")
+            a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")
               .canvas-wrapper
                 canvas(id="latest-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}

@@ -27,9 +27,11 @@ export class App {
         nav: true,
       },
       {
-        route: 'polls/:id',
+        route: 'poll/:id',
         name: 'poll',
-        moduleId: './resources/modules/poll'
+        moduleId: './resources/modules/poll',
+        title: '',
+        nav: false,
       },
       {
         route: 'user',

@@ -1,0 +1,39 @@
+template
+  #content.poll-content
+    input#vote-radio(type="radio" name="selector" change.delegate="donecancel('cancel')" checked)
+    input#edit-radio(type="radio" name="selector")
+
+    #selector(if.bind="state.user.id === state.polls[poll].owner")
+      span You own this poll:
+      label#vote-label(for="vote-radio") Vote
+      label#edit-label(for="edit-radio") Edit
+
+    #main
+      #left-column
+        #vote
+          h3 ${state.polls[poll].name}
+          ul
+            li(repeat.for="choice of state.polls[poll].choices")
+              input(type="radio" name="choice" id="select-${choice.id}" model.bind="choice.id" checked.bind="vote")
+              label(for="select-${choice.id}")
+                span ${choice.name}
+
+        #edit(if.bind="state.user.id === state.polls[poll].owner")
+          #edit-inputs
+            //- input(type="text" id="edit-name-${state.polls[poll]}")
+            ol
+              li(repeat.for="choice of state.polls[poll].choices")
+                input(type="text" id="edit-${choice.id}" placeholder="Choice Name (Min Length: 3)" keydown.delegate!="checkInput(choice.id) & debounce" value.bind="choice.name")
+                img(src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_delete_black_24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
+
+          #edit-buttons
+            div(css="visibility: ${state.polls[poll].choices.length < 8 ? 'visible' : 'hidden'};")
+              button#add-choice(click.delegate="addremove(null)") Add Choice
+              span (Choices: 2 - 8)
+            div
+              button#edit-done(click.delegate="donecancel('done')") Done
+              button#edit-cancel(click.delegate="donecancel('cancel')") Cancel
+
+      #right-column
+        .canvas-wrapper
+          canvas(id="current-canvas-${poll.id}" style="width: 100%; height: 100%")
