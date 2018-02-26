@@ -1,5 +1,5 @@
 import {bindable, bindingMode} from 'aurelia-framework';
-import {state} from './resources/state';
+import {state} from './resources/services/state';
 
 export class App {
   @bindable({ defaultBindingMode: bindingMode.oneWay }) state = state;

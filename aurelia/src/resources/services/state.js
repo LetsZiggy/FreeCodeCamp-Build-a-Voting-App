@@ -10,6 +10,7 @@ export const state = {
       owner: 'a2',
       created: 2,
       edited: 2,
+      isPublic: false,
       lastIndex: 2,
       voters: {
       },
@@ -32,6 +33,7 @@ export const state = {
       owner: 'a8',
       created: 8,
       edited: 8,
+      isPublic: false,
       lastIndex: 2,
       voters: {
         a1: 2,
@@ -55,6 +57,7 @@ export const state = {
       owner: 'a6',
       created: 6,
       edited: 6,
+      isPublic: false,
       lastIndex: 4,
       voters: {
       },
@@ -87,6 +90,7 @@ export const state = {
       owner: 'a3',
       created: 3,
       edited: 3,
+      isPublic: false,
       lastIndex: 2,
       voters: {
       },
@@ -109,9 +113,10 @@ export const state = {
       owner: 'a1',
       created: 10,
       edited: 10,
-      lastIndex: 9,
+      isPublic: true,
+      lastIndex: 10,
       voters: {
-        a1: 2,
+        a1: 5,
       },
       choices: [
         {
@@ -144,11 +149,16 @@ export const state = {
           name: 'title06',
           votes: 6,
         },
-        // {
-        //   id: 9,
-        //   name: 'title09',
-        //   votes: 9,
-        // },
+        {
+          id: 9,
+          name: 'title09',
+          votes: 9,
+        },
+        {
+          id: 10,
+          name: 'title10',
+          votes: 10,
+        },
       ],
     },
     {
@@ -157,6 +167,7 @@ export const state = {
       owner: 'a4',
       created: 4,
       edited: 4,
+      isPublic: false,
       lastIndex: 2,
       voters: {
       },
@@ -179,6 +190,7 @@ export const state = {
       owner: 'a9',
       created: 9,
       edited: 9,
+      isPublic: false,
       lastIndex: 2,
       voters: {
         a1: 2,
@@ -202,6 +214,7 @@ export const state = {
       owner: 'a1',
       created: 1,
       edited: 1,
+      isPublic: false,
       lastIndex: 2,
       voters: {
         a1: 2,
@@ -225,6 +238,7 @@ export const state = {
       owner: 'a5',
       created: 5,
       edited: 5,
+      isPublic: false,
       lastIndex: 2,
       voters: {
       },
@@ -247,6 +261,7 @@ export const state = {
       owner: 'a7',
       created: 7,
       edited: 7,
+      isPublic: false,
       lastIndex: 2,
       voters: {
       },

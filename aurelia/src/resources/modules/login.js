@@ -1,6 +1,6 @@
 import {inject, bindable, bindingMode} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {state} from '../state';
+import {state} from '../services/state';
 
 @inject(Router)
 export class Login {
@@ -11,7 +11,7 @@ export class Login {
   }
 
   canActivate() {
-    if(this.state.login) {
+    if(this.state.user) {
       try {
         if(document.getElementById('login')) {
           document.getElementById('login').classList.remove('active');
@@ -20,7 +20,7 @@ export class Login {
       }
       finally {
         // handle logout process
-        this.state.login = null;
+        this.state.user = false;
         this.router.navigate('home');
       }
     }

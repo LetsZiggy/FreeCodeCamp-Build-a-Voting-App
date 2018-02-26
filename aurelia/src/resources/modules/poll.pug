@@ -3,15 +3,16 @@ template
     input#vote-radio(type="radio" name="selector" change.delegate="donecancel('cancel')" checked)
     input#edit-radio(type="radio" name="selector")
 
+    #title ${state.polls[poll].name}
+
     #selector(if.bind="state.user.id === state.polls[poll].owner")
       span You own this poll:
       label#vote-label(for="vote-radio") Vote
       label#edit-label(for="edit-radio") Edit
 
     #main
-      #left-column
+      #left-column(if.bind="state.polls[poll].isPublic ? true : state.user ? true : false")
         #vote
-          h3 ${state.polls[poll].name}
           ul
             li(repeat.for="choice of state.polls[poll].choices")
               input(type="radio" name="choice" id="select-${choice.id}" model.bind="choice.id" checked.bind="vote")
@@ -20,10 +21,16 @@ template
 
         #edit(if.bind="state.user.id === state.polls[poll].owner")
           #edit-inputs
-            //- input(type="text" id="edit-name-${state.polls[poll]}")
+            div
+              span Poll name:&nbsp;
+              input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 3 - 25)" minlength="3" maxlength="25" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
+            div
+              span Allow voting without logging in:&nbsp;
+              input(type="checkbox" id="edit-public" checked.bind="state.polls[poll].isPublic")
+              label(for="edit-public")
             ol
               li(repeat.for="choice of state.polls[poll].choices")
-                input(type="text" id="edit-${choice.id}" placeholder="Choice Name (Min Length: 3)" keydown.delegate!="checkInput(choice.id) & debounce" value.bind="choice.name")
+                input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 3 - 10)" minlength="3" maxlength="10" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
                 img(src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_delete_black_24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
 
           #edit-buttons
@@ -36,4 +43,4 @@ template
 
       #right-column
         .canvas-wrapper
-          canvas(id="current-canvas-${poll.id}" style="width: 100%; height: 100%")
+          canvas(id="current-canvas-${state.polls[poll].id}" style="width: 100%; height: 100%")

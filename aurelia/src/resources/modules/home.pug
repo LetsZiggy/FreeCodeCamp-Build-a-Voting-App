@@ -9,6 +9,7 @@ template
               .canvas-wrapper
                 canvas(id="created-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
 
       #participated(if.bind="state.user.id")
         .title User Participated Polls
@@ -18,6 +19,7 @@ template
               .canvas-wrapper
                 canvas(id="participated-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
 
     #general-row
       #latest
@@ -28,6 +30,7 @@ template
               .canvas-wrapper
                 canvas(id="latest-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
 
       #most
         .title Most Participated Polls
@@ -37,3 +40,4 @@ template
               .canvas-wrapper
                 canvas(id="most-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll

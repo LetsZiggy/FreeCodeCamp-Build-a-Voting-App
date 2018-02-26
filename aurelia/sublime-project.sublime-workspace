@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"check",
+				"checked"
+			],
+			[
+				"edi",
+				"edit-public"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"pe",
+				"palette"
+			],
+			[
+				"chekc",
+				"checkInput"
+			],
+			[
+				"getE",
+				"getElementsByTagName"
+			],
+			[
+				"last",
+				"lastIndex"
+			],
+			[
+				"border",
+				"border-box"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"bo",
+				"background"
+			],
+			[
 				"nav",
 				"navigationInstruction"
 			],
@@ -66,10 +114,6 @@
 			[
 				"box-s",
 				"box-sizing"
-			],
-			[
-				"border",
-				"border-box"
 			]
 		]
 	},
@@ -87,7 +131,7 @@
 			"file": "src/resources/elements/footer.pug",
 			"settings":
 			{
-				"buffer_size": 2079,
+				"buffer_size": 2186,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -96,7 +140,16 @@
 			"file": "src/style.sass",
 			"settings":
 			{
-				"buffer_size": 711,
+				"buffer_size": 748,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/index.js",
+			"settings":
+			{
+				"buffer_size": 272,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -105,7 +158,7 @@
 			"file": "src/resources/styles/poll.sass",
 			"settings":
 			{
-				"buffer_size": 1699,
+				"buffer_size": 7338,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -114,7 +167,7 @@
 			"file": "src/resources/modules/poll.pug",
 			"settings":
 			{
-				"buffer_size": 1591,
+				"buffer_size": 2334,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -123,16 +176,25 @@
 			"file": "src/resources/modules/poll.js",
 			"settings":
 			{
-				"buffer_size": 3939,
+				"buffer_size": 2960,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/resources/state.js",
+			"file": "src/resources/services/drawchart.js",
 			"settings":
 			{
-				"buffer_size": 3632,
+				"buffer_size": 3638,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/resources/services/state.js",
+			"settings":
+			{
+				"buffer_size": 4363,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -146,9 +208,17 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "inc",
+		"last_filter": "align",
 		"selected_items":
 		[
+			[
+				"align",
+				"AlignTab"
+			],
+			[
+				"incre",
+				"Increment Selection"
+			],
 			[
 				"inc",
 				"Increment Selection"
@@ -160,10 +230,6 @@
 			[
 				"ali",
 				"AlignTab"
-			],
-			[
-				"incre",
-				"Increment Selection"
 			],
 			[
 				"package",
@@ -198,7 +264,7 @@
 				"Git: Blame"
 			]
 		],
-		"width": 428.0
+		"width": 420.0
 	},
 	"console":
 	{
@@ -222,10 +288,25 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/nav.sass",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/polls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/home.pug",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/polls.pug",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/polls.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/home.sass",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/uppercase.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/elements/nav.pug",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/app.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/services/state.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/login.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/user.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/polls.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/home.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/repeatlimit.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/lowercase.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/index.js",
+		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/services.js",
+		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/state.js",
+		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/nav.sass",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/elements/controller/controller-template-select.pug",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/elements/editor/editor-workspace.pug",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/elements/editor/editor-sidebar-edit.pug",
@@ -233,15 +314,8 @@
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/elements/editor/editor-controller.pug",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/resources/elements/controller/controller-template-select.js",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.pug",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/polls.sass",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/home.sass",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/home.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/styles/login.sass",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/index.js",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/home.pug",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/style.sass",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/elements/nav.pug",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/repeatlimit.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/value-converters/sortpolls.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/login.pug",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/node_modules/google-palette/palette.js",
@@ -250,7 +324,6 @@
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/aurelia_project/aurelia.json",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/package.json",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/elements/footer.pug",
-		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/aurelia/src/resources/modules/login.js",
 		"/C/Users/Shafiq/_nodejs/__Aurelia Component Lifecycle__.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/package.json",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/styles/nav.sass",
@@ -296,7 +369,6 @@
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.sass",
 		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/app.sass",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/value-converters/titlecase.js",
-		"/C/Users/Shafiq/_nodejs/project-wordpress-theme-builder-frontend/src/modules/editor/editor.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/routes.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/state.js",
 		"/C/Users/Shafiq/_nodejs/freecodecamp/FreeCodeCamp-Build-a-Voting-App/_aurelia/src/resources/elements/test.js",
@@ -318,6 +390,91 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"//- .is-public(css=\"visibility: ${poll.isPublic ? 'visible' : 'hidden'}\") Public Poll",
+			".is-public(css=\"visibility: ${poll.isPublic ? 'visible' : 'hidden'}\") Public Poll",
+			".poll-name ${poll.name}",
+			"isPublic",
+			".125",
+			"25px",
+			"#",
+			";",
+			"{\n",
+			"input(t",
+			"input(",
+			"Input(",
+			"input",
+			"Length: 3",
+			"Min Length: 3",
+			"id: 'b",
+			"id: '",
+			"lowercase",
+			"edit-name",
+			"params.bind: { id: poll.id",
+			"|",
+			"case",
+			"lowercase",
+			"generateChart",
+			"generateChart(",
+			"generateChart",
+			"generateChart(palette, canvas, this.charts, this.state);",
+			"generateChart",
+			"drawSingleLine",
+			"drawChart",
+			"function drawChart(id, choices, current=false) {",
+			"function singlelineChart(id, choices, current=false) {",
+			"drawChart",
+			"function drawChart(id, choices",
+			"canvas",
+			"user",
+			"state.user",
+			")];",
+			"[...",
+			"null",
+			"poll of state.user",
+			"state.user",
+			"state.",
+			"[]",
+			"crimson",
+			"firebrick",
+			"id",
+			"7",
+			"editDone",
+			"addremove",
+			"editChoice",
+			"edit",
+			"backup",
+			"editChoice",
+			"100%",
+			"50px",
+			"border-radius    : 50px",
+			"flex-start",
+			"lastIndex: ,",
+			"        },\n      ],",
+			"lastIndex: ,",
+			"        },\n      ],",
+			"edited: ",
+			"0.85",
+			":",
+			"top           : 0rem",
+			":",
+			"15rem",
+			"state.login",
+			"this.",
+			"navInst",
+			"owner: 'test'",
+			"voters: []",
+			"owner:",
+			"id: '",
+			"edited: 1,",
+			"lastedit",
+			"date:",
+			"votes:",
+			"owner: 'test'",
+			"date: ",
+			"votes: 2",
+			"title02",
+			"id: 2",
+			"2",
 			"title:",
 			"title",
 			"name: ",
@@ -360,92 +517,7 @@
 			"height",
 			"this.state",
 			"x",
-			"most",
-			"latest",
-			".row-",
-			"\n",
-			".row-",
-			"%\n",
-			".prev, .next",
-			"latest",
-			"&gt;&gt;&gt;",
-			"Page('",
-			"Page",
-			".prev",
-			" Prev",
-			",\n    ",
-			" :",
-			", ",
-			":not(:checked)",
-			"#",
-			"}",
-			" =",
-			"change.delegate=\"",
-			"value",
-			".ro",
-			"\" name=\"\"",
-			"radio",
-			"20",
-			"     :",
-			"5vw",
-			":",
-			"center",
-			"110",
-			"id: 'b",
-			"0:5",
-			".prev",
-			"#top",
-			">",
-			"<",
-			"!",
-			"auto",
-			"\n            a(href=\"#\")",
-			", ",
-			"click.delegate=\"goToPoll(poll.id)\"",
-			"href.bind=\"poll.link\"",
-			"palette",
-			"rainbow",
-			"hsv_rainbow",
-			"palette",
-			"palatte",
-			"(v, i, a)",
-			"v.",
-			"hsv",
-			"hsv_rainbow",
-			"hsv",
-			"hsv_rainbow",
-			"colours[coloursChoice]",
-			"date: 8,",
-			"i",
-			"latest-",
-			"v.id",
-			"votes:",
-			"choices: [",
-			"canvas-${poll",
-			"    {\n      id: ",
-			"      id: ",
-			"id: ",
-			"${poll.id}",
-			"id=\"test\"",
-			"a(href=\"#\")\n              ",
-			"\n              ",
-			"a(href=\"#\")\n              ",
-			"a(href=\"#\")",
-			"span",
-			"a(href=\"#\") ",
-			"          title: 'participatedchoice",
-			"            title: 'participatedchoice",
-			"link: ",
-			"id: '",
-			"name: ",
-			"        name: ",
-			"name: ",
-			"      id: 'poll",
-			"date: ",
-			"date:",
-			"totalvotes:",
-			".bind=\"#",
-			"a(href.bind=\"poll.link\") ${poll.name}"
+			"most"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -453,6 +525,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"drawSingleLineChart",
+			"function drawChart(id, choices) {",
+			"function singlelineChart(id, choices) {",
+			"function drawChart(id, choices, current=false",
 			"title: ",
 			"",
 			"#"
@@ -466,7 +542,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -482,7 +558,7 @@
 						"selection":
 						[
 							[
-								826,
+								822,
 								1049
 							]
 						],
@@ -497,7 +573,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -506,15 +582,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2079,
+						"buffer_size": 2186,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2079,
-								2079
+								2186,
+								2186
 							]
 						],
 						"settings":
@@ -525,10 +601,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 37.0,
+						"translation.y": 217.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -537,15 +613,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 711,
+						"buffer_size": 748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								489,
+								489
 							]
 						],
 						"settings":
@@ -559,84 +635,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "src/resources/styles/poll.sass",
+					"file": "src/resources/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1699,
+						"buffer_size": 272,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								531,
-								531
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 45.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/resources/modules/poll.pug",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1591,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1430,
-								1430
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Pug/Syntaxes/Pug.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/resources/modules/poll.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1500,
-								1466
+								134,
+								134
 							]
 						],
 						"settings":
@@ -645,27 +661,89 @@
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 428.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "src/resources/state.js",
+					"buffer": 4,
+					"file": "src/resources/styles/poll.sass",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3632,
+						"buffer_size": 7338,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1436,
-								1436
+								3431,
+								3431
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1200.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/resources/modules/poll.pug",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								382,
+								382
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Pug/Syntaxes/Pug.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 150.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/resources/modules/poll.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2960,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1197,
+								1197
 							]
 						],
 						"settings":
@@ -674,10 +752,72 @@
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1350.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/resources/services/drawchart.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3638,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2559,
+								2559
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1246.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/resources/services/state.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								343,
+								343
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -736,36 +876,128 @@
 		"selected_items":
 		[
 			[
-				"nav.sass",
-				"src\\resources\\styles\\nav.sass"
+				"home.pu",
+				"src\\resources\\modules\\home.pug"
 			],
 			[
-				"polls.j",
-				"src\\resources\\modules\\polls.js"
-			],
-			[
-				"polls",
+				"polls.pu",
 				"src\\resources\\modules\\polls.pug"
 			],
 			[
-				"app",
-				"src\\app.js"
+				"polls.s",
+				"src\\resources\\styles\\polls.sass"
 			],
 			[
-				"polls.sass",
-				"src\\resources\\styles\\polls.sass"
+				"home.s",
+				"src\\resources\\styles\\home.sass"
 			],
 			[
 				"home.sass",
 				"src\\resources\\styles\\home.sass"
 			],
 			[
+				"polls.sass",
+				"src\\resources\\styles\\polls.sass"
+			],
+			[
+				"polls.p",
+				"src\\resources\\modules\\polls.pug"
+			],
+			[
+				"home.pug",
+				"src\\resources\\modules\\home.pug"
+			],
+			[
+				"polls",
+				"src\\resources\\modules\\polls.pug"
+			],
+			[
+				"valuppercase",
+				"src\\resources\\value-converters\\uppercase.js"
+			],
+			[
+				"state",
+				"src\\resources\\services\\state.js"
+			],
+			[
+				"nav",
+				"src\\resources\\elements\\nav.pug"
+			],
+			[
+				"poll",
+				"src\\resources\\modules\\poll.pug"
+			],
+			[
+				"resources/i",
+				"src\\resources\\index.js"
+			],
+			[
+				"app",
+				"src\\app.js"
+			],
+			[
+				"login",
+				"src\\resources\\modules\\login.js"
+			],
+			[
+				"user.js",
+				"src\\resources\\modules\\user.js"
+			],
+			[
 				"polls.pug",
 				"src\\resources\\modules\\polls.pug"
 			],
 			[
+				"login.js",
+				"src\\resources\\modules\\login.js"
+			],
+			[
 				"home.js",
 				"src\\resources\\modules\\home.js"
+			],
+			[
+				"resources/re",
+				"src\\resources\\value-converters\\repeatlimit.js"
+			],
+			[
+				"re/uppercase",
+				"src\\resources\\value-converters\\uppercase.js"
+			],
+			[
+				"home.",
+				"src\\resources\\modules\\home.pug"
+			],
+			[
+				"value-converter/lowe",
+				"src\\resources\\value-converters\\lowercase.js"
+			],
+			[
+				"valuppercase.js",
+				"src\\resources\\value-converters\\uppercase.js"
+			],
+			[
+				"resources/in",
+				"src\\resources\\index.js"
+			],
+			[
+				"resources/index.js",
+				"src\\resources\\index.js"
+			],
+			[
+				"home",
+				"src\\resources\\modules\\home.pug"
+			],
+			[
+				"repeat",
+				"src\\resources\\value-converters\\repeatlimit.js"
+			],
+			[
+				"nav.sass",
+				"src\\resources\\styles\\nav.sass"
+			],
+			[
+				"polls.j",
+				"src\\resources\\modules\\polls.js"
 			],
 			[
 				"polls.js",
@@ -788,44 +1020,20 @@
 				"src\\resources\\modules\\poll.pug"
 			],
 			[
-				"poll",
-				"src\\resources\\modules\\poll.js"
-			],
-			[
 				"footer",
 				"src\\resources\\elements\\footer.pug"
-			],
-			[
-				"home.pu",
-				"src\\resources\\modules\\home.pug"
 			],
 			[
 				"nav.sas",
 				"src\\resources\\styles\\nav.sass"
 			],
 			[
-				"nav",
-				"src\\resources\\styles\\nav.sass"
-			],
-			[
-				"repeat",
-				"src\\resources\\value-converters\\repeatlimit.js"
-			],
-			[
 				"sort",
 				"src\\resources\\value-converters\\sortpolls.js"
 			],
 			[
-				"home",
-				"src\\resources\\modules\\home.pug"
-			],
-			[
 				"style.sass",
 				"src\\style.sass"
-			],
-			[
-				"login",
-				"src\\resources\\modules\\login.pug"
 			],
 			[
 				"login.p",
@@ -902,10 +1110,6 @@
 			[
 				"value-converter/",
 				"src\\resources\\value-converters\\repeatlimit.js"
-			],
-			[
-				"resources/in",
-				"src\\resources\\index.js"
 			],
 			[
 				"sortpoll",

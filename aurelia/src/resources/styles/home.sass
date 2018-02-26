@@ -20,6 +20,7 @@
     align-content   : center
 
     #created, #participated, #latest, #most
+      position        : relative
       width           : 45%
       height          : auto
       max-height      : 40vh
@@ -46,6 +47,7 @@
         font-weight      : bold
 
       ul
+        position   : relative
         width      : 100%
         height     : auto
         margin     : 0rem
@@ -53,6 +55,7 @@
         box-sizing : border-box
 
         li
+          position        : relative
           list-style-type : none
           margin          : 0.25rem 0rem
           padding         : 0rem
@@ -67,6 +70,7 @@
           align-content   : center
 
           a
+            position        : relative
             width           : 100%
             height          : auto
             text-decoration : none
@@ -94,7 +98,12 @@
               align-content   : center
               margin          : 0.25rem 0rem
 
-
+            .is-public
+              position  : absolute
+              top       : 35%
+              right     : 0.15rem
+              transform : translateY(-50%)
+              font-size : 0.65rem
 
         li:first-child
           margin-top : 0.5rem

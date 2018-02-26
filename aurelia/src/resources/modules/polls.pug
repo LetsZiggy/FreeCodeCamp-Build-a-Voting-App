@@ -21,6 +21,7 @@ template
               .canvas-wrapper
                 canvas(id="latest-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
 
       #most
         .title
@@ -29,7 +30,8 @@ template
           button.next(click.delegate="changePage('next', 'most')" css="visibility: ${(pagination.most + pagination.perPage) >= state.polls.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
         ul
           li(repeat.for="poll of state.polls | sortpolls:'votes':'descending' | repeatlimit:pagination.most:pagination.perPage")
-            a(route-href="route: poll; params.bind: { id: poll.id }")
+            a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")
               .canvas-wrapper
                 canvas(id="most-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
