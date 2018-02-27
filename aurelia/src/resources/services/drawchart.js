@@ -22,10 +22,7 @@ export function destroyChart(charts, type='object') {
 }
 
 export function updateChart(chart, update) {
-  update.forEach((v, i, a) => {
-    chart.data.datasets[0].data[i] = v.votes;
-  });
-
+  update.forEach((v, i, a) => { chart.data.datasets[0].data[i] = v.votes; });
   chart.update();
 }
 
@@ -57,7 +54,9 @@ function drawHorizontalChart(palette, id, choices) {
   let max = 0;
 
   choices.forEach((v, i, a) => {
-    max = max < v.votes ? Math.ceil((v.votes + 1) / 10) * 10 : max;
+    max = max < v.votes
+        ? Math.ceil((v.votes + 1) / 10) * 10
+        : max < 10 ? 10 : max;
     data.labels.push(v.name);
     data.datasets[0].data.push(v.votes);
     data.datasets[0].backgroundColor.push(

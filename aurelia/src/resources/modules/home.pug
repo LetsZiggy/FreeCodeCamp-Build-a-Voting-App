@@ -1,7 +1,7 @@
 template
   #content.home-content
-    #user-row
-      #created(if.bind="state.user.id")
+    #user-row(if.bind="state.user.id")
+      #created
         .title User Created Polls
         ul
           li(repeat.for="poll of user.created | repeatlimit:0:5")
@@ -11,7 +11,7 @@ template
               .poll-name ${poll.name}
               .is-public(show.bind="poll.isPublic") Public Poll
 
-      #participated(if.bind="state.user.id")
+      #participated
         .title User Participated Polls
         ul
           li(repeat.for="poll of user.participated | repeatlimit:0:5")

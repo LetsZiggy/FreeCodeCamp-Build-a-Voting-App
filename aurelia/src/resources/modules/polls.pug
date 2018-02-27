@@ -1,6 +1,6 @@
 template
   #content.polls-content
-    #pagination-row
+    #options-row
       input#row-10(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(10)" checked)
       input#row-25(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(25)")
       input#row-50(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(50)")
@@ -15,6 +15,7 @@ template
           button.prev(click.delegate="changePage('prev', 'latest')" css="visibility: ${pagination.latest <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
           | Latest Polls Created
           button.next(click.delegate="changePage('next', 'latest')" css="visibility: ${(pagination.latest + pagination.perPage) >= state.polls.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
+
         ul
           li(repeat.for="poll of state.polls | sortpolls:'date':'descending' | repeatlimit:pagination.latest:pagination.perPage")
             a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")
@@ -28,6 +29,7 @@ template
           button.prev(click.delegate="changePage('prev', 'most')" css="visibility: ${pagination.most <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
           | Most Participated Polls
           button.next(click.delegate="changePage('next', 'most')" css="visibility: ${(pagination.most + pagination.perPage) >= state.polls.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
+
         ul
           li(repeat.for="poll of state.polls | sortpolls:'votes':'descending' | repeatlimit:pagination.most:pagination.perPage")
             a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")

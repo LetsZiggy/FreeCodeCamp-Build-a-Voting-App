@@ -6,10 +6,14 @@ template
       | &nbsp;for&nbsp;
       a.footer-link(href='https://www.freecodecamp.org/challenges/build-a-voting-app', target='_blank') FreeCodeCamp Challenge
       | .
+
+    #disclaimer Not optimized for mobile (yet)
+
     #resources-content
       input#resources-checkbox(type="checkbox")
       label#resources-link(for="resources-checkbox") Resources
       label#resources-backdrop(for="resources-checkbox")
+
       #resources-popup
         label#resources-close(for="resources-checkbox") &#x2715;
         h5 Resources
@@ -41,3 +45,5 @@ template
             a(href="https://stackoverflow.com/a/43658507" target="_blank") Chart.js bars aspect ratio issue
           li
             a(href="https://stackoverflow.com/a/42173513" target="_blank") Setting page title with nav parameter with Aurelia.js
+          li
+            a(href="https://developer.mozilla.org/en-US/docs/Web/Events/popstate" target="_blank") Detect when back button pressed

@@ -7,8 +7,8 @@ export class Home {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
   constructor() {
-    this.user = { created: [], participated: [] };
     this.charts = { created: [], participated: [], latest: [], most: [] };
+    this.user = { created: [], participated: [] };
   }
 
   activate(params, routeConfig, navigationInstruction) {

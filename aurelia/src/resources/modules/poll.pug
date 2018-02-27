@@ -1,9 +1,9 @@
 template
   #content.poll-content
-    input#vote-radio(type="radio" name="selector" change.delegate="donecancel('cancel')" checked)
+    input#vote-radio(type="radio" name="selector" change.delegate="donecancel('cancel')")
     input#edit-radio(type="radio" name="selector")
 
-    #title ${state.polls[poll].name}
+    #title ${state.polls[poll].name.length ? state.polls[poll].name : 'NEW POLL'}
 
     #selector(if.bind="state.user.id === state.polls[poll].owner")
       span You own this poll:
@@ -24,10 +24,12 @@ template
             div
               span Poll name:&nbsp;
               input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 3 - 25)" minlength="3" maxlength="25" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
+
             div
               span Allow voting without logging in:&nbsp;
               input(type="checkbox" id="edit-public" checked.bind="state.polls[poll].isPublic")
               label(for="edit-public")
+
             ol
               li(repeat.for="choice of state.polls[poll].choices")
                 input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 3 - 10)" minlength="3" maxlength="10" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
@@ -37,6 +39,7 @@ template
             div(css="visibility: ${state.polls[poll].choices.length < 8 ? 'visible' : 'hidden'};")
               button#add-choice(click.delegate="addremove(null)") Add Choice
               span (Choices: 2 - 8)
+
             div
               button#edit-done(click.delegate="donecancel('done')") Done
               button#edit-cancel(click.delegate="donecancel('cancel')") Cancel

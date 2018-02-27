@@ -1,3 +1,40 @@
 template
-  #content
-    h1 ${message}
+  #content.user-content
+    #options-row
+      input#row-10(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(10)" checked)
+      input#row-25(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(25)")
+      input#row-50(type="radio" name="pagination-radio" change.delegate="setPaginationAmount(50)")
+      span Polls per page:
+      label.row-10(for="row-10") 10
+      label.row-25(for="row-25") 25
+      label.row-50(for="row-50") 50
+      a(route-href="route: poll; params.bind: { id: 'temp', new: true }") Create New Poll
+
+    #polls-row
+      #created
+        .title
+          button.prev(click.delegate="changePage('prev', 'created')" css="visibility: ${pagination.created <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
+          | User Created Polls
+          button.next(click.delegate="changePage('next', 'created')" css="visibility: ${(pagination.created + pagination.perPage) >= user.created.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
+
+        ul
+          li(repeat.for="poll of user.created | sortpolls:'date':'descending' | repeatlimit:pagination.created:pagination.perPage")
+            a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")
+              .canvas-wrapper
+                canvas(id="created-canvas-${poll.id}" style="width: 100%; height: 100%")
+              .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
+
+      #participated
+        .title
+          button.prev(click.delegate="changePage('prev', 'participated')" css="visibility: ${pagination.participated <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
+          | User Participated Polls
+          button.next(click.delegate="changePage('next', 'participated')" css="visibility: ${(pagination.participated + pagination.perPage) >= user.participated.length ? 'hidden' : 'visible'};") &gt;&gt;&gt;
+
+        ul
+          li(repeat.for="poll of user.participated | sortpolls:'votes':'descending' | repeatlimit:pagination.participated:pagination.perPage")
+            a(route-href="route: poll; params.bind: { id: poll.id, name: poll.name }")
+              .canvas-wrapper
+                canvas(id="participated-canvas-${poll.id}" style="width: 100%; height: 100%")
+              .poll-name ${poll.name}
+              .is-public(show.bind="poll.isPublic") Public Poll
