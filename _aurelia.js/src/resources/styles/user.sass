@@ -1,0 +1,174 @@
+.user-content
+  flex-direction  : row
+  flex-wrap       : wrap
+  justify-content : center
+  align-items     : center
+  align-content   : flex-start
+  padding         : 1rem
+  overflow        : hidden
+
+  #options-row
+    width            : 100%
+    height           : 1.75rem
+    display          : flex
+    flex-direction   : row
+    justify-content  : flex-start
+    align-items      : center
+    align-content    : center
+    margin           : 0rem 2.5vw 1rem 2.5vw
+    padding          : 0rem 1rem
+    background-color : #EEEEEE
+
+    input
+      display : none
+
+    #row-10:not(:checked) ~ .row-10, #row-25:not(:checked) ~ .row-25, #row-50:not(:checked) ~ .row-50
+      background-color : #EEEEEE
+
+    #row-10:not(:checked) ~ .row-10:hover, #row-25:not(:checked) ~ .row-25:hover, #row-50:not(:checked) ~ .row-50:hover
+      background-color : #DDDDDD
+
+    #row-10:checked ~ .row-10, #row-25:checked ~ .row-25, #row-50:checked ~ .row-50
+      color            : darkmagenta
+      background-color : #DDDDDD
+
+    span:not(#create)
+      padding : 0rem 0.5rem 0rem 0rem
+
+    .row-10, .row-25, .row-50
+      padding : 0rem 0.5rem
+      cursor  : pointer
+      color   : slateblue
+
+    span#create
+      margin-left      : auto
+      width            : auto
+      height           : 100%
+      padding          : 0rem 0.25rem
+      text-decoration  : none
+      border           : 1px solid #DDDDDD
+      box-sizing       : border-box
+      color            : darkmagenta
+      background-color : white
+      cursor           : pointer
+      user-select      : none
+
+    span#create:hover
+      background-color : gainsboro
+      border           : 1px solid #CCCCCC
+
+  #polls-row
+    width           : 100%
+    height          : auto
+    display         : flex
+    flex-direction  : row
+    justify-content : space-around
+    align-items     : flex-start
+    align-content   : center
+
+    #created, #participated
+      position   : relative
+      width      : 45%
+      height     : auto
+      max-height : 75vh
+      display    : block
+      box-sizing : border-box
+      margin     : 0rem
+      padding    : 0rem
+      overflow   : auto
+
+      .title
+        position         : sticky
+        left             : 0rem
+        top              : 0rem
+        width            : 100%
+        height           : 2rem
+        display          : flex
+        flex-direction   : row
+        justify-content  : space-between
+        align-items      : center
+        align-content    : center
+        background-color : #EEEEEE
+        margin           : 0rem
+        padding          : 0rem
+        color            : black
+        font-weight      : bold
+        z-index          : 10
+
+        button
+          padding          : 0rem 1rem
+          width            : auto
+          height           : 100%
+          border           : none
+          background-color : #EEEEEE
+          color            : slateblue
+          cursor           : pointer
+
+        button:hover
+          background-color : #DDDDDD
+          color            : darkmagenta
+
+      ul
+        position   : relative
+        width      : 100%
+        height     : auto
+        margin     : 0rem
+        padding    : 0rem
+        box-sizing : border-box
+
+        li
+          position        : relative
+          list-style-type : none
+          margin          : 0.25rem 0rem
+          padding         : 0rem
+          width           : 100%
+          height          : auto
+          border          : 1px solid #EEEEEE
+          box-sizing      : border-box
+          display         : flex
+          flex-direction  : column
+          justify-content : center
+          align-items     : center
+          align-content   : center
+
+          a
+            position        : relative
+            width           : 100%
+            height          : auto
+            text-decoration : none
+            color           : slateblue
+            margin          : 0rem
+            padding         : 0rem
+
+            .canvas-wrapper
+              width      : 100%
+              height     : 5px
+              box-sizing : border-box
+
+              canvas
+                margin     : 0rem
+                padding    : 0rem
+                box-sizing : border-box
+
+            .poll-name
+              width           : 100%
+              height          : auto
+              display         : flex
+              flex-direction  : column
+              justify-content : center
+              align-items     : center
+              align-content   : center
+              margin          : 0.25rem 0rem
+
+            .is-public
+              position  : absolute
+              top       : 35%
+              right     : 0.15rem
+              transform : translateY(-50%)
+              font-size : 0.65rem
+
+        li:first-child
+          margin-top : 0.5rem
+
+        li:hover
+          background-color : #EEEEEE

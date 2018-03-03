@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "name": "LetsZiggy"
+    },
+    {
+      "id": "user2",
+      "name": "GetBiggy"
+    }
+  ],
+  "polls": [
+    {
+      "id": "poll1",
+      "name": "poll-1",
+      "owner": "user2",
+      "created": 1,
+      "edited": 2,
+      "isPublic": false,
+      "lastIndex": 2,
+      "voters": {
+        "user1": 1
+      },
+      "choices": [
+        {
+          "id": 1,
+          "name": "choice01",
+          "votes": 4
+        },
+        {
+          "id": 2,
+          "name": "choice02",
+          "votes": 13
+        }
+      ]
+    },
+    {
+      "id": "poll2",
+      "name": "poll-2",
+      "owner": "user1",
+      "created": 2,
+      "edited": 3,
+      "isPublic": true,
+      "lastIndex": 3,
+      "voters": {
+      },
+      "choices": [
+        {
+          "id": 1,
+          "name": "choice01",
+          "votes": 4
+        },
+        {
+          "id": 3,
+          "name": "choice03",
+          "votes": 1
+        }
+      ]
+    }
+  ]
+}
