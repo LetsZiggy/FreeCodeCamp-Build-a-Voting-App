@@ -11,6 +11,7 @@
 # Ref: https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
 .DS_STORE
 Thumbs.db
+*.bat
 
 # Editors
 #
@@ -19,8 +20,8 @@ Thumbs.db
 # Ref: https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
 .idea
 .vscode
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace
 
 # Dependencies directory (https://docs.npmjs.com/cli/shrinkwrap#caveats)
 node_modules

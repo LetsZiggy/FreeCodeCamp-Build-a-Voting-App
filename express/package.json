@@ -1,20 +1,16 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "letsziggy-freecodecamp-build-a-voting-app",
+  "name": "letsziggy-freecodecamp-build-a-voting-app-backend",
   "version": "1.0.0",
-  "description": "FreeCodeCamp - Dynamic Web Application Projects - Build a Voting App.",
+  "description": "FreeCodeCamp - Dynamic Web Application Projects - Build a Voting App - Backend",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon nodemon-start.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
-    "mongodb": "^3.0.3",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "serve-favicon": "~2.4.5"

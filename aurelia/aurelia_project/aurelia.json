@@ -145,7 +145,7 @@
     "id": "sass",
     "displayName": "Sass",
     "fileExtension": ".sass",
-    "source": "src/**/*.sass"
+    "source": ["src/**/*.sass"]
   },
   "editor": {
     "id": "sublime",

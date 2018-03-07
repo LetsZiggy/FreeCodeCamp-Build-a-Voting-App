@@ -26,7 +26,8 @@ export default class ElementGenerator {
 
             self.project.root.add(
               ProjectItem.text(path.join(subFolders, fileName + ".js"), this.generateJSSource(className)),
-              ProjectItem.text(path.join(subFolders, fileName + ".html"), this.generateHTMLSource(className))
+              ProjectItem.text(path.join(subFolders, fileName + ".pug"), this.generatePUGSource(className))
+              // ProjectItem.text(path.join(subFolders, fileName + ".html"), this.generateHTMLSource(className))
             );
 
             return this.project.commitChanges()
@@ -43,9 +44,14 @@ export default class ElementGenerator {
 }`
   }
 
-  generateHTMLSource(className) {
-    return `<template>
-  <h1>\${message}</h1>
-</template>`
+  generatePUGSource(className) {
+    return `template
+  h1 \${message}`;
   }
+
+//   generateHTMLSource(className) {
+//     return `<template>
+//   <h1>\${message}</h1>
+// </template>`
+//   }
 }
