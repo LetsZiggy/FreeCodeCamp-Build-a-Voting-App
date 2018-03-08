@@ -88,9 +88,7 @@ export class User {
   }
 
   async createPoll() {
-    // get new poll id with api-interface
-    // then => id = result
-    let id = 'temp';
+    let id = await this.api.getPollID();
     this.router.navigateToRoute('poll', { id: id, new: true });
   }
 }

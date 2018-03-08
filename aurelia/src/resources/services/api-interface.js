@@ -26,48 +26,73 @@ export class ApiInterface {
     });
     this.http = HttpClient;
   }
-/*
-  createUser() {
-    // Get new ID
-    // Check if ID taken
-    // Create User
-    
-    let test = { "content": "testing content 1" }
-    return this.http.fetch(`/user/`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(test)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
-   }
 
-  updateUser(id) {
-    let test = { "content": "testing content 1" }
-    return this.http.fetch(`/user/1/`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(test)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
+  // Done
+  getPollID() {
+    return(
+      this.http.fetch(`/poll/id`, {
+                 method: 'POST',
+                 credentials: 'same-origin'
+               })
+               .then(response => response.json())
+               .then(data => data.id)
+    );
   }
 
-  deleteUser(id) {
-
-  }
-*/
+  // Done
   getPolls() {
     return(
-      this.http.fetch(`/polls`, { method: 'GET' })
+      this.http.fetch(`/polls`, {
+                 method: 'GET'
+               })
                .then(response => response.json())
                .then(data => data.polls)
+    );
+  }
+
+  createPoll() {
+    return(
+      this.http.fetch(`/poll/new`, {
+                 method: 'POST',
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json'
+                 }
+               })
+               .then(response => response.json())
+               .then(data => data)
+    );
+  }
+
+  updatePoll(poll) {
+    return(
+      this.http.fetch(`/update/${poll}`, {
+                 method: 'PUT',
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(/*polldata*/)
+               })
+               .then(response => response.json())
+               .then(data => data)
+    );
+  }
+
+  deletePoll(poll) {
+    return(
+      this.http.fetch(`/delete/${poll}`, {
+                 method: 'DELETE',
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(/*polldata*/)
+               })
+               .then(response => response.json())
+               .then(data => data)
     );
   }
 }

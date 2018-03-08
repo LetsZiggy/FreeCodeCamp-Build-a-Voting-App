@@ -4,6 +4,15 @@ import {state} from './resources/services/state';
 export class App {
   @bindable({ defaultBindingMode: bindingMode.oneWay }) state = state;
 
+  attached() {
+    // Temp
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+
+    document.cookie = "id=User1";
+  }
+
   configureRouter(config, router) {
     this.router = router;
     config.title = 'FreeCodeCamp - Build a Voting App';

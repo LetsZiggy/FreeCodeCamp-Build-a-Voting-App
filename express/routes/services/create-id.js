@@ -4,24 +4,28 @@ let characters = [
   'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
 ];
 
-export function idCreator(polls) {
-  let container = { run: true, data: null };
-  let takenIDs = polls.map((v, i, a) => v.id);
+function createID(polls) {
+  let run = true;
+  let id = null;
+  let takenIDs = polls.map((v, i, a) => v[0]);
+  // let takenIDs = Object.entries(polls).map((v, i, a) => v[0]);
 
-  while(container.run) {
+  while(run) {
     let tempID = [];
 
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 8; i++) {
       let index = Math.floor(Math.random() * 62);
       tempID.push(characters[index]);
     }
 
     tempID = tempID.join('');
     if(takenIDs.indexOf(tempID) === -1) {
-      container.run = false;
-      container.data = tempID;
+      run = false;
+      id = tempID;
     }
   }
 
-  return(container.data);
+  return(id);
 }
+
+module.exports = createID;
