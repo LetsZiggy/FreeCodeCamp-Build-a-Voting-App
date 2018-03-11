@@ -206,18 +206,18 @@ export class Poll {
         console.log('poll created: ', created);
       }
       else {
-        Object.entries(backup).forEach((v, i, a) => {
-          if(['name', 'isPublic', 'lastIndex'].indexOf(v[0]) !== -1) {
-            if(backup[v[0]] !== this.state.polls[this.poll][v[0]]) {
-              changeTracker.pollItems.push(v[0]);
-              changeTracker.changeDate = new Date();
+        if(backup.name !== this.state.polls[this.poll].name) { changeTracker.pollItems.push('name'); }
+        if(backup.isPublic !== this.state.polls[this.poll].isPublic) { changeTracker.pollItems.push('isPublic'); }
+        if(backup.lastIndex !== this.state.polls[this.poll].lastIndex) { changeTracker.pollItems.push('lastIndex'); }
+        backup.choices.forEach((bv, bi, ba) => {
+          this.state.polls[this.poll].choices.forEach((pv, pi, pa) => {
+            if((bv.id === pv.id) && (bv.name !== pv.name)) {
+              changeTracker.editedChoices.push(bv.id);
             }
-          }
-          else if(v[0] === 'choices') {
-            console.log(v[0]);
-          }
+          })
         });
-        console.log(changeTracker);
+        let updated = await this.api.updatePoll(this.state.polls[this.poll]);
+        console.log('poll updated: ', updated);
         changeTracker = {
           changeDate: null,
           pollItems: [],
@@ -225,8 +225,6 @@ export class Poll {
           newChoices: [],
           deletedChoices: []
         };
-        // let updated = await this.api.updatePoll(this.state.polls[this.poll]);
-        // console.log('poll updated: ', updated);
       }
 
       backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));

@@ -50,6 +50,7 @@ export class ApiInterface {
     );
   }
 
+  // Done
   createPoll(poll) {
     return(
       this.http.fetch(`/poll/create`, {
