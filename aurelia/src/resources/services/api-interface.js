@@ -28,6 +28,17 @@ export class ApiInterface {
   }
 
   // Done
+  getPolls() {
+    return(
+      this.http.fetch(`/polls`, {
+                 method: 'GET'
+               })
+               .then(response => response.json())
+               .then(data => data.polls)
+    );
+  }
+
+  // Done
   getPollID() {
     return(
       this.http.fetch(`/poll/id`, {
@@ -39,25 +50,16 @@ export class ApiInterface {
     );
   }
 
-  // Done
-  getPolls() {
+  createPoll(poll) {
     return(
-      this.http.fetch(`/polls`, {
-                 method: 'GET'
-               })
-               .then(response => response.json())
-               .then(data => data.polls)
-    );
-  }
-
-  createPoll() {
-    return(
-      this.http.fetch(`/poll/new`, {
+      this.http.fetch(`/poll/create`, {
                  method: 'POST',
                  credentials: 'same-origin',
                  headers: {
-                   'Accept': 'application/json'
-                 }
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(poll)
                })
                .then(response => response.json())
                .then(data => data)
@@ -66,14 +68,14 @@ export class ApiInterface {
 
   updatePoll(poll) {
     return(
-      this.http.fetch(`/update/${poll}`, {
+      this.http.fetch(`/poll/update/${poll.id}`, {
                  method: 'PUT',
                  credentials: 'same-origin',
                  headers: {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json'
                  },
-                 body: JSON.stringify(/*polldata*/)
+                 body: JSON.stringify(poll)
                })
                .then(response => response.json())
                .then(data => data)
@@ -82,7 +84,7 @@ export class ApiInterface {
 
   deletePoll(poll) {
     return(
-      this.http.fetch(`/delete/${poll}`, {
+      this.http.fetch(`/poll/delete/${poll}`, {
                  method: 'DELETE',
                  credentials: 'same-origin',
                  headers: {

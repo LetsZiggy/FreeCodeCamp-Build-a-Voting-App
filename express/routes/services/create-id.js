@@ -7,8 +7,8 @@ let characters = [
 function createID(polls) {
   let run = true;
   let id = null;
-  let takenIDs = polls.map((v, i, a) => v[0]);
-  // let takenIDs = Object.entries(polls).map((v, i, a) => v[0]);
+  let takenIDs = Object.entries(polls).map((v, i, a) => v[0]);
+  // let takenIDs = polls.map((v, i, a) => v[0]);
 
   while(run) {
     let tempID = [];

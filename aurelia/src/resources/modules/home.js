@@ -15,7 +15,7 @@ export class Home {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(!this.state.polls.length || (this.state.update.now !== null && Date.now() - this.state.update.now > 60000)) {
+    if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
       this.state.update.now = Date.now();
@@ -27,7 +27,7 @@ export class Home {
     this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user.id] !== undefined && v.voters[this.state.user.id] !== null);
   }
 
-  attached() {
+  async attached() {
     if(this.state.update.updated) {
       let canvas = [];
 

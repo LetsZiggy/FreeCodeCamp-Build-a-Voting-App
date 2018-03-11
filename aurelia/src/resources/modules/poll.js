@@ -1,20 +1,29 @@
 import {inject, bindable, bindingMode, observable} from 'aurelia-framework';
 import {Router, Redirect} from 'aurelia-router';
 import * as palette from 'google-palette';
+import {ApiInterface} from '../services/api-interface';
 import {state} from '../services/state';
 import {destroyCharts, updateCharts, generateCharts} from '../services/draw-charts';
 
 let initial = true;
 let backup = null;
-let change = false;
+let voteChange = false;
+let changeTracker = {
+  changeDate: null,
+  pollItems: [/* 'name', 'isPublic', 'lastIndex' */],
+  editedChoices: [],
+  newChoices: [],
+  deletedChoices: []
+};
 
-@inject(Router)
+@inject(Router, ApiInterface)
 export class Poll {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
   @observable({ changeHandler: 'voteChanged' }) vote = null;
 
-  constructor(Router) {
+  constructor(Router, ApiInterface) {
     this.router = Router;
+    this.api = ApiInterface;
     this.poll = null;
     this.new = false;
     this.charts = { current: [] };
@@ -34,15 +43,13 @@ export class Poll {
       }
       else {
         this.state.polls.push({
-          id: 'temp',
+          id: params.id,
           name: '',
           owner: this.state.user.id,
-          created: Date.now(),
-          edited: Date.now(),
+          created: new Date(),
+          edited: new Date(),
           isPublic: false,
           lastIndex: 2,
-          voters: {
-          },
           choices: [
             {
               id: 1,
@@ -54,7 +61,8 @@ export class Poll {
               name: '',
               votes: 0,
             },
-          ]
+          ],
+          voters: {}
         });
 
         this.poll = this.state.polls.length - 1;
@@ -90,13 +98,16 @@ export class Poll {
   detached() {
     backup = null;
     initial = true;
-    change = false;
+    voteChange = false;
+    changeTracker = {
+      changeDate: null,
+      pollItems: [],
+      editedChoices: [],
+      newChoices: [],
+      deletedChoices: []
+    };
     this.poll = null;
     this.new = false;
-
-    if(change) {
-      // update votes with api-interface
-    }
 
     destroyCharts(this.charts);
     this.charts = null;
@@ -123,13 +134,26 @@ export class Poll {
       this.state.polls[this.poll].choices[newChoice].votes++;
 
       updateCharts(this.charts.current[0], this.state.polls[this.poll].choices);
-      change = true;
+      voteChange = true;
+    }
+
+    if(voteChange) {
+      // update votes with api-interface
     }
   }
 
   addremove(index) {
+    changeTracker.changeDate = new Date();
+
     if(index !== null) {
-      this.state.polls[this.poll].choices.splice(index, 1);
+      let deleted = this.state.polls[this.poll].choices.splice(index, 1);
+      if(changeTracker.newChoices.indexOf(deleted[0].id) === -1) {
+        changeTracker.deletedChoices.push(deleted[0].id);
+      }
+      else {
+        let index = changeTracker.newChoices.indexOf(deleted[0].id);
+        changeTracker.newChoices.splice(index, 1);
+      }
     }
     else {
       this.state.polls[this.poll].lastIndex++;
@@ -139,13 +163,15 @@ export class Poll {
         votes: 0,
       });
 
+      changeTracker.newChoices.push(this.state.polls[this.poll].lastIndex);
+
       setTimeout(() => {
         this.checkInput();
       }, 200);
     }
   }
 
-  donecancel(type) {
+  async donecancel(type) {
     if(type === 'cancel') {
       if(this.new) {
         this.state.polls.pop();
@@ -161,6 +187,7 @@ export class Poll {
       }
     }
     else {
+      let hasChanges = false;
       let canvas = [
         ['current', document.getElementById('right-column').getElementsByTagName('canvas')]
       ];
@@ -169,19 +196,41 @@ export class Poll {
       this.charts.current = [];
       generateCharts(palette, canvas, this.charts, this.state);
 
-      this.state.polls[this.poll].edited = Date.now();
-      backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
-      document.getElementById('vote-radio').checked = true;
+      this.state.polls[this.poll].edited = new Date();
 
       if(this.new) {
         initial = false;
         this.new = false;
         document.getElementById('delete').style.display = 'inline';
-        // create new poll with api-interface
+        let created = await this.api.createPoll(this.state.polls[this.poll]);
+        console.log('poll created: ', created);
       }
       else {
-        // update poll with api-interface
+        Object.entries(backup).forEach((v, i, a) => {
+          if(['name', 'isPublic', 'lastIndex'].indexOf(v[0]) !== -1) {
+            if(backup[v[0]] !== this.state.polls[this.poll][v[0]]) {
+              changeTracker.pollItems.push(v[0]);
+              changeTracker.changeDate = new Date();
+            }
+          }
+          else if(v[0] === 'choices') {
+            console.log(v[0]);
+          }
+        });
+        console.log(changeTracker);
+        changeTracker = {
+          changeDate: null,
+          pollItems: [],
+          editedChoices: [],
+          newChoices: [],
+          deletedChoices: []
+        };
+        // let updated = await this.api.updatePoll(this.state.polls[this.poll]);
+        // console.log('poll updated: ', updated);
       }
+
+      backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
+      document.getElementById('vote-radio').checked = true;
     }
   }
 
