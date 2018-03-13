@@ -205,13 +205,6 @@ export class Poll {
         if(backup.name !== this.state.polls[this.poll].name) { changeTracker.pollItems.push('name'); }
         if(backup.isPublic !== this.state.polls[this.poll].isPublic) { changeTracker.pollItems.push('isPublic'); }
         if(backup.lastIndex !== this.state.polls[this.poll].lastIndex) { changeTracker.pollItems.push('lastIndex'); }
-        // backup.choices.forEach((bv, bi, ba) => {
-        //   this.state.polls[this.poll].choices.forEach((pv, pi, pa) => {
-        //     if((bv.id === pv.id) && (bv.name !== pv.name)) {
-        //       changeTracker.editedChoices.push(bv.id);
-        //     }
-        //   })
-        // });
         changeTracker.editedChoices = backup.choices.reduce((acc, bv, bi, ba) => {
           for(let i = 0; i < this.state.polls[this.poll].choices.length; i++) {
             if(bv.id === this.state.polls[this.poll].choices[i].id) {
@@ -263,7 +256,7 @@ export class Poll {
   }
 
   deletePoll() {
-    // delete poll with api-interface
+    this.api.deletePoll(this.state.polls[this.poll].id);
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }

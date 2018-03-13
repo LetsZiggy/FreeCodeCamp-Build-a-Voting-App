@@ -31,7 +31,10 @@ export class ApiInterface {
   getPolls() {
     return(
       this.http.fetch(`/polls`, {
-                 method: 'GET'
+                 method: 'GET',
+                 headers: {
+                   'Accept': 'application/json'
+                 }
                })
                .then(response => response.json())
                .then(data => data.polls)
@@ -43,7 +46,10 @@ export class ApiInterface {
     return(
       this.http.fetch(`/poll/id`, {
                  method: 'POST',
-                 credentials: 'same-origin'
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json'
+                 }
                })
                .then(response => response.json())
                .then(data => data.id)
@@ -84,16 +90,31 @@ export class ApiInterface {
     );
   }
 
+  // Done
   deletePoll(poll) {
     return(
       this.http.fetch(`/poll/delete/${poll}`, {
                  method: 'DELETE',
                  credentials: 'same-origin',
                  headers: {
+                   'Accept': 'application/json'
+                 }
+               })
+               .then(response => response.json())
+               .then(data => data)
+    );
+  }
+
+  updateVoting(poll, newVote, oldVote) {
+    return(
+      this.http.fetch(`/poll/vote/${poll}`, {
+                 method: 'DELETE',
+                 credentials: 'same-origin',
+                 headers: {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json'
                  },
-                 body: JSON.stringify(/*polldata*/)
+                 body: JSON.stringify({ poll: poll, votes: [newVote, oldVote] })
                })
                .then(response => response.json())
                .then(data => data)

@@ -20,13 +20,13 @@ router.post('/poll/id', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collection = await db.collection('build-a-voting-app-ids');
-    let find = await collection.findOne(
+    let ids = await collection.findOne(
       { type: 'polls' },
       { _id: 0, type: 0 }
     );
-    let id = createID(find.list);
+    let id = createID(ids.list);
     let query = `list.${id}`;
-    let update = await collection.findOneAndUpdate(
+    let updated = await collection.findOneAndUpdate(
       { type: 'polls' },
       { $set: { [query]: new Date() } }
     );
@@ -45,9 +45,9 @@ router.post('/poll/create', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionPolls = await db.collection('build-a-voting-app-polls');
-    let insert = await collectionPolls.insertOne(req.body);
+    let inserted = await collectionPolls.insertOne(req.body);
     let collectionIDs = await db.collection('build-a-voting-app-ids');
-    let update = await collectionIDs.findOneAndUpdate(
+    let updated = await collectionIDs.findOneAndUpdate(
       { type: 'polls' },
       { $set: { [query]: 'created' } }
     );
@@ -124,7 +124,7 @@ router.put('/poll/update/:id', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collection = await db.collection('build-a-voting-app-polls');
-    let bulk = await collection.bulkWrite(operations, { ordered: false });
+    let updated = await collection.bulkWrite(operations, { ordered: false });
     client.close();
 
     res.json({ update: true });
@@ -134,25 +134,19 @@ router.put('/poll/update/:id', async (req, res, next) => {
   }
 });
 
-// router.delete('/poll/delete/:id', async (req, res, next) => {
-//   if(req.cookies.id) {
-//     let query = `list.${req.body.id}`;
-//     let client = await mongo.connect(dbURL);
-//     let db = await client.db(process.env.DBNAME);
-//     let collectionPolls = await db.collection('build-a-voting-app-polls');
-//     let insert = await collectionPolls.insertOne(req.body);
-//     let collectionIDs = await db.collection('build-a-voting-app-ids');
-//     let update = await collectionIDs.findOneAndUpdate(
-//       { type: 'polls' },
-//       { $set: { [query]: 'created' } }
-//     );
-//     client.close();
+router.delete('/poll/delete/:id', async (req, res, next) => {
+  if(req.cookies.id) {
+    let client = await mongo.connect(dbURL);
+    let db = await client.db(process.env.DBNAME);
+    let collectionPolls = await db.collection('build-a-voting-app-polls');
+    let deleted = await collectionPolls.findOneAndDelete({ $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] });
+    client.close();
 
-//     res.json({ delete: true });
-//   }
-//   else {
-//     res.json({ delete: false });
-//   }
-// });
+    res.json({ delete: true });
+  }
+  else {
+    res.json({ delete: false });
+  }
+});
 
 module.exports = router;
