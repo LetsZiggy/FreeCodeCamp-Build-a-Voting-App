@@ -136,10 +136,16 @@ router.put('/poll/update/:id', async (req, res, next) => {
 
 router.delete('/poll/delete/:id', async (req, res, next) => {
   if(req.cookies.id) {
+    let query = `list.${req.params.id}`;
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionPolls = await db.collection('build-a-voting-app-polls');
-    let deleted = await collectionPolls.findOneAndDelete({ $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] });
+    let deletedPoll = await collectionPolls.findOneAndDelete({ $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] });
+    let collectionIDs = await db.collection('build-a-voting-app-ids');
+    let deletedId = await collectionIDs.updateOne(
+      { type: 'polls' },
+      { $unset: { [query]: '' } }
+    );
     client.close();
 
     res.json({ delete: true });

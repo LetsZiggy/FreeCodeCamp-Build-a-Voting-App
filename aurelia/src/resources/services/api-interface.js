@@ -93,7 +93,7 @@ export class ApiInterface {
   // Done
   deletePoll(poll) {
     return(
-      this.http.fetch(`/poll/delete/${poll}`, {
+      this.http.fetch(`/poll/delete/${poll.id}`, {
                  method: 'DELETE',
                  credentials: 'same-origin',
                  headers: {

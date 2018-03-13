@@ -256,7 +256,7 @@ export class Poll {
   }
 
   deletePoll() {
-    this.api.deletePoll(this.state.polls[this.poll].id);
+    this.api.deletePoll(this.state.polls[this.poll]);
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }
