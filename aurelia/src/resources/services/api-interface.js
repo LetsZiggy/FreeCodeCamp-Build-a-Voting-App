@@ -67,7 +67,8 @@ export class ApiInterface {
     );
   }
 
-  updatePoll(poll) {
+  // Done
+  updatePoll(poll, changes) {
     return(
       this.http.fetch(`/poll/update/${poll.id}`, {
                  method: 'PUT',
@@ -76,7 +77,7 @@ export class ApiInterface {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json'
                  },
-                 body: JSON.stringify(poll)
+                 body: JSON.stringify({ poll: poll, changes: changes })
                })
                .then(response => response.json())
                .then(data => data)

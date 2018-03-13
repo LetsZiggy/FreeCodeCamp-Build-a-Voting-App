@@ -10,7 +10,7 @@ export class App {
       document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
 
-    document.cookie = "id=User1";
+    document.cookie = "id=exampleuser1";
   }
 
   configureRouter(config, router) {

@@ -12,7 +12,7 @@ router.get('/polls', async (req, res, next) => {
   let polls = await collection.find().project({ _id: 0 }).toArray();
   client.close();
 
-  res.json({ "polls": polls });
+  res.json({ polls: polls });
 });
 
 router.post('/poll/id', async (req, res, next) => {
@@ -32,53 +32,127 @@ router.post('/poll/id', async (req, res, next) => {
     );
     client.close();
 
-    res.json({ "id": id });
+    res.json({ id: id, create: true });
   }
   else {
-    res.end();
+    res.end({ id: null, create: false });
   }
 });
 
 router.post('/poll/create', async (req, res, next) => {
   if(req.cookies.id) {
+    let query = `list.${req.body.id}`;
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionPolls = await db.collection('build-a-voting-app-polls');
     let insert = await collectionPolls.insertOne(req.body);
     let collectionIDs = await db.collection('build-a-voting-app-ids');
-    let query = `list.${req.body.id}`;
     let update = await collectionIDs.findOneAndUpdate(
       { type: 'polls' },
       { $set: { [query]: 'created' } }
     );
     client.close();
 
-    res.json(insert);
+    res.json({ create: true });
   }
   else {
-    res.end();
+    res.json({ create: false });
   }
 });
 
 router.put('/poll/update/:id', async (req, res, next) => {
   if(req.cookies.id) {
-    console.log(req.body);
+    let editedChoices = [];
+    if(req.body.changes.editedChoices.length) {
+      req.body.changes.editedChoices.forEach((v, i, a) => {
+        editedChoices.push(
+          { updateOne:
+            { filter: { $and: [{ "id": { $eq: req.params.id } }, { "owner": { $eq: req.cookies.id } }, { "choices.id": v }] },
+              update: { $set: { "choices.$.name": (req.body.poll.choices.find(fv => fv.id === v)).name } }
+            }
+          }
+        );
+      });
+    }
+    let newChoices = [];
+    if(req.body.changes.newChoices.length) {
+      let newChoicesArr = [];
+      req.body.changes.newChoices.forEach((v, i, a) => {
+        newChoicesArr.push(req.body.poll.choices.find(fv => fv.id === v));
+      });
+
+      newChoices.push(
+        { updateOne:
+          {
+            filter: { $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] },
+            update: { $push: { choices: { $each: newChoicesArr } } }
+          }
+        }
+      );
+    }
+    let deletedChoices = [];
+    if(req.body.changes.deletedChoices.length) {
+      let deletedChoicesArr = req.body.changes.deletedChoices.map((v, i, a) => v);
+
+      deletedChoices.push(
+        { updateOne:
+          {
+            filter: { $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] },
+            update: { $pull: { choices: { id: { $in: deletedChoicesArr } } } }
+          }
+        }
+      );
+    }
+    let pollItems = [];
+    if(req.body.changes.pollItems.length) {
+      let pollItemsObj = {};
+      req.body.changes.pollItems.forEach((v, i, a) => {
+        pollItemsObj[v] = req.body.poll[v];
+      });
+
+      pollItems.push(
+        { updateOne:
+          {
+            filter: { $and: [{ id: { $eq: req.params.id } }, { owner: { $eq: req.cookies.id } }] },
+            update: { $set: pollItemsObj }
+          }
+        }
+      );
+    }
+
+    let operations = [...editedChoices, ...newChoices, ...deletedChoices, ...pollItems];
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collection = await db.collection('build-a-voting-app-polls');
-    let find = await collection.findOne({
-      $and: [
-        { id: { $eq: req.params.id } },
-      ]
-    });
-    console.log(find);
+    let bulk = await collection.bulkWrite(operations, { ordered: false });
     client.close();
 
-    res.json({ result: 'test' });
+    res.json({ update: true });
   }
   else {
-    res.end();
+    res.json({ update: false });
   }
 });
+
+// router.delete('/poll/delete/:id', async (req, res, next) => {
+//   if(req.cookies.id) {
+//     let query = `list.${req.body.id}`;
+//     let client = await mongo.connect(dbURL);
+//     let db = await client.db(process.env.DBNAME);
+//     let collectionPolls = await db.collection('build-a-voting-app-polls');
+//     let insert = await collectionPolls.insertOne(req.body);
+//     let collectionIDs = await db.collection('build-a-voting-app-ids');
+//     let update = await collectionIDs.findOneAndUpdate(
+//       { type: 'polls' },
+//       { $set: { [query]: 'created' } }
+//     );
+//     client.close();
+
+//     res.json({ delete: true });
+//   }
+//   else {
+//     res.json({ delete: false });
+//   }
+// });
 
 module.exports = router;

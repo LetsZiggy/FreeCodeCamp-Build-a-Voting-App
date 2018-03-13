@@ -9,7 +9,6 @@ let initial = true;
 let backup = null;
 let voteChange = false;
 let changeTracker = {
-  changeDate: null,
   pollItems: [/* 'name', 'isPublic', 'lastIndex' */],
   editedChoices: [],
   newChoices: [],
@@ -100,7 +99,6 @@ export class Poll {
     initial = true;
     voteChange = false;
     changeTracker = {
-      changeDate: null,
       pollItems: [],
       editedChoices: [],
       newChoices: [],
@@ -143,8 +141,6 @@ export class Poll {
   }
 
   addremove(index) {
-    changeTracker.changeDate = new Date();
-
     if(index !== null) {
       let deleted = this.state.polls[this.poll].choices.splice(index, 1);
       if(changeTracker.newChoices.indexOf(deleted[0].id) === -1) {
@@ -209,17 +205,31 @@ export class Poll {
         if(backup.name !== this.state.polls[this.poll].name) { changeTracker.pollItems.push('name'); }
         if(backup.isPublic !== this.state.polls[this.poll].isPublic) { changeTracker.pollItems.push('isPublic'); }
         if(backup.lastIndex !== this.state.polls[this.poll].lastIndex) { changeTracker.pollItems.push('lastIndex'); }
-        backup.choices.forEach((bv, bi, ba) => {
-          this.state.polls[this.poll].choices.forEach((pv, pi, pa) => {
-            if((bv.id === pv.id) && (bv.name !== pv.name)) {
-              changeTracker.editedChoices.push(bv.id);
+        // backup.choices.forEach((bv, bi, ba) => {
+        //   this.state.polls[this.poll].choices.forEach((pv, pi, pa) => {
+        //     if((bv.id === pv.id) && (bv.name !== pv.name)) {
+        //       changeTracker.editedChoices.push(bv.id);
+        //     }
+        //   })
+        // });
+        changeTracker.editedChoices = backup.choices.reduce((acc, bv, bi, ba) => {
+          for(let i = 0; i < this.state.polls[this.poll].choices.length; i++) {
+            if(bv.id === this.state.polls[this.poll].choices[i].id) {
+              if(bv.name !== this.state.polls[this.poll].choices[i].name) {
+                acc.push(bv.id);
+              }
+              break;
             }
-          })
-        });
-        let updated = await this.api.updatePoll(this.state.polls[this.poll]);
-        console.log('poll updated: ', updated);
+          }
+          return(acc);
+        }, []);
+        if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
+          changeTracker.pollItems.push('edited');
+          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker);
+          console.log('poll updated: ', updated);
+        }
+
         changeTracker = {
-          changeDate: null,
           pollItems: [],
           editedChoices: [],
           newChoices: [],
