@@ -5,7 +5,7 @@ template
 
     #title ${state.polls[poll].name.length ? state.polls[poll].name : 'NEW POLL'}
 
-    #options-row(if.bind="state.user.id === state.polls[poll].owner")
+    #options-row(if.bind="state.user === state.polls[poll].owner")
       span You own this poll:
       label#vote-label(for="vote-radio") Vote
       label#edit-label(for="edit-radio") Edit
@@ -13,6 +13,12 @@ template
 
     #main
       #left-column(if.bind="state.polls[poll].isPublic ? true : state.user ? true : false")
+        #spinner
+          .spinner
+            span
+            span
+            span
+
         #vote
           ul
             li(repeat.for="choice of state.polls[poll].choices")
@@ -20,7 +26,7 @@ template
               label(for="select-${choice.id}")
                 span ${choice.name}
 
-        #edit(if.bind="state.user.id === state.polls[poll].owner")
+        #edit(if.bind="state.user === state.polls[poll].owner")
           #edit-inputs
             div
               span Poll name:&nbsp;

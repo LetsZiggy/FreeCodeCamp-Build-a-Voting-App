@@ -22,16 +22,16 @@ export class Home {
       this.state.update.updated = true;
     }
 
-    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user.id);
+    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user);
 
-    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user.id] !== undefined && v.voters[this.state.user.id] !== null);
+    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user] !== undefined && v.voters[this.state.user] !== null);
   }
 
   async attached() {
     if(this.state.update.updated) {
       let canvas = [];
 
-      if(this.state.user.id) {
+      if(this.state.user) {
         canvas.push(['created', document.getElementById('created').getElementsByTagName('canvas')]);
         canvas.push(['participated', document.getElementById('participated').getElementsByTagName('canvas')]);
       }

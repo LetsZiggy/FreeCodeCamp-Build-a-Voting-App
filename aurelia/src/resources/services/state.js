@@ -9,9 +9,6 @@ export const state = {
     timer: 0,
     interval: null
   },
-  user: {
-    id: "exampleuser1",
-    name: "example-user-1"
-  },
+  user: null,
   polls: []
 };

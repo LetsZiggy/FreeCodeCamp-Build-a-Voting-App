@@ -7,13 +7,7 @@ import {destroyCharts, updateCharts, generateCharts} from '../services/draw-char
 
 let initial = true;
 let backup = null;
-let voteChange = false;
-let changeTracker = {
-  pollItems: [/* 'name', 'isPublic', 'lastIndex' */],
-  editedChoices: [],
-  newChoices: [],
-  deletedChoices: []
-};
+let changeTracker = { pollItems: [], editedChoices: [], newChoices: [], deletedChoices: [] };
 
 @inject(Router, ApiInterface)
 export class Poll {
@@ -33,18 +27,18 @@ export class Poll {
     this.poll = this.state.polls.findIndex((v, i, a) => v.id === params.id);
     this.new = !!params.new || false;
 
-    if(((!this.state.polls.length || this.state.polls[this.poll] === undefined) && !this.new) || (this.new && !this.state.user.id)) {
+    if(((!this.state.polls.length || this.state.polls[this.poll] === undefined) && !this.new) || (this.new && !this.state.user)) {
       return(new Redirect('polls'));
     }
     else {
       if(!this.new) {
-        this.vote = this.state.user.id ? this.state.polls[this.poll].voters[this.state.user.id] : 0;
+        this.vote = this.state.user ? this.state.polls[this.poll].voters[this.state.user] : 0;
       }
       else {
         this.state.polls.push({
           id: params.id,
           name: '',
-          owner: this.state.user.id,
+          owner: this.state.user,
           created: new Date(),
           edited: new Date(),
           isPublic: false,
@@ -97,46 +91,54 @@ export class Poll {
   detached() {
     backup = null;
     initial = true;
-    voteChange = false;
-    changeTracker = {
-      pollItems: [],
-      editedChoices: [],
-      newChoices: [],
-      deletedChoices: []
-    };
+    changeTracker = { pollItems: [], editedChoices: [], newChoices: [], deletedChoices: [] };
     this.poll = null;
     this.new = false;
+    this.voteChange = false;
 
     destroyCharts(this.charts);
     this.charts = null;
   }
 
-  voteChanged(newValue, oldValue) {
+  async voteChanged(newValue, oldValue) {
     if(initial === true) {
       initial = false;
     }
     else {
-      if(this.state.user.id) {
-        let oldChoice = this.state.polls[this.poll].voters[this.state.user.id] || null;
+      this.state.polls[this.poll].choices.forEach((v, i, a) => {
+        document.getElementById(`select-${v.id}`).disabled = true;
+        if(document.getElementById('spinner').style.visibility !== 'visible') {
+          document.getElementById('spinner').style.visibility = 'visible';
+        }
+      });
+
+      let oldChoice = null;
+      if(this.state.user) {
+        oldChoice = this.state.polls[this.poll].voters[this.state.user] || null;
 
         if(oldChoice) {
-          oldChoice = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === oldChoice);
-          if(oldChoice !== -1) {
-            this.state.polls[this.poll].choices[oldChoice].votes--;
+          let oldIndex = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === oldChoice);
+          if(oldIndex !== -1) {
+            this.state.polls[this.poll].choices[oldIndex].votes--;
           }
         }
 
-        this.state.polls[this.poll].voters[this.state.user.id] = newValue;
+        this.state.polls[this.poll].voters[this.state.user] = newValue;
       }
-      let newChoice = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === newValue);
-      this.state.polls[this.poll].choices[newChoice].votes++;
+
+      let newIndex = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === newValue);
+      this.state.polls[this.poll].choices[newIndex].votes++;
 
       updateCharts(this.charts.current[0], this.state.polls[this.poll].choices);
-      voteChange = true;
-    }
+      let update = await this.api.updateVoting(this.state.polls[this.poll], newValue, oldChoice);
+      console.log('vote updated: ', update);
 
-    if(voteChange) {
-      // update votes with api-interface
+      this.state.polls[this.poll].choices.forEach((v, i, a) => {
+        document.getElementById(`select-${v.id}`).disabled = false;
+        if(document.getElementById('spinner').style.visibility !== 'hidden') {
+          document.getElementById('spinner').style.visibility = 'hidden';
+        }
+      });
     }
   }
 
@@ -255,8 +257,10 @@ export class Poll {
     document.getElementById('edit-done').disabled = disabled;
   }
 
-  deletePoll() {
-    this.api.deletePoll(this.state.polls[this.poll]);
+  async deletePoll() {
+    let deleted = await this.api.deletePoll(this.state.polls[this.poll]);
+    console.log('poll deleted: ', deleted);
+
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }

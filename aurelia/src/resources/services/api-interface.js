@@ -107,8 +107,8 @@ export class ApiInterface {
 
   updateVoting(poll, newVote, oldVote) {
     return(
-      this.http.fetch(`/poll/vote/${poll}`, {
-                 method: 'DELETE',
+      this.http.fetch(`/poll/vote/${poll.id}`, {
+                 method: 'PUT',
                  credentials: 'same-origin',
                  headers: {
                    'Accept': 'application/json',

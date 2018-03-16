@@ -18,9 +18,13 @@ export class User {
   }
 
   canActivate() {
-    if(!this.state.user.id) {
-      return(new Redirect('home'));
-    }
+    if(!this.state.user) {
+      if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
+        return(false);
+      }
+      else {
+        return(new Redirect('home'));
+      }
   }
 
   async activate(params, routeConfig, navigationInstruction) {
@@ -31,9 +35,9 @@ export class User {
       this.state.update.updated = true;
     }
 
-    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user.id);
+    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user);
 
-    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user.id] !== undefined && v.voters[this.state.user.id] !== null);
+    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user] !== undefined && v.voters[this.state.user] !== null);
   }
 
   async attached() {
@@ -89,6 +93,8 @@ export class User {
 
   async createPoll() {
     let id = await this.api.getPollID();
+    console.log('new id: ', id);
+
     this.router.navigateToRoute('poll', { id: id, new: true });
   }
 }

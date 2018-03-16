@@ -1,3 +1,9 @@
+@keyframes bounce
+  0%, 75%, 100%
+    transform : translateY(0rem)
+  25%
+    transform : translateY(-1rem)
+
 .poll-content
   flex-direction  : row
   flex-wrap       : wrap
@@ -90,6 +96,46 @@
       overflow   : hidden
 
     #left-column
+      #spinner
+        position        : relative
+        left            : 5rem
+        top             : 0rem
+        display         : block
+        visibility      : hidden
+        flex-direction  : column
+        justify-content : center
+        align-items     : center
+        align-content   : center
+        margin-bottom   : 1rem
+        user-select     : none
+       
+        .spinner
+          position : relative
+          display  : inline-block
+          height   : 0px
+          width    : 0px
+
+          span
+            position         : absolute
+            display          : inline-block
+            top              : 0px
+            height           : 0.5rem
+            width            : 0.5rem
+            background-color : dimgrey
+            border-radius    : 50%
+
+            &:nth-child(1)
+              left      : -2rem
+              animation : bounce 1s ease-in-out infinite
+
+            &:nth-child(2)
+              left      : -0.5rem
+              animation : bounce 1s ease-in-out 0.33s infinite
+
+            &:nth-child(3)
+              left      : 1rem
+              animation : bounce 1s ease-in-out 0.66s infinite
+
       #vote
         position     : relative
         display      : none
@@ -121,6 +167,12 @@
             input:checked ~ label::after
               background-color : #666666
               opacity          : 1
+
+            input:not(:disabled) ~ label, input:not(:disabled) ~ label::before
+              opacity : 1
+
+            input:disabled ~ label, input:disabled ~ label::before
+              opacity : 0.2
 
             label
               position     : relative

@@ -15,7 +15,7 @@ export class Login {
     if(this.state.user.id) {
       // handle logout process (not done)
       this.state.user = { id: null, name: null };
-      if(this.router.history.previousLocation) {
+      if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
       }
       else {
