@@ -32,6 +32,7 @@ export class ApiInterface {
     return(
       this.http.fetch(`/polls`, {
                  method: 'GET',
+                 credentials: 'same-origin',
                  headers: {
                    'Accept': 'application/json'
                  }
@@ -105,6 +106,7 @@ export class ApiInterface {
     );
   }
 
+  // Done
   updateVoting(poll, newVote, oldVote) {
     return(
       this.http.fetch(`/poll/vote/${poll.id}`, {
@@ -118,6 +120,22 @@ export class ApiInterface {
                })
                .then(response => response.json())
                .then(data => data)
+    );
+  }
+
+  checkName(username) {
+    return(
+      this.http.fetch(`/user/username`, {
+                 method: 'POST',
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({ username: username })
+               })
+               .then(response => response.json())
+               .then(data => data.taken)
     );
   }
 }

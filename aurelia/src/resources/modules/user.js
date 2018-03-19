@@ -18,13 +18,14 @@ export class User {
   }
 
   canActivate() {
-    if(!this.state.user) {
+    if(this.state.user === null) {
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
       }
       else {
         return(new Redirect('home'));
       }
+    }
   }
 
   async activate(params, routeConfig, navigationInstruction) {
@@ -95,6 +96,8 @@ export class User {
     let id = await this.api.getPollID();
     console.log('new id: ', id);
 
-    this.router.navigateToRoute('poll', { id: id, new: true });
+    if(id) {
+      this.router.navigateToRoute('poll', { id: id, new: true });
+    }
   }
 }

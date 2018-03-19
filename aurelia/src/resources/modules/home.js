@@ -31,7 +31,7 @@ export class Home {
     if(this.state.update.updated) {
       let canvas = [];
 
-      if(this.state.user) {
+      if(this.user.created.length || this.user.participated.length) {
         canvas.push(['created', document.getElementById('created').getElementsByTagName('canvas')]);
         canvas.push(['participated', document.getElementById('participated').getElementsByTagName('canvas')]);
       }

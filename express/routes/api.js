@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongo = require('mongodb').MongoClient;
 const createID = require('./services/create-id.js');
+const handlePassword = require('./services/handle-password.js');
 
 const dbURL = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBURL}/${process.env.DBNAME}`;
 
@@ -12,6 +13,10 @@ router.get('/polls', async (req, res, next) => {
   let findPoll = await collectionPolls.find().project({ _id: 0 }).toArray();
   client.close();
 
+  if(!req.cookies.id) {
+    res.cookie('id', 'exampleuser1', { maxAge: 86400000, path: '/', httpOnly: true });
+  }
+
   res.json({ polls: findPoll });
 });
 
@@ -21,7 +26,7 @@ router.post('/poll/id', async (req, res, next) => {
     let db = await client.db(process.env.DBNAME);
     let collectionIDs = await db.collection('build-a-voting-app-ids');
     let findID = await collectionIDs.findOne({ type: 'polls' }, { _id: 0, type: 0 });
-    let id = createID(ids.list);
+    let id = createID(findID.list);
     let query = `list.${id}`;
     let updateID = await collectionIDs.findOneAndUpdate(
       { type: 'polls' },
@@ -32,7 +37,7 @@ router.post('/poll/id', async (req, res, next) => {
     res.json({ id: id, create: true });
   }
   else {
-    res.end({ id: null, create: false });
+    res.json({ id: null, create: false });
   }
 });
 
@@ -189,4 +194,26 @@ router.put('/poll/vote/:id', async (req, res, next) => {
   res.json({ update: true });
 });
 
+// router.post('user/username', async (req, res, next) => {
+
+// });
+/*
+router.post('/user/login', async (req, res, next) => {
+
+});
+
+router.post('/user/logout', async (req, res, next) => {
+
+});
+
+router.post('/user/new', async (req, res, next) => {
+
+});
+
+router.post('/user/edit', async (req, res, next) => {
+
+});
+*/
 module.exports = router;
+
+// res.cookie('id', 'exampleuser1', { maxAge: 86400000, path: '/', httpOnly: true, secure: true });

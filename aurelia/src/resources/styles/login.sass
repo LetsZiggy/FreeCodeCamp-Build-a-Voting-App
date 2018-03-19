@@ -27,6 +27,7 @@
       display          : flex
       box-shadow       : none
       background-color : white
+      cursor           : default
 
   #radio-delay:checked ~ #login-panel
     display : none
@@ -107,16 +108,17 @@
     padding          : 0rem 2rem
     z-index          : 10
 
-    #wrong-login, #username-taken
-      position   : absolute
-      left       : 0rem
-      bottom     : 0.5rem
-      width      : 100%
-      display    : none
-      height     : 0.75rem
-      font-size  : 0.65rem
-      text-align : center
-      color      : red
+    #wrong-login
+      position    : absolute
+      left        : 0rem
+      bottom      : 0.65rem
+      width       : 100%
+      display     : none
+      height      : 0.75rem
+      font-size   : 0.65rem
+      line-height : 0.65rem
+      text-align  : center
+      color       : red
 
     form
       display         : none
@@ -158,7 +160,7 @@
           position         : absolute
           z-index          : 10
           left             : 0rem
-          bottom           : 0rem
+          bottom           : 3px
           margin           : 0rem
           padding          : 0rem
           width            : 100%
@@ -197,10 +199,17 @@
         border           : 1px solid rgba(0, 0, 0, 0.25)
         background-color : rgba(0, 0, 0, 0)
         box-sizing       : border-box
+        cursor           : pointer
 
       button:hover, label#signreset-label:hover, label#signreset-cancel:hover
         background-color : #DFDFDF
         color            : darkviolet
+
+      button:disabled
+        background-color : firebrick
+        border           : 1px solid firebrick
+        color            : white
+        cursor           : not-allowed
 
       label#signreset-label, label#signreset-cancel
         float       : right

@@ -9,6 +9,7 @@ export const state = {
     timer: 0,
     interval: null
   },
+  // user: 'exampleuser1',
   user: null,
   polls: []
 };

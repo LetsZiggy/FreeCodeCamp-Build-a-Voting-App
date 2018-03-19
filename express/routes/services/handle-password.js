@@ -13,9 +13,9 @@ function sha512(password, salt) {
   return({ salt: salt, hash: hash });
 }
 
-function passwordSaltHash(password) {
-  let salt = createSalt(16);
+function handlePassword(password, salt=null) {
+  if(salt === null) { salt = createSalt(16); }
   return(sha512(password, salt));
 }
 
-module.exports = passwordSaltHash;
+module.exports = handlePassword;

@@ -1,6 +1,6 @@
 template
   #content.home-content
-    #user-row(if.bind="state.user")
+    #user-row(if.bind="state.user && (user.created.length || user.participated.length)")
       #created
         .title User Created Polls
         ul
