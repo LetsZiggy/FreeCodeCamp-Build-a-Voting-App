@@ -65,7 +65,7 @@ export class Poll {
     }
   }
 
-  attached() {
+  async attached() {
     if(this.new) {
       this.checkInput();
       document.getElementById('edit-radio').checked = true;
@@ -85,6 +85,11 @@ export class Poll {
       if(this.new) {
         this.state.polls.pop();
       }
+    };
+
+    window.onbeforeunload = async (event) => {
+      let logout = await this.api.logoutUser();
+      this.state.user = null;
     };
   }
 

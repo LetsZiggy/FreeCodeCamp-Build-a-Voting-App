@@ -28,12 +28,17 @@ export class Login {
     }
   }
 
-  attached() {
+  async attached() {
     if(this.state.login.timer) {
       this.radio = 'radio-signin';
       document.getElementById('radio-delay').checked = true;
       setTimerInterval(this.state, this.radio, 'signin');
     }
+
+    window.onbeforeunload = async (event) => {
+      let logout = await this.api.logoutUser();
+      this.state.user = null;
+    };
   }
 
   detached() {

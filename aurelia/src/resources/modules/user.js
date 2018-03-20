@@ -48,6 +48,11 @@ export class User {
     ];
 
     generateCharts(palette, canvas, this.charts, this.state);
+
+    window.onbeforeunload = async (event) => {
+      let logout = await this.api.logoutUser();
+      this.state.user = null;
+    };
   }
 
   detached() {

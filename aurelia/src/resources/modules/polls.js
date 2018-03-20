@@ -33,6 +33,11 @@ export class Polls {
       generateCharts(palette, canvas, this.charts, this.state);
       this.state.update.updated = false;
     }
+
+    window.onbeforeunload = async (event) => {
+      let logout = await this.api.logoutUser();
+      this.state.user = null;
+    };
   }
 
   detached() {
