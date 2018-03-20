@@ -94,7 +94,6 @@ export class User {
 
   async createPoll() {
     let id = await this.api.getPollID();
-    console.log('new id: ', id);
 
     if(id) {
       this.router.navigateToRoute('poll', { id: id, new: true });

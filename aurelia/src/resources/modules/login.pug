@@ -22,12 +22,12 @@ template
 
       form#signin(submit.delegate="handleForm('signin')")
         fieldset.login-fieldset
-          input#signin-username(type="text" placeholder="" title="Only uppercase, lowercase and underscores allowed" pattern="[a-zA-Z_]{4,}" minlength="4" keydown.delegate!="checkInput($event, 'signin') & debounce" data-length="0" required)
+          input#signin-username(type="text" placeholder="" minlength="6" keydown.delegate!="checkInput($event, 'signin') & debounce" data-length="0" required)
           hr
           label Username
 
         fieldset.login-fieldset
-          input#signin-password(type="password" placeholder="" pattern=".{8,}" minlength="8" keydown.delegate!="checkInput($event, 'signin') & debounce" data-length="0" required)
+          input#signin-password(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signin') & debounce" data-length="0" required)
           hr
           label Password
 
@@ -37,17 +37,17 @@ template
 
       form#signup(submit.delegate="handleForm('signup')")
         fieldset.login-fieldset
-          input#signup-username(type="text" placeholder="john_doe" title="Only uppercase, lowercase and underscores allowed" pattern="[a-zA-Z_]{4,}" minlength="4" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
+          input#signup-username(type="text" placeholder="" minlength="6" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
           hr
-          label Username (Minimum length of 4)
+          label Username (Minimum length of 6)
 
         fieldset.login-fieldset
-          input#signup-password(type="password" placeholder="" pattern=".{8,}" minlength="8" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
+          input#signup-password(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
           hr
           label Password (Minimum length of 8)
 
         fieldset.login-fieldset
-          input#signup-repassword(type="password" placeholder="" pattern=".{8,}" minlength="8" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
+          input#signup-repassword(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
           hr
           label Re-enter Password
 
@@ -56,17 +56,17 @@ template
 
       form#signreset(submit.delegate="handleForm('signreset')")
         fieldset.login-fieldset
-          input#signreset-username(type="text" placeholder="" title="Only uppercase, lowercase and underscores allowed" pattern="[a-zA-Z_]{4,}" minlength="4" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
+          input#signreset-username(type="text" placeholder="" minlength="6" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
           hr
           label Username
 
         fieldset.login-fieldset
-          input#signreset-password(type="password" placeholder="" pattern=".{8,}" minlength="8" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
+          input#signreset-password(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
           hr
           label Password (Minimum length of 8)
 
         fieldset.login-fieldset
-          input#signreset-repassword(type="password" placeholder="" pattern=".{8,}" minlength="8" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
+          input#signreset-repassword(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
           hr
           label Re-enter Password
 

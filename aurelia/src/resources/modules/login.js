@@ -1,21 +1,23 @@
 import {inject, bindable, bindingMode} from 'aurelia-framework';
 import {Router, Redirect} from 'aurelia-router';
 import {state} from '../services/state';
+import {ApiInterface} from '../services/api-interface';
 
-@inject(Router)
+@inject(Router, ApiInterface)
 export class Login {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
-  constructor(Router) {
+  constructor(Router, ApiInterface) {
     this.router = Router;
+    this.api = ApiInterface;
     this.checkNameValue = null;
-    // this.errors = { username: false, password: false, repassword: false, taken: false, matching: false };
+    this.checkNameTaken = false;
     this.radio = null;
   }
 
-  canActivate(params, routeConfig, navigationInstruction) {
+  async canActivate(params, routeConfig, navigationInstruction) {
     if(this.state.user) {
-      // handle logout process (not done)
+      let logout = await this.api.logoutUser();
       this.state.user = null;
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
@@ -38,55 +40,12 @@ export class Login {
     if(this.state.login.timer) {
       clearInterval(this.state.login.interval);
     }
-    
-    // this.errors = { username: false, password: false, repassword: false, taken: false, matching: false };
+
+    this.checkNameValue = null;
   }
 
-  async checkName(event, input) {
-    let taken = false;
-    let value = document.getElementById(input).value;
-    if(value !== this.checkNameValue) {
-      this.checkNameValue = value;
-      // taken = await this.api.checkName(this.checkNameValue);
-      taken = true;
-      document.getElementById('wrong-login').innerHTML = 'The username is already in use.';
-      document.getElementById('wrong-login').style.display = taken ? 'block' : 'none';
-      document.getElementById('signup-submit').disabled = taken ? true : false;
-      // if(taken) {
-      //   if(document.getElementById('username-taken').style.display !== 'block') {
-      //     document.getElementById('username-taken').style.display = 'block';
-      //   }
-      // }
-      // else {
-      //   if(document.getElementById('username-taken').style.display !== 'none') {
-      //     document.getElementById('username-taken').style.display = 'none';
-      //   }
-      // }
-    }
-  }
-/*
-  checkInputLength(input, check=null) {
-    let inputElem = document.getElementById(input);
-    inputElem.dataset.length = inputElem.value.length;
-
-    if(check) {
-      this.checkPassword(input, check);
-    }
-  }
-
-  checkPassword(input, check) {
-    let formName = input.split('-')[0];
-    let inputElem = document.getElementById(input);
-    let checkElem = document.getElementById(check);
-
-    document.getElementById('wrong-login').innerHTML = inputElem.value !== checkElem.value ? 'Your password doesn\'t match.' : '';
-    document.getElementById('wrong-login').style.display = inputElem.value !== checkElem.value ? 'block' : 'none';
-    document.getElementById(`${formName}-submit`).disabled = inputElem.value !== checkElem.value ? true : false;
-    // document.getElementById(`${formName}-submit`).disabled = inputElem.value ? true : false;
-  }
-*/
   async checkInput(event, form) {
-    let errors = { inputLength: false, taken: false, matching: false };
+    let errors = { inputLength: false, matching: false };
     let inputs = document.getElementById(form).getElementsByTagName('input');
     inputs = Array.from(inputs);
 
@@ -98,53 +57,55 @@ export class Login {
       }
     });
 
-    if(event.type === 'blur' && form === 'signup' && inputs[0].value !== this.checkNameValue) {
+    if(inputs[0].value.length >= inputs[0].getAttribute('minlength') && form === 'signup' && inputs[0].value !== this.checkNameValue) {
       this.checkNameValue = inputs[0].value;
-      errors.taken = await this.api.checkName(this.checkNameValue);
+      this.checkNameTaken = await this.api.getUserNames(this.checkNameValue);
     }
 
     if(inputs.length === 3 && inputs[1].value !== inputs[2].value) {
       errors.matching = true;
     }
 
-    this.setError(form, errors);
-  }
-
-  setError(form, errors) {
-    if(errors.taken && errors.matching) {
-      document.getElementById('wrong-login').innerHTML = 'The username is already in use.<br>Your password doesn\'t match.';
-    }
-    else if(errors.taken) {
-      document.getElementById('wrong-login').innerHTML = 'The username is already in use.';
-    }
-    else if(errors.matching) {
-      document.getElementById('wrong-login').innerHTML = 'Your password doesn\'t match.';
-    }
-    else {
-      document.getElementById('wrong-login').innerHTML = 'Username needs at least 4 characters.<br>Password needs at least 8 characters.';
-    }
-
-    if(errors.inputLength || errors.taken || errors.matching) {
-      document.getElementById(`${form}-submit`).disabled = true;
-      document.getElementById('wrong-login').style.display = 'block';
-    }
-    else {
-      document.getElementById(`${form}-submit`).disabled = false;
-      document.getElementById('wrong-login').style.display = 'none';
-    }
+    setError(form, errors, this.checkNameTaken);
+    return(true);
   }
 
   clearForm(form) {
     document.getElementById('wrong-login').style.display = 'none';
+    document.getElementById(`${form}-submit`).disabled = true;
     resetForm(document.getElementById(form));
     return(true);
   }
 
-  handleForm(form) {
-    if(form !== 'signup') {
+  async handleForm(form) {
+    let formSuccess = false;
+
+    if(form === 'signup') {
+      formSuccess = await this.api.createUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+    }
+    else if(form === 'signin') {
+      formSuccess = await this.api.getUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+    }
+    else {
+      formSuccess = await this.api.editUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+    }
+
+    // check results
+    if(!formSuccess && form === 'signup') {
+      document.getElementById('wrong-login').innerHTML = 'Sorry, we weren\'t able to process your signup.<br>Please try again.';
+      document.getElementById('wrong-login').style.display = 'block';
+      resetForm(document.getElementById(form));
+    }
+    else if(!formSuccess && (form === 'signin' || form === 'signreset')) {
       if(this.state.login.chance) {
         this.state.login.chance--;
-        document.getElementById('wrong-login').innerHTML = 'You have typed in the wrong credentials.';
+
+        if(form === 'signin') {
+          document.getElementById('wrong-login').innerHTML = 'You have typed in the wrong credentials.';
+        }
+        else {
+          document.getElementById('wrong-login').innerHTML = 'You have typed in the wrong username.';
+        }
         document.getElementById('wrong-login').style.display = 'block';
         resetForm(document.getElementById(form));
       }
@@ -158,12 +119,34 @@ export class Login {
         setTimerInterval(this.state, this.radio, form);
       }
     }
+    else {
+      this.state.user = document.getElementById(`${form}-username`).value;
+      this.router.navigateToRoute('home');
+    }
+  }
+}
 
-    // If user submit wrong signin, delay next available signin at Fibonacci number seconds
-    // If user signup with used username, inform user
-    // If user Reset Password, pass form as long as user meets form requirements even if user not valid. This allow user to not farm for accounts
+function setError(form, errors, checkNameTaken) {
+  if(checkNameTaken && errors.matching) {
+    document.getElementById('wrong-login').innerHTML = 'The username is already in use.<br>Your password doesn\'t match.';
+  }
+  else if(checkNameTaken) {
+    document.getElementById('wrong-login').innerHTML = 'The username is already in use.';
+  }
+  else if(errors.matching) {
+    document.getElementById('wrong-login').innerHTML = 'Your password doesn\'t match.';
+  }
+  else {
+    document.getElementById('wrong-login').innerHTML = 'Username needs at least 6 characters.<br>Password needs at least 8 characters.';
+  }
 
-    // (form.children[1].children[0].value === form.children[2].children[0].value) // checking repeat password
+  if(errors.inputLength || checkNameTaken || errors.matching) {
+    document.getElementById(`${form}-submit`).disabled = true;
+    document.getElementById('wrong-login').style.display = 'block';
+  }
+  else {
+    document.getElementById(`${form}-submit`).disabled = false;
+    document.getElementById('wrong-login').style.display = 'none';
   }
 }
 

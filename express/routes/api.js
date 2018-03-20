@@ -13,11 +13,7 @@ router.get('/polls', async (req, res, next) => {
   let findPoll = await collectionPolls.find().project({ _id: 0 }).toArray();
   client.close();
 
-  if(!req.cookies.id) {
-    res.cookie('id', 'exampleuser1', { maxAge: 86400000, path: '/', httpOnly: true });
-  }
-
-  res.json({ polls: findPoll });
+  res.json({ get: true, polls: findPoll });
 });
 
 router.post('/poll/id', async (req, res, next) => {
@@ -34,10 +30,10 @@ router.post('/poll/id', async (req, res, next) => {
     );
     client.close();
 
-    res.json({ id: id, create: true });
+    res.json({ create: true, id: id });
   }
   else {
-    res.json({ id: null, create: false });
+    res.json({ create: false, id: null });
   }
 });
 
@@ -153,8 +149,8 @@ router.delete('/poll/delete/:id', async (req, res, next) => {
 
 router.put('/poll/vote/:id', async (req, res, next) => {
   let operations = [];
-  if(req.cookies.id) {
-    let query = `voters.${req.cookies.id}`;
+  if(req.body.username !== null) {
+    let query = `voters.${req.body.username}`;
     operations.push(
       { updateOne:
         {
@@ -194,26 +190,117 @@ router.put('/poll/vote/:id', async (req, res, next) => {
   res.json({ update: true });
 });
 
-// router.post('user/username', async (req, res, next) => {
+router.post('/user/checkname', async (req, res, next) => {
+  let client = await mongo.connect(dbURL);
+  let db = await client.db(process.env.DBNAME);
+  let collectionIDs = await db.collection('build-a-voting-app-ids');
+  let findID = await collectionIDs.findOne({ type: 'users' }, { _id: 0, type: 0 });
+  client.close();
 
-// });
-/*
+  let takenUsernames = Object.entries(findID).map((v, i, a) => v[1]);
+  if(takenUsernames.indexOf(req.body.username) === -1) {
+    res.json({ taken: false });
+  }
+  else {
+    res.json({ taken: true });
+  }
+});
+
+router.post('/user/create', async (req, res, next) => {
+  if(!req.cookies.id) {
+    let data = handlePassword(req.body.password);
+    data.username = req.body.username;
+
+    let client = await mongo.connect(dbURL);
+    let db = await client.db(process.env.DBNAME);
+    let collectionIDs = await db.collection('build-a-voting-app-ids');
+    let findID = await collectionIDs.findOne({ type: 'users' }, { _id: 0, type: 0 });
+    let id = createID(findID.list);
+    data.id = id;
+    let query = `list.${id}`;
+    let insertID = await collectionIDs.findOneAndUpdate(
+      { type: 'users' },
+      { $set: { [query]: req.body.username } }
+    );
+    let collectionUsers = await db.collection('build-a-voting-app-users');
+    let insertUser = await collectionUsers.insertOne(data);
+    client.close();
+
+    res.cookie('id', id, { maxAge: 86400000, path: '/', httpOnly: true });
+    // res.cookie('id', id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
+
+    res.json({ create: true });
+  }
+  else {
+    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
+    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.json({ create: false });
+  }
+});
+
 router.post('/user/login', async (req, res, next) => {
+  if(!req.cookies.id) {
+    let client = await mongo.connect(dbURL);
+    let db = await client.db(process.env.DBNAME);
+    let collectionUsers = await db.collection('build-a-voting-app-users');
+    let findUser = await collectionUsers.findOne({ username: req.body.username });
+    client.close();
 
+    if(!findUser) {
+      res.json({ get: false });
+    }
+    else {
+      let data = await handlePassword(req.body.password, findUser.salt);
+
+      if(data.hash !== findUser.hash) {
+        res.json({ get: false }); 
+      }
+      else {
+        res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true });
+        // res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
+        res.json({ get: true });
+      }
+    }
+  }
+  else {
+    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
+    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.json({ get: false });
+  }
 });
 
 router.post('/user/logout', async (req, res, next) => {
-
-});
-
-router.post('/user/new', async (req, res, next) => {
-
+  res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
+  // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+  res.json({ logout: true });
 });
 
 router.post('/user/edit', async (req, res, next) => {
+  if(!req.cookies.id) {
+    let client = await mongo.connect(dbURL);
+    let db = await client.db(process.env.DBNAME);
+    let collectionUsers = await db.collection('build-a-voting-app-users');
+    let findUser = await collectionUsers.findOne({ username: req.body.username });
 
+    if(!findUser) {
+      client.close();
+      res.json({ update: false });
+    }
+    else {
+      let data = await handlePassword(req.body.password);
+      let updateUser = await collectionUsers.updateOne({ username: req.body.username }, { $set: { hash: data.hash, salt: data.salt } });
+      client.close();
+
+      res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true });
+      // res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
+      res.json({ update: true });
+    }
+  }
+  else {
+    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
+    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.json({ update: false });
+  }
 });
-*/
-module.exports = router;
 
-// res.cookie('id', 'exampleuser1', { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
+module.exports = router;

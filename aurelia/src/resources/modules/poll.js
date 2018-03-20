@@ -130,8 +130,7 @@ export class Poll {
       this.state.polls[this.poll].choices[newIndex].votes++;
 
       updateCharts(this.charts.current[0], this.state.polls[this.poll].choices);
-      let update = await this.api.updateVoting(this.state.polls[this.poll], newValue, oldChoice);
-      console.log('vote updated: ', update);
+      let update = await this.api.updateVoting(this.state.user, this.state.polls[this.poll], newValue, oldChoice);
 
       this.state.polls[this.poll].choices.forEach((v, i, a) => {
         document.getElementById(`select-${v.id}`).disabled = false;
@@ -201,7 +200,6 @@ export class Poll {
         this.new = false;
         document.getElementById('delete').style.display = 'inline';
         let created = await this.api.createPoll(this.state.polls[this.poll]);
-        console.log('poll created: ', created);
       }
       else {
         if(backup.name !== this.state.polls[this.poll].name) { changeTracker.pollItems.push('name'); }
@@ -221,7 +219,6 @@ export class Poll {
         if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
           changeTracker.pollItems.push('edited');
           let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker);
-          console.log('poll updated: ', updated);
         }
 
         changeTracker = {
@@ -259,8 +256,6 @@ export class Poll {
 
   async deletePoll() {
     let deleted = await this.api.deletePoll(this.state.polls[this.poll]);
-    console.log('poll deleted: ', deleted);
-
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }
