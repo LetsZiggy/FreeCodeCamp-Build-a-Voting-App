@@ -10,5 +10,6 @@ export const state = {
     interval: null
   },
   user: null,
+  expire: null,
   polls: []
 };

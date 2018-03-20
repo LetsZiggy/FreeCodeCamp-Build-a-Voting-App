@@ -66,6 +66,11 @@ export class Poll {
   }
 
   async attached() {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(this.new) {
       this.checkInput();
       document.getElementById('edit-radio').checked = true;
@@ -87,9 +92,11 @@ export class Poll {
       }
     };
 
-    window.onbeforeunload = async (event) => {
-      let logout = await this.api.logoutUser();
-      this.state.user = null;
+    window.onunload = async (event) => {
+      if(this.state.user) {
+        let data = { user: this.state.user, expire: this.state.expire };
+        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
+      }
     };
   }
 

@@ -19,6 +19,8 @@ export class Login {
     if(this.state.user) {
       let logout = await this.api.logoutUser();
       this.state.user = null;
+      this.state.expire = null;
+      localStorage.removeItem('freecodecamp-build-a-voting-app');
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
       }
@@ -29,15 +31,22 @@ export class Login {
   }
 
   async attached() {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(this.state.login.timer) {
       this.radio = 'radio-signin';
       document.getElementById('radio-delay').checked = true;
       setTimerInterval(this.state, this.radio, 'signin');
     }
 
-    window.onbeforeunload = async (event) => {
-      let logout = await this.api.logoutUser();
-      this.state.user = null;
+    window.onunload = async (event) => {
+      if(this.state.user) {
+        let data = { user: this.state.user, expire: this.state.expire };
+        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
+      }
     };
   }
 
@@ -83,16 +92,20 @@ export class Login {
   }
 
   async handleForm(form) {
+    let result = null;
     let formSuccess = false;
 
     if(form === 'signup') {
-      formSuccess = await this.api.createUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      result = await this.api.createUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      formSuccess = result.create;
     }
     else if(form === 'signin') {
-      formSuccess = await this.api.getUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      result = await this.api.getUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      formSuccess = result.get;
     }
     else {
-      formSuccess = await this.api.editUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      result = await this.api.editUser({ username: document.getElementById(`${form}-username`).value, password: document.getElementById(`${form}-password`).value });
+      formSuccess = result.update;
     }
 
     // check results
@@ -125,6 +138,7 @@ export class Login {
       }
     }
     else {
+      this.state.expire = result.expire;
       this.state.user = document.getElementById(`${form}-username`).value;
       this.router.navigateToRoute('home');
     }

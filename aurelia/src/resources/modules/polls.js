@@ -24,6 +24,11 @@ export class Polls {
   }
 
   async attached() {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(this.state.update.updated) {
       let canvas = [
         ['latest', document.getElementById('latest').getElementsByTagName('canvas')],
@@ -34,9 +39,11 @@ export class Polls {
       this.state.update.updated = false;
     }
 
-    window.onbeforeunload = async (event) => {
-      let logout = await this.api.logoutUser();
-      this.state.user = null;
+    window.onunload = async (event) => {
+      if(this.state.user) {
+        let data = { user: this.state.user, expire: this.state.expire };
+        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
+      }
     };
   }
 

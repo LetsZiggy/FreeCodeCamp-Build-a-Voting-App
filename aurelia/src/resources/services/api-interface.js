@@ -161,7 +161,7 @@ export class ApiInterface {
                  body: JSON.stringify(user)
                })
                .then(response => response.json())
-               .then(data => data.get)
+               .then(data => data)
     );
   }
 
@@ -191,7 +191,7 @@ export class ApiInterface {
                  body: JSON.stringify(user)
                })
                .then(response => response.json())
-               .then(data => data.update)
+               .then(data => data)
     );
   }
 }

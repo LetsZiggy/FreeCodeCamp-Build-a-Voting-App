@@ -42,6 +42,11 @@ export class User {
   }
 
   async attached() {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     let canvas = [
       ['created', document.getElementById('created').getElementsByTagName('canvas')],
       ['participated', document.getElementById('participated').getElementsByTagName('canvas')]
@@ -49,9 +54,11 @@ export class User {
 
     generateCharts(palette, canvas, this.charts, this.state);
 
-    window.onbeforeunload = async (event) => {
-      let logout = await this.api.logoutUser();
-      this.state.user = null;
+    window.onunload = async (event) => {
+      if(this.state.user) {
+        let data = { user: this.state.user, expire: this.state.expire };
+        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
+      }
     };
   }
 

@@ -226,14 +226,16 @@ router.post('/user/create', async (req, res, next) => {
     let insertUser = await collectionUsers.insertOne(data);
     client.close();
 
-    res.cookie('id', id, { maxAge: 86400000, path: '/', httpOnly: true });
-    // res.cookie('id', id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    res.cookie('id', id, { expires: date, path: '/', httpOnly: true });
+    // res.cookie('id', id, { expires: date, path: '/', httpOnly: true, secure: true });
 
-    res.json({ create: true });
+    res.json({ create: true, expire: (Date.now() + 86400000) });
   }
   else {
-    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
-    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ create: false });
   }
 });
@@ -256,22 +258,24 @@ router.post('/user/login', async (req, res, next) => {
         res.json({ get: false }); 
       }
       else {
-        res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true });
-        // res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
-        res.json({ get: true });
+        let date = new Date();
+        date.setDate(date.getDate() + 1);
+        res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
+        // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
+        res.json({ get: true, expire: (Date.now() + 86400000) });
       }
     }
   }
   else {
-    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
-    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ get: false });
   }
 });
 
 router.post('/user/logout', async (req, res, next) => {
-  res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
-  // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+  res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+  // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
   res.json({ logout: true });
 });
 
@@ -291,14 +295,16 @@ router.post('/user/edit', async (req, res, next) => {
       let updateUser = await collectionUsers.updateOne({ username: req.body.username }, { $set: { hash: data.hash, salt: data.salt } });
       client.close();
 
-      res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true });
-      // res.cookie('id', findUser.id, { maxAge: 86400000, path: '/', httpOnly: true, secure: true });
-      res.json({ update: true });
+      let date = new Date();
+      date.setDate(date.getDate() + 1);
+      res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
+      // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
+      res.json({ update: true, expire: (Date.now() + 86400000) });
     }
   }
   else {
-    res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true });
-    // res.cookie('id', '', { maxAge: 0, path: '/', httpOnly: true, secure: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ update: false });
   }
 });
