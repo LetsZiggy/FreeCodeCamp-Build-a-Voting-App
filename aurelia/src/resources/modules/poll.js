@@ -22,47 +22,49 @@ export class Poll {
     this.charts = { current: [] };
   }
 
-  canActivate(params, routeConfig, navigationInstruction) {
+  async activate(params, routeConfig, navigationInstruction) {
+    if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
+      let response = await this.api.getPolls();
+      this.state.polls = response.map((v, i, a) => v);
+      this.state.update.now = Date.now();
+      this.state.update.updated = true;
+    }
+
     navigationInstruction.config.navModel.setTitle(params.name);
     this.poll = this.state.polls.findIndex((v, i, a) => v.id === params.id);
     this.new = !!params.new || false;
 
-    if(((!this.state.polls.length || this.state.polls[this.poll] === undefined) && !this.new) || (this.new && !this.state.user)) {
-      return(new Redirect('polls'));
+    if(!this.new) {
+      this.vote = this.state.user ? this.state.polls[this.poll].voters[this.state.user] : 0;
     }
     else {
-      if(!this.new) {
-        this.vote = this.state.user ? this.state.polls[this.poll].voters[this.state.user] : 0;
-      }
-      else {
-        this.state.polls.push({
-          id: params.id,
-          name: '',
-          owner: this.state.user,
-          created: new Date(),
-          edited: new Date(),
-          isPublic: false,
-          lastIndex: 2,
-          choices: [
-            {
-              id: 1,
-              name: '',
-              votes: 0,
-            },
-            {
-              id: 2,
-              name: '',
-              votes: 0,
-            },
-          ],
-          voters: {}
-        });
+      this.state.polls.push({
+        id: params.id,
+        name: '',
+        owner: this.state.user,
+        created: new Date(),
+        edited: new Date(),
+        isPublic: false,
+        lastIndex: 2,
+        choices: [
+          {
+            id: 1,
+            name: '',
+            votes: 0,
+          },
+          {
+            id: 2,
+            name: '',
+            votes: 0,
+          },
+        ],
+        voters: {}
+      });
 
-        this.poll = this.state.polls.length - 1;
-      }
-
-      backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
+      this.poll = this.state.polls.length - 1;
     }
+
+    backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
   }
 
   async attached() {
