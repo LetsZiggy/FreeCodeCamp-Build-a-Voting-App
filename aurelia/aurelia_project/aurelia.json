@@ -156,6 +156,10 @@
     "displayName": "Karma",
     "source": "test/unit/**/*.js"
   },
+  "integrationTestRunner": {
+    "id": "none",
+    "displayName": "None"
+  },
   "paths": {
     "root": "src",
     "resources": "resources",
