@@ -51,5 +51,4 @@ export class ${className} {
 //   <h1>\${value}</h1>
 // </template>`;
 //   }
-// }
 }
