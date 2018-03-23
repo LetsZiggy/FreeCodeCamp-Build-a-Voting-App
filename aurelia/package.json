@@ -16,7 +16,7 @@
     "chart.js": "^2.7.2",
     "google-palette": "^1.0.0",
     "install": "^0.10.4",
-    "requirejs": "^2.3.2",
+    "requirejs": "^2.3.5",
     "text": "github:requirejs/text#latest",
     "whatwg-fetch": "^2.0.3"
   },
