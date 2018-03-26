@@ -44,7 +44,9 @@ export class Login {
 
     window.onunload = async (event) => {
       if(this.state.user) {
+        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
         let data = { user: this.state.user, expire: this.state.expire };
+        data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
     };

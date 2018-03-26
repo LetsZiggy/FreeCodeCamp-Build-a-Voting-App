@@ -36,8 +36,10 @@ export class Home {
     if(this.state.update.updated) {
       let canvas = [];
 
-      if(this.user.created.length || this.user.participated.length) {
+      if(this.state.user && this.user.created.length) {
         canvas.push(['created', document.getElementById('created').getElementsByTagName('canvas')]);
+      }
+      if(this.state.user && this.user.participated.length) {
         canvas.push(['participated', document.getElementById('participated').getElementsByTagName('canvas')]);
       }
 
@@ -51,7 +53,9 @@ export class Home {
 
     window.onunload = async (event) => {
       if(this.state.user) {
+        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
         let data = { user: this.state.user, expire: this.state.expire };
+        data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
     };

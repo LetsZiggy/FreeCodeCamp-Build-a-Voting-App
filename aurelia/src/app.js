@@ -2,15 +2,17 @@ import {bindable, bindingMode} from 'aurelia-framework';
 import {state} from './resources/services/state';
 
 export class App {
-  @bindable({ defaultBindingMode: bindingMode.oneWay }) state = state;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
-  attached() {
-    let data = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || null;
+  constructor() {
+    let data = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
 
-    if(data && data.expire > Date.now()) {
-      this.state.user = data.user;
-      this.state.expire = data.expire;
+    if(data.user && data.expire && data.expire > Date.now()) {
+      this.state.user = data.user || null;
+      this.state.expire = data.expire || null;
     }
+
+    this.state.votes = data.votes || {};
   }
 
   configureRouter(config, router) {

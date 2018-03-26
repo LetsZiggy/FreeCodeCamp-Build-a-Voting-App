@@ -5,7 +5,6 @@ import {ApiInterface} from '../services/api-interface';
 import {state} from '../services/state';
 import {destroyCharts, updateCharts, generateCharts} from '../services/draw-charts';
 
-let initial = true;
 let backup = null;
 let changeTracker = { pollItems: [], editedChoices: [], newChoices: [], deletedChoices: [] };
 
@@ -19,6 +18,7 @@ export class Poll {
     this.api = ApiInterface;
     this.poll = null;
     this.new = false;
+    this.initial = true;
     this.charts = { current: [] };
   }
 
@@ -35,7 +35,25 @@ export class Poll {
     this.new = !!params.new || false;
 
     if(!this.new) {
-      this.vote = this.state.user ? this.state.polls[this.poll].voters[this.state.user] : 0;
+      if(this.state.user) {
+        if(this.state.polls[this.poll].voters[this.state.user]) {
+          this.vote = this.state.polls[this.poll].voters[this.state.user];
+        }
+        else if(this.state.votes[this.state.polls[this.poll].id]) {
+          this.vote = this.state.votes[this.state.polls[this.poll].id];
+        }
+        else {
+          this.vote = 0;
+        }
+      }
+      else {
+        if(this.state.votes[this.state.polls[this.poll].id]) {
+          this.vote = this.state.votes[this.state.polls[this.poll].id];
+        }
+        else {
+          this.vote = 0;
+        }
+      }
     }
     else {
       this.state.polls.push({
@@ -96,27 +114,29 @@ export class Poll {
 
     window.onunload = async (event) => {
       if(this.state.user) {
+        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
         let data = { user: this.state.user, expire: this.state.expire };
+        data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
     };
   }
 
-  detached() {
+  async detached() {
     backup = null;
-    initial = true;
+    this.initial = true;
     changeTracker = { pollItems: [], editedChoices: [], newChoices: [], deletedChoices: [] };
     this.poll = null;
     this.new = false;
-    this.voteChange = false;
+    this.vote = 0;
 
     destroyCharts(this.charts);
     this.charts = null;
   }
 
   async voteChanged(newValue, oldValue) {
-    if(initial === true) {
-      initial = false;
+    if(this.initial === true) {
+      this.initial = false;
     }
     else {
       this.state.polls[this.poll].choices.forEach((v, i, a) => {
@@ -127,8 +147,8 @@ export class Poll {
       });
 
       let oldChoice = null;
-      if(this.state.user) {
-        oldChoice = this.state.polls[this.poll].voters[this.state.user] || null;
+      if(this.state.user || this.state.votes) {
+        oldChoice = this.state.polls[this.poll].voters[this.state.user] || this.state.votes[this.poll];
 
         if(oldChoice) {
           let oldIndex = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === oldChoice);
@@ -138,6 +158,7 @@ export class Poll {
         }
 
         this.state.polls[this.poll].voters[this.state.user] = newValue;
+        this.state.votes[this.poll] = newValue;
       }
 
       let newIndex = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === newValue);
@@ -152,6 +173,14 @@ export class Poll {
           document.getElementById('spinner').style.visibility = 'hidden';
         }
       });
+
+      let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
+      let data = {};
+      data.user = store.user || null;
+      data.expire = store.expire || null;
+      data.votes = store.votes || {};
+      data.votes[this.state.polls[this.poll].id] = newValue;
+      localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
     }
   }
 
