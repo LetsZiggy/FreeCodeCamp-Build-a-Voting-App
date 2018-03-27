@@ -71,7 +71,7 @@ export class ApiInterface {
     );
   }
 
-  updatePoll(poll, changes) {
+  updatePoll(poll, changes, owner) {
     return(
       this.http.fetch(`/poll/update/${poll.id}`, {
                  method: 'PUT',
@@ -80,21 +80,23 @@ export class ApiInterface {
                    'Accept': 'application/json',
                    'Content-Type': 'application/json'
                  },
-                 body: JSON.stringify({ poll: poll, changes: changes })
+                 body: JSON.stringify({ poll: poll, changes: changes, owner: owner })
                })
                .then(response => response.json())
                .then(data => data)
     );
   }
 
-  deletePoll(poll) {
+  deletePoll(poll, owner) {
     return(
       this.http.fetch(`/poll/delete/${poll.id}`, {
                  method: 'DELETE',
                  credentials: 'same-origin',
                  headers: {
-                   'Accept': 'application/json'
-                 }
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({ owner: owner })
                })
                .then(response => response.json())
                .then(data => data)

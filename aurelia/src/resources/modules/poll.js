@@ -261,7 +261,7 @@ export class Poll {
         }, []);
         if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
           changeTracker.pollItems.push('edited');
-          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker);
+          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user);
         }
 
         changeTracker = {
@@ -298,7 +298,7 @@ export class Poll {
   }
 
   async deletePoll() {
-    let deleted = await this.api.deletePoll(this.state.polls[this.poll]);
+    let deleted = await this.api.deletePoll(this.state.polls[this.poll], this.state.user);
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }

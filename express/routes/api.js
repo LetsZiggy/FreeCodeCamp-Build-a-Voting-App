@@ -63,7 +63,7 @@ router.put('/poll/update/:id', async (req, res, next) => {
       req.body.changes.editedChoices.forEach((v, i, a) => {
         operations.push(
           { updateOne:
-            { filter: { $and: [{ id: req.params.id }, { owner: req.cookies.id }, { "choices.id": v }] },
+            { filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }, { "choices.id": v }] },
               update: { $set: { "choices.$.name": (req.body.poll.choices.find(fv => fv.id === v)).name } }
             }
           }
@@ -80,7 +80,7 @@ router.put('/poll/update/:id', async (req, res, next) => {
       operations.push(
         { updateOne:
           {
-            filter: { $and: [{ id: req.params.id }, { owner: req.cookies.id }] },
+            filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }] },
             update: { $push: { choices: { $each: newChoicesList } } }
           }
         }
@@ -93,7 +93,7 @@ router.put('/poll/update/:id', async (req, res, next) => {
       operations.push(
         { updateOne:
           {
-            filter: { $and: [{ id: req.params.id }, { owner: req.cookies.id }] },
+            filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }] },
             update: { $pull: { choices: { id: { $in: deletedChoicesList } } } }
           }
         }
@@ -109,7 +109,7 @@ router.put('/poll/update/:id', async (req, res, next) => {
       operations.push(
         { updateOne:
           {
-            filter: { $and: [{ id: req.params.id }, { owner: req.cookies.id }] },
+            filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }] },
             update: { $set: pollItemsList }
           }
         }
@@ -135,7 +135,7 @@ router.delete('/poll/delete/:id', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionPolls = await db.collection('build-a-voting-app-polls');
-    let deletePoll = await collectionPolls.findOneAndDelete({ $and: [{ id: req.params.id }, { owner: req.cookies.id }] });
+    let deletePoll = await collectionPolls.findOneAndDelete({ $and: [{ id: req.params.id }, { owner: req.body.owner }] });
     let collectionIDs = await db.collection('build-a-voting-app-ids');
     let deleteId = await collectionIDs.updateOne({ type: 'polls' }, { $unset: { [query]: '' } });
     client.close();
