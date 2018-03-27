@@ -18,6 +18,11 @@ export class User {
   }
 
   canActivate() {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(this.state.user === null) {
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
@@ -42,11 +47,6 @@ export class User {
   }
 
   async attached() {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
-    }
-
     let canvas = [
       ['created', document.getElementById('created').getElementsByTagName('canvas')],
       ['participated', document.getElementById('participated').getElementsByTagName('canvas')]

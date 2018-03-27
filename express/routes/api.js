@@ -228,14 +228,14 @@ router.post('/user/create', async (req, res, next) => {
 
     let date = new Date();
     date.setDate(date.getDate() + 1);
-    res.cookie('id', id, { expires: date, path: '/', httpOnly: true });
-    // res.cookie('id', id, { expires: date, path: '/', httpOnly: true, secure: true });
+    // res.cookie('id', id, { expires: date, path: '/', httpOnly: true });
+    res.cookie('id', id, { expires: date, path: '/', httpOnly: true, secure: true });
 
     res.json({ create: true, expire: (Date.now() + 86400000) });
   }
   else {
-    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
-    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ create: false });
   }
 });
@@ -260,22 +260,22 @@ router.post('/user/login', async (req, res, next) => {
       else {
         let date = new Date();
         date.setDate(date.getDate() + 1);
-        res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
-        // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
+        // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
+        res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
         res.json({ get: true, expire: (Date.now() + 86400000) });
       }
     }
   }
   else {
-    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
-    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ get: false });
   }
 });
 
 router.post('/user/logout', async (req, res, next) => {
-  res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
-  // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
+  // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+  res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
   res.json({ logout: true });
 });
 
@@ -297,14 +297,14 @@ router.post('/user/edit', async (req, res, next) => {
 
       let date = new Date();
       date.setDate(date.getDate() + 1);
-      res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
-      // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
+      // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
+      res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
       res.json({ update: true, expire: (Date.now() + 86400000) });
     }
   }
   else {
-    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
-    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ update: false });
   }
 });

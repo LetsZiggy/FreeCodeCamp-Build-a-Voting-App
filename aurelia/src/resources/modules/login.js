@@ -16,6 +16,11 @@ export class Login {
   }
 
   async canActivate(params, routeConfig, navigationInstruction) {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(this.state.user) {
       let logout = await this.api.logoutUser();
       this.state.user = null;
@@ -31,11 +36,6 @@ export class Login {
   }
 
   async attached() {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
-    }
-
     if(this.state.login.timer) {
       this.radio = 'radio-signin';
       document.getElementById('radio-delay').checked = true;

@@ -23,6 +23,11 @@ export class Poll {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
+    if(this.state.user && this.state.expire < Date.now()) {
+      this.state.user = null;
+      this.state.expire = null;
+    }
+
     if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
@@ -86,11 +91,6 @@ export class Poll {
   }
 
   async attached() {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
-    }
-
     if(this.new) {
       this.checkInput();
       document.getElementById('edit-radio').checked = true;
