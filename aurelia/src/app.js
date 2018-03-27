@@ -4,7 +4,7 @@ import {state} from './resources/services/state';
 export class App {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
-  constructor() {
+  bind() {
     let data = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
 
     if(data.user && data.expire && data.expire > Date.now()) {
