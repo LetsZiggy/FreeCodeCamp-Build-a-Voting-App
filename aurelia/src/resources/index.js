@@ -3,7 +3,7 @@ export function configure(config) {
     './value-converters/lowercase',
     './value-converters/repeatlimit',
     './value-converters/sortpolls',
-    './elements/nav.html',
+    './elements/header.html',
     './elements/footer.html'
   ]);
 }
