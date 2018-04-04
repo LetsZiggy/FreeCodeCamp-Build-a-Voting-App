@@ -23,16 +23,16 @@ export class Poll {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
+    if(this.state.user.username && this.state.user.expire < Date.now()) {
+      this.state.user.username = null;
+      this.state.user.expire = null;
     }
 
-    if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
-      this.state.update.now = Date.now();
-      this.state.update.updated = true;
+      this.state.toUpdatePolls.now = Date.now();
+      this.state.toUpdatePolls.updated = true;
     }
 
     navigationInstruction.config.navModel.setTitle(params.name);
@@ -40,9 +40,9 @@ export class Poll {
     this.new = !!params.new || false;
 
     if(!this.new) {
-      if(this.state.user) {
-        if(this.state.polls[this.poll].voters[this.state.user]) {
-          this.vote = this.state.polls[this.poll].voters[this.state.user];
+      if(this.state.user.username) {
+        if(this.state.polls[this.poll].voters[this.state.user.username]) {
+          this.vote = this.state.polls[this.poll].voters[this.state.user.username];
         }
         else if(this.state.votes[this.state.polls[this.poll].id]) {
           this.vote = this.state.votes[this.state.polls[this.poll].id];
@@ -64,7 +64,7 @@ export class Poll {
       this.state.polls.push({
         id: params.id,
         name: '',
-        owner: this.state.user,
+        owner: this.state.user.username,
         created: new Date(),
         edited: new Date(),
         isPublic: false,
@@ -113,9 +113,9 @@ export class Poll {
     };
 
     window.onunload = async (event) => {
-      if(this.state.user) {
+      if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user, expire: this.state.expire };
+        let data = { user: this.state.user.username, expire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
@@ -147,8 +147,8 @@ export class Poll {
       });
 
       let oldChoice = null;
-      if(this.state.user || this.state.votes) {
-        oldChoice = this.state.polls[this.poll].voters[this.state.user] || this.state.votes[this.poll];
+      if(this.state.user.username || this.state.votes) {
+        oldChoice = this.state.polls[this.poll].voters[this.state.user.username] || this.state.votes[this.poll];
 
         if(oldChoice) {
           let oldIndex = this.state.polls[this.poll].choices.findIndex((v, i, a) => v.id === oldChoice);
@@ -157,7 +157,7 @@ export class Poll {
           }
         }
 
-        this.state.polls[this.poll].voters[this.state.user] = newValue;
+        this.state.polls[this.poll].voters[this.state.user.username] = newValue;
         this.state.votes[this.poll] = newValue;
       }
 
@@ -165,7 +165,7 @@ export class Poll {
       this.state.polls[this.poll].choices[newIndex].votes++;
 
       updateCharts(this.charts.current[0], this.state.polls[this.poll].choices);
-      let update = await this.api.updateVoting(this.state.user, this.state.polls[this.poll], newValue, oldChoice);
+      let update = await this.api.updateVoting(this.state.user.username, this.state.polls[this.poll], newValue, oldChoice);
 
       this.state.polls[this.poll].choices.forEach((v, i, a) => {
         document.getElementById(`select-${v.id}`).disabled = false;
@@ -239,7 +239,7 @@ export class Poll {
       this.state.polls[this.poll].edited = new Date();
 
       if(this.new) {
-        initial = false;
+        this.initial = false;
         this.new = false;
         document.getElementById('delete').style.display = 'inline';
         let created = await this.api.createPoll(this.state.polls[this.poll]);
@@ -261,7 +261,7 @@ export class Poll {
         }, []);
         if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
           changeTracker.pollItems.push('edited');
-          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user);
+          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user.username);
         }
 
         changeTracker = {
@@ -298,7 +298,7 @@ export class Poll {
   }
 
   async deletePoll() {
-    let deleted = await this.api.deletePoll(this.state.polls[this.poll], this.state.user);
+    let deleted = await this.api.deletePoll(this.state.polls[this.poll], this.state.user.username);
     this.state.polls.splice(this.poll, 1);
     this.router.navigate('user');
   }

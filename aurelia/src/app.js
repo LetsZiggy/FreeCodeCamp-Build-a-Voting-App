@@ -5,11 +5,16 @@ export class App {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) state = state;
 
   bind() {
-    let data = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
+    let data = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
 
-    if(data.user && data.expire && data.expire > Date.now()) {
-      this.state.user = data.user || null;
-      this.state.expire = data.expire || null;
+    if(data && parseInt(data.userexpire) - Date.now() > 1) {
+      this.state.user.username = data.username || null;
+      this.state.user.expire = parseInt(data.userexpire) || null;
+    }
+    else {
+      data.username = this.state.user.username;
+      data.userexpire = this.state.user.expire;
+      localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
     }
 
     this.state.votes = data.votes || {};

@@ -16,15 +16,15 @@ export class Login {
   }
 
   async canActivate(params, routeConfig, navigationInstruction) {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
+    if(this.state.user.username && this.state.user.expire < Date.now()) {
+      this.state.user.username = null;
+      this.state.user.expire = null;
     }
 
-    if(this.state.user) {
+    if(this.state.user.username) {
       let logout = await this.api.logoutUser();
-      this.state.user = null;
-      this.state.expire = null;
+      this.state.user.username = null;
+      this.state.user.expire = null;
       localStorage.removeItem('freecodecamp-build-a-voting-app');
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
@@ -43,9 +43,9 @@ export class Login {
     }
 
     window.onunload = async (event) => {
-      if(this.state.user) {
+      if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user, expire: this.state.expire };
+        let data = { user: this.state.user.username, expire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
@@ -140,8 +140,8 @@ export class Login {
       }
     }
     else {
-      this.state.expire = result.expire;
-      this.state.user = document.getElementById(`${form}-username`).value;
+      this.state.user.expire = result.expire;
+      this.state.user.username = document.getElementById(`${form}-username`).value;
       this.router.navigateToRoute('home');
     }
   }

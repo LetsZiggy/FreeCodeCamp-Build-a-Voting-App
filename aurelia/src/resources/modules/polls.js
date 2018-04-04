@@ -15,34 +15,34 @@ export class Polls {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
+    if(this.state.user.username && this.state.user.expire < Date.now()) {
+      this.state.user.username = null;
+      this.state.user.expire = null;
     }
 
-    if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
-      this.state.update.now = Date.now();
-      this.state.update.updated = true;
+      this.state.toUpdatePolls.now = Date.now();
+      this.state.toUpdatePolls.updated = true;
     }
   }
 
   async attached() {
-    if(this.state.update.updated) {
+    if(this.state.toUpdatePolls.updated) {
       let canvas = [
         ['latest', document.getElementById('latest').getElementsByTagName('canvas')],
         ['most', document.getElementById('most').getElementsByTagName('canvas')]
       ];
 
       generateCharts(palette, canvas, this.charts, this.state);
-      this.state.update.updated = false;
+      this.state.toUpdatePolls.updated = false;
     }
 
     window.onunload = async (event) => {
-      if(this.state.user) {
+      if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user, expire: this.state.expire };
+        let data = { user: this.state.user.username, expire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
@@ -54,7 +54,7 @@ export class Polls {
 
     destroyCharts(this.charts);
     this.charts = null;
-    this.state.update.updated = true;
+    this.state.toUpdatePolls.updated = true;
   }
 
   setPaginationAmount(amount) {

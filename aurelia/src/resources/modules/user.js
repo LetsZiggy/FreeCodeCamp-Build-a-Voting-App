@@ -18,12 +18,12 @@ export class User {
   }
 
   canActivate() {
-    if(this.state.user && this.state.expire < Date.now()) {
-      this.state.user = null;
-      this.state.expire = null;
+    if(this.state.user.username && this.state.user.expire < Date.now()) {
+      this.state.user.username = null;
+      this.state.user.expire = null;
     }
 
-    if(this.state.user === null) {
+    if(this.state.user.username === null) {
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
       }
@@ -34,16 +34,16 @@ export class User {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(!this.state.polls.length || (this.state.update.now !== null && (Date.now() - this.state.update.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
-      this.state.update.now = Date.now();
-      this.state.update.updated = true;
+      this.state.toUpdatePolls.now = Date.now();
+      this.state.toUpdatePolls.updated = true;
     }
 
-    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user);
+    this.user.created = this.state.polls.filter((v, i, a) => v.owner === this.state.user.username);
 
-    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user] !== undefined && v.voters[this.state.user] !== null);
+    this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user.username] !== undefined && v.voters[this.state.user.username] !== null);
   }
 
   async attached() {
@@ -55,9 +55,9 @@ export class User {
     generateCharts(palette, canvas, this.charts, this.state);
 
     window.onunload = async (event) => {
-      if(this.state.user) {
+      if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user, expire: this.state.expire };
+        let data = { user: this.state.user.username, expire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
