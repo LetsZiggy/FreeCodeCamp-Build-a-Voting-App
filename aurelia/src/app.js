@@ -64,5 +64,7 @@ export class App {
         nav: true,
       },
     ]);
+
+    config.mapUnknownRoutes({ redirect: 'home' });
   }
 }
