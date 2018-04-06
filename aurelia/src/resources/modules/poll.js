@@ -115,7 +115,7 @@ export class Poll {
     window.onunload = async (event) => {
       if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user.username, expire: this.state.user.expire };
+        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
@@ -176,8 +176,8 @@ export class Poll {
 
       let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
       let data = {};
-      data.user = store.user || null;
-      data.expire = store.expire || null;
+      data.username = store.user || null;
+      data.userexpire = store.expire || null;
       data.votes = store.votes || {};
       data.votes[this.state.polls[this.poll].id] = newValue;
       localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
@@ -238,11 +238,24 @@ export class Poll {
 
       this.state.polls[this.poll].edited = new Date();
 
+      let created = false;
+      let update = false;
+
       if(this.new) {
         this.initial = false;
         this.new = false;
         document.getElementById('delete').style.display = 'inline';
-        let created = await this.api.createPoll(this.state.polls[this.poll]);
+        created = await this.api.createPoll(this.state.polls[this.poll]);
+
+        if(created === false) {
+          this.state.user.username = null;
+          this.state.user.expire = null;
+          this.router.navigateToRoute('home');
+        }
+        else {
+          backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
+          document.getElementById('vote-radio').checked = true;
+        }
       }
       else {
         if(backup.name !== this.state.polls[this.poll].name) { changeTracker.pollItems.push('name'); }
@@ -261,7 +274,13 @@ export class Poll {
         }, []);
         if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
           changeTracker.pollItems.push('edited');
-          let updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user.username);
+          updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user.username);
+
+          if(updated === true) {
+            backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
+          }
+
+          document.getElementById('vote-radio').checked = true;
         }
 
         changeTracker = {
@@ -271,9 +290,6 @@ export class Poll {
           deletedChoices: []
         };
       }
-
-      backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
-      document.getElementById('vote-radio').checked = true;
     }
   }
 

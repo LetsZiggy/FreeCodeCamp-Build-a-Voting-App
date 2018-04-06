@@ -33,6 +33,8 @@ router.post('/poll/id', async (req, res, next) => {
     res.json({ create: true, id: id });
   }
   else {
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ create: false, id: null });
   }
 });
@@ -51,6 +53,8 @@ router.post('/poll/create', async (req, res, next) => {
     res.json({ create: true });
   }
   else {
+    // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
+    res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true, secure: true });
     res.json({ create: false });
   }
 });

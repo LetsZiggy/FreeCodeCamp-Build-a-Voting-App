@@ -7,7 +7,7 @@ export class App {
   bind() {
     let data = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
 
-    if(data && parseInt(data.userexpire) - Date.now() > 1) {
+    if(data.username && data.userexpire && parseInt(data.userexpire) - Date.now() > 1) {
       this.state.user.username = data.username || null;
       this.state.user.expire = parseInt(data.userexpire) || null;
     }

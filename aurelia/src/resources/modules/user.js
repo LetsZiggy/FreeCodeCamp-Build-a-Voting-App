@@ -57,7 +57,7 @@ export class User {
     window.onunload = async (event) => {
       if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user.username, expire: this.state.user.expire };
+        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
@@ -111,6 +111,11 @@ export class User {
 
     if(id) {
       this.router.navigateToRoute('poll', { id: id, new: true });
+    }
+    else {
+      this.state.user.username = null;
+      this.state.user.expire = null;
+      this.router.navigateToRoute('home');
     }
   }
 }

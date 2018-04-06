@@ -54,7 +54,7 @@ export class Home {
     window.onunload = async (event) => {
       if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { user: this.state.user.username, expire: this.state.user.expire };
+        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
