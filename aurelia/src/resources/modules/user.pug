@@ -25,6 +25,8 @@ template
               .poll-name ${poll.name}
               .is-public(show.bind="poll.isPublic") Public Poll
 
+        .no-polls(if.bind="user.created.length === 0") No polls
+
       #participated
         .title
           button.prev(click.delegate="changePage('prev', 'participated')" css="visibility: ${pagination.participated <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
@@ -38,3 +40,5 @@ template
                 canvas(id="participated-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
               .is-public(show.bind="poll.isPublic") Public Poll
+
+        .no-polls(if.bind="user.participated.length === 0") No polls

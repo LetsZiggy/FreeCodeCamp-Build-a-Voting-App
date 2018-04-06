@@ -24,6 +24,8 @@ template
               .poll-name ${poll.name}
               .is-public(show.bind="poll.isPublic") Public Poll
 
+        .no-polls(if.bind="state.polls.length === 0") No polls
+
       #most
         .title
           button.prev(click.delegate="changePage('prev', 'most')" css="visibility: ${pagination.most <= 0 ? 'hidden' : 'visible'};") &lt;&lt;&lt;
@@ -37,3 +39,5 @@ template
                 canvas(id="most-canvas-${poll.id}" style="width: 100%; height: 100%")
               .poll-name ${poll.name}
               .is-public(show.bind="poll.isPublic") Public Poll
+
+        .no-polls(if.bind="state.polls.length === 0") No polls
