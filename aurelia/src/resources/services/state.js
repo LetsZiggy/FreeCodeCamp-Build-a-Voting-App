@@ -7,7 +7,8 @@ export const state = {
   },
   user: {
     username: null,
-    expire: null
+    expire: null,
+    interval: null
   },
   toUpdatePolls: {
     now: null,

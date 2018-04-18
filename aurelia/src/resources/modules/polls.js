@@ -15,12 +15,7 @@ export class Polls {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(this.state.user.username && this.state.user.expire < Date.now()) {
-      this.state.user.username = null;
-      this.state.user.expire = null;
-    }
-
-    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 60000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
       this.state.toUpdatePolls.now = Date.now();
@@ -28,7 +23,7 @@ export class Polls {
     }
   }
 
-  async attached() {
+  attached() {
     if(this.state.toUpdatePolls.updated) {
       let canvas = [
         ['latest', document.getElementById('latest').getElementsByTagName('canvas')],
@@ -38,22 +33,12 @@ export class Polls {
       generateCharts(palette, canvas, this.charts, this.state);
       this.state.toUpdatePolls.updated = false;
     }
-
-    window.onunload = async (event) => {
-      if(this.state.user.username) {
-        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
-        data.votes = store.votes || {};
-        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
-      }
-    };
   }
 
   detached() {
-    this.pagination = null;
-
     destroyCharts(this.charts);
     this.charts = null;
+    this.pagination = null;
     this.state.toUpdatePolls.updated = true;
   }
 

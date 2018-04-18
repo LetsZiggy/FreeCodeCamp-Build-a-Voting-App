@@ -16,16 +16,18 @@ export class Login {
   }
 
   async canActivate(params, routeConfig, navigationInstruction) {
-    if(this.state.user.username && this.state.user.expire < Date.now()) {
-      this.state.user.username = null;
-      this.state.user.expire = null;
-    }
-
     if(this.state.user.username) {
+      let data = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
       let logout = await this.api.logoutUser();
+      clearInterval(this.state.user.interval);
       this.state.user.username = null;
       this.state.user.expire = null;
-      localStorage.removeItem('freecodecamp-build-a-voting-app');
+      this.state.user.interval = null;
+
+      data.username = this.state.user.username;
+      data.userexpire = this.state.user.expire;
+      localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
+
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
       }
@@ -44,7 +46,7 @@ export class Login {
 
     window.onunload = async (event) => {
       if(this.state.user.username) {
-        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
+        let store = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
         let data = { username: this.state.user.username, userexpire: this.state.user.expire };
         data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));

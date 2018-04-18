@@ -18,11 +18,6 @@ export class User {
   }
 
   canActivate() {
-    if(this.state.user.username && this.state.user.expire < Date.now()) {
-      this.state.user.username = null;
-      this.state.user.expire = null;
-    }
-
     if(this.state.user.username === null) {
       if(this.router.history.previousLocation === '/home' || this.router.history.previousLocation === '/polls') {
         return(false);
@@ -34,7 +29,7 @@ export class User {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 60000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
       this.state.toUpdatePolls.now = Date.now();
@@ -46,30 +41,20 @@ export class User {
     this.user.participated = this.state.polls.filter((v, i, a) => v.voters[this.state.user.username] !== undefined && v.voters[this.state.user.username] !== null);
   }
 
-  async attached() {
+  attached() {
     let canvas = [
       ['created', document.getElementById('created').getElementsByTagName('canvas')],
       ['participated', document.getElementById('participated').getElementsByTagName('canvas')]
     ];
 
     generateCharts(palette, canvas, this.charts, this.state);
-
-    window.onunload = async (event) => {
-      if(this.state.user.username) {
-        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
-        data.votes = store.votes || {};
-        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
-      }
-    };
   }
 
   detached() {
-    this.user = {};
-    this.pagination = {};
-
     destroyCharts(this.charts);
     this.charts = null;
+    this.user = {};
+    this.pagination = {};
   }
 
   setPaginationAmount(amount) {
@@ -113,8 +98,6 @@ export class User {
       this.router.navigateToRoute('poll', { id: id, new: true });
     }
     else {
-      this.state.user.username = null;
-      this.state.user.expire = null;
       this.router.navigateToRoute('home');
     }
   }

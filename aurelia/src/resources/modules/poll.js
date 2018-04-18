@@ -23,12 +23,7 @@ export class Poll {
   }
 
   async activate(params, routeConfig, navigationInstruction) {
-    if(this.state.user.username && this.state.user.expire < Date.now()) {
-      this.state.user.username = null;
-      this.state.user.expire = null;
-    }
-
-    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 600000)) {
+    if(!this.state.polls.length || (this.state.toUpdatePolls.now !== null && (Date.now() - this.state.toUpdatePolls.now) > 60000)) {
       let response = await this.api.getPolls();
       this.state.polls = response.map((v, i, a) => v);
       this.state.toUpdatePolls.now = Date.now();
@@ -90,7 +85,7 @@ export class Poll {
     backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
   }
 
-  async attached() {
+  attached() {
     if(this.new) {
       this.checkInput();
       document.getElementById('edit-radio').checked = true;
@@ -111,18 +106,9 @@ export class Poll {
         this.state.polls.pop();
       }
     };
-
-    window.onunload = async (event) => {
-      if(this.state.user.username) {
-        let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
-        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
-        data.votes = store.votes || {};
-        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
-      }
-    };
   }
 
-  async detached() {
+  detached() {
     backup = null;
     this.initial = true;
     changeTracker = { pollItems: [], editedChoices: [], newChoices: [], deletedChoices: [] };
@@ -174,7 +160,7 @@ export class Poll {
         }
       });
 
-      let store = JSON.parse(localStorage.getItem("freecodecamp-build-a-voting-app")) || {};
+      let store = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
       let data = {};
       data.username = store.user || null;
       data.userexpire = store.expire || null;
@@ -248,8 +234,6 @@ export class Poll {
         created = await this.api.createPoll(this.state.polls[this.poll]);
 
         if(created === false) {
-          this.state.user.username = null;
-          this.state.user.expire = null;
           this.router.navigateToRoute('home');
         }
         else {
