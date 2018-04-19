@@ -99,7 +99,7 @@ export class ApiInterface {
                  body: JSON.stringify({ poll: poll, changes: changes, owner: owner })
                })
                .then(response => response.json())
-               .then(data => data)
+               .then(data => data.update)
     );
   }
 

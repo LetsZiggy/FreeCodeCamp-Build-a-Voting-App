@@ -259,9 +259,9 @@ export class Poll {
         }, []);
         if(changeTracker.pollItems.length || changeTracker.editedChoices.length || changeTracker.newChoices.length || changeTracker.deletedChoices.length) {
           changeTracker.pollItems.push('edited');
-          updated = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user.username);
+          update = await this.api.updatePoll(this.state.polls[this.poll], changeTracker, this.state.user.username);
 
-          if(updated === true) {
+          if(update === true) {
             backup = JSON.parse(JSON.stringify(this.state.polls[this.poll]));
           }
 
