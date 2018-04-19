@@ -59,6 +59,22 @@ router.post('/poll/create', async (req, res, next) => {
   }
 });
 
+router.post('/poll/cancel', async (req, res, next) => {
+  if(req.cookies.id) {
+    let query = `list.${req.body.id}`;
+    let client = await mongo.connect(dbURL);
+    let db = await client.db(process.env.DBNAME);
+    let collectionIDs = await db.collection('build-a-voting-app-ids');
+    let deleteId = await collectionIDs.updateOne({ type: 'polls' }, { $unset: { [query]: '' } });
+    client.close();
+
+    res.json({ delete: true });
+  }
+  else {
+    res.json({ delete: false });
+  }
+});
+
 router.put('/poll/update/:id', async (req, res, next) => {
   if(req.cookies.id) {
     let operations = [];
@@ -67,8 +83,8 @@ router.put('/poll/update/:id', async (req, res, next) => {
       req.body.changes.editedChoices.forEach((v, i, a) => {
         operations.push(
           { updateOne:
-            { filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }, { "choices.id": v }] },
-              update: { $set: { "choices.$.name": (req.body.poll.choices.find(fv => fv.id === v)).name } }
+            { filter: { $and: [{ id: req.params.id }, { owner: req.body.owner }, { 'choices.id': v }] },
+              update: { $set: { 'choices.$.name': (req.body.poll.choices.find(fv => fv.id === v)).name } }
             }
           }
         );
@@ -168,8 +184,8 @@ router.put('/poll/vote/:id', async (req, res, next) => {
       operations.push(
         { updateOne:
           {
-            filter: { $and: [{ id: req.params.id }, { "choices.id": req.body.votes[1] }] },
-            update: { $inc: { "choices.$.votes": -1 } }
+            filter: { $and: [{ id: req.params.id }, { 'choices.id': req.body.votes[1] }] },
+            update: { $inc: { 'choices.$.votes': -1 } }
           }
         }
       );
@@ -179,8 +195,8 @@ router.put('/poll/vote/:id', async (req, res, next) => {
   operations.push(
     { updateOne:
       {
-        filter: { $and: [{ id: req.params.id }, { "choices.id": req.body.votes[0] }] },
-        update: { $inc: { "choices.$.votes": 1 } }
+        filter: { $and: [{ id: req.params.id }, { 'choices.id': req.body.votes[0] }] },
+        update: { $inc: { 'choices.$.votes': 1 } }
       }
     }
   );
@@ -235,7 +251,7 @@ router.post('/user/create', async (req, res, next) => {
     // res.cookie('id', id, { expires: date, path: '/', httpOnly: true });
     res.cookie('id', id, { expires: date, path: '/', httpOnly: true, secure: true });
 
-    res.json({ create: true, expire: (date.getTime()) });
+    res.json({ create: true, expire: date.getTime() });
   }
   else {
     // res.cookie('id', '', { expires: new Date(), path: '/', httpOnly: true });
@@ -266,7 +282,7 @@ router.post('/user/login', async (req, res, next) => {
         date.setDate(date.getDate() + 1);
         // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
         res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
-        res.json({ get: true, expire: (date.getTime()) });
+        res.json({ get: true, expire: date.getTime() });
       }
     }
   }
@@ -303,7 +319,7 @@ router.post('/user/edit', async (req, res, next) => {
       date.setDate(date.getDate() + 1);
       // res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true });
       res.cookie('id', findUser.id, { expires: date, path: '/', httpOnly: true, secure: true });
-      res.json({ update: true, expire: (date.getTime()) });
+      res.json({ update: true, expire: date.getTime() });
     }
   }
   else {

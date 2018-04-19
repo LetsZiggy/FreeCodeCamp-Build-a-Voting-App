@@ -71,6 +71,22 @@ export class ApiInterface {
     );
   }
 
+  cancelPoll(id) {
+    return(
+      this.http.fetch(`/poll/cancel`, {
+                 method: 'POST',
+                 credentials: 'same-origin',
+                 headers: {
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({ id: id })
+               })
+               .then(response => response.json())
+               .then(data => data)
+    );
+  }
+
   updatePoll(poll, changes, owner) {
     return(
       this.http.fetch(`/poll/update/${poll.id}`, {

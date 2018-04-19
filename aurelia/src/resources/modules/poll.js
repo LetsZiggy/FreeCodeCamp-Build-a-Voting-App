@@ -200,6 +200,7 @@ export class Poll {
   async donecancel(type) {
     if(type === 'cancel') {
       if(this.new) {
+        let update = await this.api.cancelPoll(this.state.polls[this.poll].id);
         this.state.polls.pop();
         this.router.navigate('user');
       }

@@ -30,7 +30,7 @@ template
           #edit-inputs
             div
               span Poll name:&nbsp;
-              input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 4 - 16)" minlength="4" maxlength="16" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
+              input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 4 - 24)" minlength="4" maxlength="24" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
 
             div
               span Allow voting without logging in:&nbsp;
@@ -39,7 +39,7 @@ template
 
             ol
               li(repeat.for="choice of state.polls[poll].choices")
-                input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 3 - 10)" minlength="3" maxlength="10" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
+                input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 3 - 16)" minlength="3" maxlength="16" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
                 img(src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_delete_black_24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
 
           #edit-buttons

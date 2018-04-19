@@ -13,7 +13,7 @@ export class App {
   bind() {
     let data = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
 
-    if(data.username && data.userexpire && parseInt(data.userexpire) - Date.now() > 1) {
+    if(data.username && data.userexpire && (parseInt(data.userexpire) - Date.now()) > 5000) {
       this.state.user.username = data.username || null;
       this.state.user.expire = parseInt(data.userexpire) || null;
     }
@@ -27,18 +27,25 @@ export class App {
   }
 
   async attached() {
-    if(this.state.user.username && this.state.user.expire && this.state.user.expire - Date.now() > 1) {
+    if(this.state.user.username && this.state.user.expire && (this.state.user.expire - Date.now()) > 5000) {
       this.state.user.interval = setTimeout(async () => {
         let logout = await this.api.logoutUser();
         this.state.user.username = null;
         this.state.user.expire = null;
-      }, this.state.user.expire - Date.now());
+        console.log('logout');
+      }, (this.state.user.expire - Date.now()));
+    }
+    else {
+      let logout = await this.api.logoutUser();
+      this.state.user.username = null;
+      this.state.user.expire = null;
     }
 
     window.onbeforeunload = (event) => {
       if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
         let data = { username: this.state.user.username, userexpire: this.state.user.expire };
+        data.votes = store.votes || {};
         localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
       }
 

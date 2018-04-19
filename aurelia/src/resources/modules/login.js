@@ -37,21 +37,12 @@ export class Login {
     }
   }
 
-  async attached() {
+  attached() {
     if(this.state.login.timer) {
       this.radio = 'radio-signin';
       document.getElementById('radio-delay').checked = true;
       setTimerInterval(this.state, this.radio, 'signin');
     }
-
-    window.onunload = async (event) => {
-      if(this.state.user.username) {
-        let store = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
-        let data = { username: this.state.user.username, userexpire: this.state.user.expire };
-        data.votes = store.votes || {};
-        localStorage.setItem('freecodecamp-build-a-voting-app', JSON.stringify(data));
-      }
-    };
   }
 
   detached() {
