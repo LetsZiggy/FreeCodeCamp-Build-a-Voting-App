@@ -74,6 +74,9 @@ function drawHorizontalChart(palette, id, choices) {
       type: 'bar',
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        responsiveAnimationDuration: 0,
         scales: {
           xAxes: [{
             display: true,
@@ -97,7 +100,6 @@ function drawHorizontalChart(palette, id, choices) {
             stacked: true
           }]
         },
-        maintainAspectRatio: false,
         tooltips: {
           enabled: true
         },

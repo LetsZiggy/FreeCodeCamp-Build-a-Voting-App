@@ -19,10 +19,14 @@ export class Login {
     if(this.state.user.username) {
       let data = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
       let logout = await this.api.logoutUser();
-      clearInterval(this.state.user.interval);
+
+      if(this.state.user.interval) {
+        clearInterval(this.state.user.interval);
+        this.state.user.interval = null;
+      }
+
       this.state.user.username = null;
       this.state.user.expire = null;
-      this.state.user.interval = null;
 
       data.username = this.state.user.username;
       data.userexpire = this.state.user.expire;
@@ -135,6 +139,20 @@ export class Login {
     else {
       this.state.user.expire = result.expire;
       this.state.user.username = document.getElementById(`${form}-username`).value;
+
+      this.state.user.interval = setTimeout(async () => {
+        let logout = await this.api.logoutUser();
+
+        if(this.state.user.interval) {
+          clearInterval(this.state.user.interval);
+          this.state.user.interval = null;
+        }
+
+        this.state.user.username = null;
+        this.state.user.expire = null;
+        console.log('logout');
+      }, (this.state.user.expire - Date.now()));
+
       this.router.navigateToRoute('home');
     }
   }

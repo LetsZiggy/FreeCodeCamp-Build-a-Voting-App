@@ -96,7 +96,7 @@ export class Poll {
     }
 
     let canvas = [
-      ['current', document.getElementById('right-column').getElementsByTagName('canvas')]
+      ['current', document.getElementById('top-row').getElementsByTagName('canvas')]
     ];
 
     generateCharts(palette, canvas, this.charts, this.state);
@@ -216,7 +216,7 @@ export class Poll {
     else {
       let hasChanges = false;
       let canvas = [
-        ['current', document.getElementById('right-column').getElementsByTagName('canvas')]
+        ['current', document.getElementById('top-row').getElementsByTagName('canvas')]
       ];
 
       destroyCharts(this.charts);

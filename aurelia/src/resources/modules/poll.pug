@@ -12,34 +12,38 @@ template
       span#delete(click.delegate="deletePoll()") Delete Poll
 
     #main
-      #left-column(if.bind="state.polls[poll].isPublic ? true : state.user.username ? true : false")
-        #spinner
-          .spinner
-            span
-            span
-            span
+      #top-row
+        .canvas-wrapper
+          canvas(id="current-canvas-${state.polls[poll].id}" style="width: 100%; height: 100%")
 
+      #bottom-row(if.bind="state.polls[poll].isPublic ? true : state.user.username ? true : false")
         #vote
-          ul
-            li(repeat.for="choice of state.polls[poll].choices")
+          #spinner
+            .spinner
+              span
+              span
+              span
+
+          #vote-choices
+            .vote-choice(repeat.for="choice of state.polls[poll].choices")
               input(type="radio" name="choice" id="select-${choice.id}" model.bind="choice.id" checked.bind="vote")
               label(for="select-${choice.id}")
                 span ${choice.name}
 
         #edit(if.bind="state.user.username === state.polls[poll].owner")
           #edit-inputs
-            div
+            div.edit-input
               span Poll name:&nbsp;
-              input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 4 - 24)" minlength="4" maxlength="24" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
+              input(type="text" autocomplete='off' id="edit-name" placeholder="Poll Name (Length: 4 - 48)" minlength="4" maxlength="48" keydown.delegate!="checkInput() & debounce" value.bind="state.polls[poll].name" required)
 
-            div
+            div.edit-input
               span Allow voting without logging in:&nbsp;
               input(type="checkbox" id="edit-public" checked.bind="state.polls[poll].isPublic" change.delegate="checkInput()")
               label(for="edit-public")
 
-            ol
-              li(repeat.for="choice of state.polls[poll].choices")
-                input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 3 - 16)" minlength="3" maxlength="16" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
+            #vote-inputs
+              .vote-input(repeat.for="choice of state.polls[poll].choices")
+                input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 4 - 24)" minlength="4" maxlength="24" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
                 img(src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_delete_black_24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
 
           #edit-buttons
@@ -50,7 +54,3 @@ template
             div
               button#edit-done(click.delegate="donecancel('done')") Done
               button#edit-cancel(click.delegate="donecancel('cancel')") Cancel
-
-      #right-column
-        .canvas-wrapper
-          canvas(id="current-canvas-${state.polls[poll].id}" style="width: 100%; height: 100%")

@@ -21,21 +21,22 @@
     color            : darkmagenta
     cursor           : auto
 
-  #vote-radio:checked ~ #main #left-column #vote, #edit-radio:checked ~ #main #left-column #edit
-    display : block
+  #vote-radio:checked ~ #main #bottom-row #vote, #edit-radio:checked ~ #main #bottom-row #edit
+    display : flex
 
   #title
     width           : 100%
-    height          : auto
+    height          : 3rem
     text-align      : center
-    margin          : 0rem 0rem 1rem 0rem
+    margin          : 0rem
+    line-height     : 2rem
     font-size       : 2rem
     font-weight     : bolder
     text-decoration : underline
 
   #options-row
     width            : 100%
-    height           : auto
+    height           : 2rem
     display          : flex
     flex-direction   : row
     justify-content  : flex-start
@@ -49,16 +50,28 @@
       padding : 0rem 0.5rem 0rem 0rem
 
     label
-      padding     : 0rem 0.5rem
-      margin      : 0rem
-      cursor      : pointer
-      color       : slateblue
-      user-select : none
+      display         : inline-flex
+      flex-direction  : column
+      justify-content : center
+      align-items     : center
+      align-content   : center
+      width           : auto
+      height          : 100%
+      padding         : 0rem 0.5rem
+      margin          : 0rem
+      cursor          : pointer
+      color           : slateblue
+      user-select     : none
 
     label:hover
       background-color : #DDDDDD
 
     span#delete
+      display          : inline-flex
+      flex-direction   : column
+      justify-content  : center
+      align-items      : center
+      align-content    : center
       margin-left      : auto
       width            : auto
       height           : 100%
@@ -78,84 +91,118 @@
   #main
     position        : relative
     width           : 100%
-    height          : auto
+    height          : calc(100% - 6rem)
     display         : flex
-    flex-direction  : row
+    flex-direction  : column
     justify-content : center
     align-items     : center
     align-content   : center
 
-    #left-column, #right-column
+    #top-row, #bottom-row
       position   : relative
-      height     : auto
-      width      : 50%
-      max-height : 75vh
+      width      : 100%
       box-sizing : border-box
       margin     : 0rem
       padding    : 0rem
-      overflow   : hidden
 
-    #left-column
-      #spinner
+    #top-row
+      height   : 35%
+      overflow : hidden
+
+      .canvas-wrapper
+        width  : 100%
+        height : 100%
+
+    #bottom-row
+      display         : flex
+      flex-direction  : column
+      justify-content : center
+      align-items     : center
+      align-content   : center
+      height          : 65%
+      overflow-x      : hidden
+      overflow-y      : auto
+
+      #vote, #edit
         position        : relative
-        left            : 5rem
-        top             : 0rem
-        display         : block
-        visibility      : hidden
-        flex-direction  : column
-        justify-content : center
         align-items     : center
         align-content   : center
-        margin-bottom   : 1rem
-        user-select     : none
-       
-        .spinner
-          position : relative
-          display  : inline-block
-          height   : 0px
-          width    : 0px
-
-          span
-            position         : absolute
-            display          : inline-block
-            top              : 0px
-            height           : 0.5rem
-            width            : 0.5rem
-            background-color : dimgrey
-            border-radius    : 50%
-
-            &:nth-child(1)
-              left      : -2rem
-              animation : bounce 1s ease-in-out infinite
-
-            &:nth-child(2)
-              left      : -0.5rem
-              animation : bounce 1s ease-in-out 0.33s infinite
-
-            &:nth-child(3)
-              left      : 1rem
-              animation : bounce 1s ease-in-out 0.66s infinite
+        display         : none
+        width           : 100%
+        height          : 100%
 
       #vote
-        position     : relative
-        display      : none
-        width        : auto
-        height       : auto
-        padding-left : 1rem
+        flex-wrap       : nowrap
+        flex-direction  : column
+        justify-content : flex-start
 
-        ul
+        #spinner
           position        : relative
-          margin          : 0rem
-          padding         : 0rem
-          width           : 100%
-          height          : 100%
-          list-style-type : none
-          overflow        : hidden
+          display         : block
+          visibility      : hidden
+          flex-direction  : column
+          justify-content : center
+          align-items     : center
+          align-content   : center
+          margin          : 1rem 0rem
+          user-select     : none
 
-          li
+          .spinner
             position : relative
-            width  : 100%
-            height : 2rem
+            display  : inline-block
+            height   : 0px
+            width    : 0px
+
+            span
+              position         : absolute
+              display          : inline-block
+              top              : 0px
+              height           : 0.5rem
+              width            : 0.5rem
+              background-color : dimgrey
+              border-radius    : 50%
+
+              &:nth-child(1)
+                left      : -2rem
+                animation : bounce 1s ease-in-out infinite
+
+              &:nth-child(2)
+                left      : -0.5rem
+                animation : bounce 1s ease-in-out 0.33s infinite
+
+              &:nth-child(3)
+                left      : 1rem
+                animation : bounce 1s ease-in-out 0.66s infinite
+
+        #vote-choices
+          display         : flex
+          flex-direction  : row
+          flex-wrap       : wrap
+          justify-content : center
+          align-items     : center
+          align-content   : center
+          width           : 100%
+          height          : auto
+          box-sizing      : border-box
+
+          .vote-choice:nth-child(odd)
+            padding-right   : 1rem
+            justify-content : flex-end
+
+          .vote-choice:nth-child(even)
+            padding-left    : 1rem
+            justify-content : flex-start
+
+          .vote-choice
+            display        : inline-flex
+            flex-direction : row
+            flex-wrap      : nowrap
+            align-items    : center
+            align-content  : center
+            position       : relative
+            width          : 50%
+            height         : 2rem
+            box-sizing     : border-box
 
             input
               display : none
@@ -216,15 +263,25 @@
                 background-color : #EEEEEE
 
       #edit
-        position : relative
-        display  : none
-        width    : auto
-        height   : auto
+        flex-wrap       : wrap
+        flex-direction  : row
+        justify-content : center
 
         #edit-inputs
-          position : relative
-          width    : auto
-          height   : auto
+          position        : relative
+          display         : flex
+          flex-direction  : column
+          flex-wrap       : wrap
+          justify-content : flex-start
+          align-items     : flex-start
+          align-content   : center
+          width           : 100%
+          height          : auto
+          box-sizing      : border-box
+
+          .edit-input
+            padding : 0rem 0rem 0rem 3rem
+            margin  : 0rem 0rem 1rem 0rem
 
           div
             position        : relative
@@ -234,11 +291,10 @@
             justify-content : flex-start
             align-items     : center
             align-content   : center
-            margin          : 0rem 0rem 1rem 0rem
-            padding         : 0rem 0rem 0rem 0.5rem
-            width           : 100%
+            width           : 50
             height          : auto
             overflow        : hidden
+            box-sizing      : border-box
 
             input[type="text"]
               padding : 0.25rem
@@ -272,17 +328,29 @@
             label:hover::after
               background-color : #DDDDDD
 
-          ol
-            position : relative
-            margin   : 0rem
-            padding  : 0rem 0rem 0rem 1.5rem
-            width    : 100%
-            height   : 100%
-            overflow : hidden
+          #vote-inputs
+            display         : flex
+            flex-direction  : row
+            flex-wrap       : wrap
+            justify-content : center
+            align-items     : center
+            align-content   : center
+            width           : 100%
+            height          : auto
 
-            li
-              position     : relative
-              padding-left : 0.5rem
+            .vote-input:nth-child(odd)
+              padding-left : 3rem
+
+            .vote-input:nth-child(even)
+              padding-right : 3rem
+
+            .vote-input
+              position   : relative
+              display    : inline-block
+              width      : 50%
+              height     : auto
+              box-sizing : border-box
+              margin     : 0rem
 
               input
                 padding : 0.25rem
@@ -304,7 +372,7 @@
 
         #edit-buttons
           position        : relative
-          width           : auto
+          width           : 50%
           height          : auto
           margin          : 1rem 0rem 0rem 0rem
           padding         : 0rem
@@ -343,5 +411,3 @@
               border           : 1px solid firebrick
               color            : white
               cursor           : not-allowed
-
-    #right-column

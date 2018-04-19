@@ -30,6 +30,12 @@ export class App {
     if(this.state.user.username && this.state.user.expire && (this.state.user.expire - Date.now()) > 5000) {
       this.state.user.interval = setTimeout(async () => {
         let logout = await this.api.logoutUser();
+        
+        if(this.state.user.interval) {
+          clearInterval(this.state.user.interval);
+          this.state.user.interval = null;
+        }
+
         this.state.user.username = null;
         this.state.user.expire = null;
         console.log('logout');
@@ -37,11 +43,22 @@ export class App {
     }
     else {
       let logout = await this.api.logoutUser();
+
+      if(this.state.user.interval) {
+        clearInterval(this.state.user.interval);
+        this.state.user.interval = null;
+      }
+
       this.state.user.username = null;
       this.state.user.expire = null;
     }
 
     window.onbeforeunload = (event) => {
+      if(this.state.user.interval) {
+        clearInterval(this.state.user.interval);
+        this.state.user.interval = null;
+      }
+
       if(this.state.user.username) {
         let store = JSON.parse(localStorage.getItem('freecodecamp-build-a-voting-app')) || {};
         let data = { username: this.state.user.username, userexpire: this.state.user.expire };
