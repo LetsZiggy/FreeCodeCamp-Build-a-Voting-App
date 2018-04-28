@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongo = require('mongodb').MongoClient;
 const createID = require('./services/create-id.js');
-const handlePassword = require('./services/handle-password.js');
+const handleHashing = require('./services/handle-hashing.js');
 
 const dbURL = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBURL}/${process.env.DBNAME}`;
 
@@ -228,8 +228,10 @@ router.post('/user/checkname', async (req, res, next) => {
 
 router.post('/user/create', async (req, res, next) => {
   if(!req.cookies.id) {
-    let data = handlePassword(req.body.password);
+    let data = {};
     data.username = req.body.username;
+    data.email = handleHashing(req.body.email);
+    data.password = handleHashing(req.body.password);
 
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
@@ -272,9 +274,9 @@ router.post('/user/login', async (req, res, next) => {
       res.json({ get: false });
     }
     else {
-      let data = await handlePassword(req.body.password, findUser.salt);
+      let password = await handleHashing(req.body.password, findUser.password.salt);
 
-      if(data.hash !== findUser.hash) {
+      if(password.hash !== findUser.password.hash) {
         res.json({ get: false }); 
       }
       else {
@@ -305,14 +307,15 @@ router.post('/user/edit', async (req, res, next) => {
     let db = await client.db(process.env.DBNAME);
     let collectionUsers = await db.collection('build-a-voting-app-users');
     let findUser = await collectionUsers.findOne({ username: req.body.username });
+    let email = await handleHashing(req.body.email, findUser.email.salt);
 
-    if(!findUser) {
+    if(!findUser || email.hash !== findUser.email.hash) {
       client.close();
       res.json({ update: false });
     }
     else {
-      let data = await handlePassword(req.body.password);
-      let updateUser = await collectionUsers.updateOne({ username: req.body.username }, { $set: { hash: data.hash, salt: data.salt } });
+      let password = await handleHashing(req.body.password);
+      let updateUser = await collectionUsers.updateOne({ username: req.body.username }, { $set: { password: { hash: password.hash, salt: password.salt } } });
       client.close();
 
       let date = new Date();

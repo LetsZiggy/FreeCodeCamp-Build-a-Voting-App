@@ -6,16 +6,16 @@ function createSalt(length) {
                .slice(0, length));
 }
 
-function sha512(password, salt) {
+function sha512(data, salt) {
   let hash = crypto.createHmac('sha512', salt);
-  hash.update(password);
+  hash.update(data);
   hash = hash.digest('hex');
   return({ salt: salt, hash: hash });
 }
 
-function handlePassword(password, salt=null) {
+function handleHashing(data, salt=null) {
   if(salt === null) { salt = createSalt(16); }
-  return(sha512(password, salt));
+  return(sha512(data, salt));
 }
 
-module.exports = handlePassword;
+module.exports = handleHashing;

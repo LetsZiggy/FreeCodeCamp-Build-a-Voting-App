@@ -42,6 +42,11 @@ template
           label Username (Minimum length of 6)
 
         fieldset.login-fieldset
+          input#signup-email(type="email" placeholder="" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
+          hr
+          label Email
+
+        fieldset.login-fieldset
           input#signup-password(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
           hr
           label Password (Minimum length of 8)
@@ -59,6 +64,11 @@ template
           input#signreset-username(type="text" placeholder="" minlength="6" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
           hr
           label Username
+
+        fieldset.login-fieldset
+          input#signreset-email(type="email" placeholder="" keydown.delegate!="checkInput($event, 'signup') & debounce" data-length="0" required)
+          hr
+          label Email
 
         fieldset.login-fieldset
           input#signreset-password(type="password" placeholder="" minlength="8" keydown.delegate!="checkInput($event, 'signreset') & debounce" data-length="0" required)
