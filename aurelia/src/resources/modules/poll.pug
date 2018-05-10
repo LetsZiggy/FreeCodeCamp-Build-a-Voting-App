@@ -44,7 +44,7 @@ template
             #vote-inputs
               .vote-input(repeat.for="choice of state.polls[poll].choices")
                 input(type="text" autocomplete='off' id="edit-${choice.id}" placeholder="Choice Name (Length: 4 - 24)" minlength="4" maxlength="24" keydown.delegate!="checkInput() & debounce" value.bind="choice.name" required)
-                img(src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_delete_black_24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
+                img(src="https://material.io/tools/icons/static/icons/baseline-delete-24px.svg" click.delegate="addremove($index)" css="visibility: ${state.polls[poll].choices.length > 2 ? 'visible' : 'hidden'};")
 
           #edit-buttons
             div(css="visibility: ${state.polls[poll].choices.length < 8 ? 'visible' : 'hidden'};")
