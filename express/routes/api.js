@@ -10,7 +10,7 @@ router.get('/polls', async (req, res, next) => {
   let client = await mongo.connect(dbURL);
   let db = await client.db(process.env.DBNAME);
   let collectionPolls = await db.collection('build-a-voting-app-polls');
-  let findPoll = await collectionPolls.find().project({ _id: 0 }).toArray();
+  let findPoll = await collectionPolls.find({}, { projection: { _id: 0 } }).toArray();
   client.close();
 
   res.json({ get: true, polls: findPoll });
@@ -21,7 +21,7 @@ router.post('/poll/id', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionIDs = await db.collection('build-a-voting-app-ids');
-    let findID = await collectionIDs.findOne({ type: 'polls' }, { _id: 0, type: 0 });
+    let findID = await collectionIDs.findOne({ type: 'polls' }, { projection: { _id: 0, type: 0 } });
     let id = createID(findID.list);
     let query = `list.${id}`;
     let updateID = await collectionIDs.findOneAndUpdate(
@@ -214,7 +214,7 @@ router.post('/user/checkname', async (req, res, next) => {
   let client = await mongo.connect(dbURL);
   let db = await client.db(process.env.DBNAME);
   let collectionIDs = await db.collection('build-a-voting-app-ids');
-  let findID = await collectionIDs.findOne({ type: 'users' }, { _id: 0, type: 0 });
+  let findID = await collectionIDs.findOne({ type: 'users' }, { projection: { _id: 0, type: 0 } });
   client.close();
 
   let takenUsernames = Object.entries(findID).map((v, i, a) => v[1]);
@@ -236,7 +236,7 @@ router.post('/user/create', async (req, res, next) => {
     let client = await mongo.connect(dbURL);
     let db = await client.db(process.env.DBNAME);
     let collectionIDs = await db.collection('build-a-voting-app-ids');
-    let findID = await collectionIDs.findOne({ type: 'users' }, { _id: 0, type: 0 });
+    let findID = await collectionIDs.findOne({ type: 'users' }, { projection: { _id: 0, type: 0 } });
     let id = createID(findID.list);
     data.id = id;
     let query = `list.${id}`;
