@@ -24,10 +24,7 @@ router.post('/poll/id', async (req, res, next) => {
     let findID = await collectionIDs.findOne({ type: 'polls' }, { projection: { _id: 0, type: 0 } });
     let id = createID(findID.list);
     let query = `list.${id}`;
-    let updateID = await collectionIDs.findOneAndUpdate(
-      { type: 'polls' },
-      { $set: { [query]: new Date() } }
-    );
+    let updateID = await collectionIDs.findOneAndUpdate({ type: 'polls' }, { $set: { [query]: new Date() } });
     client.close();
 
     res.json({ create: true, id: id });
@@ -240,10 +237,7 @@ router.post('/user/create', async (req, res, next) => {
     let id = createID(findID.list);
     data.id = id;
     let query = `list.${id}`;
-    let insertID = await collectionIDs.findOneAndUpdate(
-      { type: 'users' },
-      { $set: { [query]: req.body.username } }
-    );
+    let insertID = await collectionIDs.findOneAndUpdate({ type: 'users' }, { $set: { [query]: req.body.username } });
     let collectionUsers = await db.collection('build-a-voting-app-users');
     let insertUser = await collectionUsers.insertOne(data);
     client.close();
@@ -252,7 +246,6 @@ router.post('/user/create', async (req, res, next) => {
     date.setDate(date.getDate() + 1);
     // res.cookie('id', id, { expires: date, path: '/', httpOnly: true });
     res.cookie('id', id, { expires: date, path: '/', httpOnly: true, secure: true });
-
     res.json({ create: true, expire: date.getTime() });
   }
   else {
